@@ -69,6 +69,21 @@ class plgSystemDarkMagic extends CMSPlugin
 			return;
 		}
 
+		// Special handling for "browser" activation mode
+		if ($this->params->get('applywhen', 'always') == 'browser')
+		{
+			// Load our special JavaScript
+			$document->addScript('../plugins/system/darkmagic/media/js/darkmagic.js', [
+				'version' => $this->getMediaVersion()
+			], [
+				'type'  => 'text/javascript',
+				'defer' => true,
+				'async' => true,
+			]);
+
+			return;
+		}
+
 		// Apply the dark mode CSS
 		$document->addStyleSheet(
 			'../plugins/system/darkmagic/darktheme/administrator/templates/isis/css/custom.css', [
@@ -123,6 +138,7 @@ class plgSystemDarkMagic extends CMSPlugin
 		{
 			default:
 			case 'always':
+			case 'browser':
 				return true;
 
 				break;
@@ -201,6 +217,7 @@ class plgSystemDarkMagic extends CMSPlugin
 	{
 		$fileModTimes = [
 			filemtime(__FILE__),
+			filemtime(__DIR__ . '/media/js/darkmagic.js'),
 			filemtime(__DIR__ . '/darktheme/administrator/templates/isis/css/custom.css'),
 			filemtime(__DIR__ . '/darktheme/media/editors/tinymce/skins/charcoal/skin.min.css'),
 			filemtime(__DIR__ . '/darktheme/media/editors/tinymce/skins/charcoal/content.inline.min.css'),

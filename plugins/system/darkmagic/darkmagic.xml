@@ -17,6 +17,7 @@
 		<filename plugin="darkmagic">darkmagic.php</filename>
 
 		<folder>darktheme</folder>
+		<folder>media</folder>
 
 		<file>LICENSE.txt</file>
 		<file>LICENSES.txt</file>
@@ -49,6 +50,7 @@
 						default="always"
 				>
 					<option value="always">PLG_SYSTEM_DARKMAGIC_CONFIG_APPLYWHEN_ALWAYS</option>
+					<option value="browser">PLG_SYSTEM_DARKMAGIC_CONFIG_APPLYWHEN_BROWSER</option>
 					<option value="dusk">PLG_SYSTEM_DARKMAGIC_CONFIG_APPLYWHEN_DUSK</option>
 				</field>
 
