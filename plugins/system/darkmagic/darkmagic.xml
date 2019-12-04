@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.9.0" type="plugin" group="system" method="upgrade">
+	<name>PLG_SYSTEM_DARKMAGIC</name>
+	<version>1.0.0.b1</version>
+	<creationDate>2019-12-04</creationDate>
+
+	<author>Nicholas K. Dionysopoulos</author>
+	<authorEmail>no-reply@akeebabackup.com</authorEmail>
+	<authorUrl>https://www.dionysopoulos.me</authorUrl>
+
+	<copyright>Copyright (c)2019-2019 Nicholas K. Dionysopoulos</copyright>
+	<license>GNU GPL v3 or later</license>
+
+	<description>PLG_SYSTEM_DARKMAGIC_DESCRIPTION</description>
+
+	<files>
+		<filename plugin="darkmagic">darkmagic.php</filename>
+
+		<folder>darktheme</folder>
+
+		<file>LICENSE.txt</file>
+		<file>LICENSES.txt</file>
+	</files>
+
+	<media folder="darkmagic/media/editors/tinymce/skins/charcoal" destination="editors/tinymce/skins/charcoal">
+		<folder>fonts</folder>
+		<folder>img</folder>
+		<file>content.inline.min.css</file>
+		<file>content.min.css</file>
+		<file>skin.ie7.min.css</file>
+		<file>skin.json</file>
+		<file>skin.min.css</file>
+		<file>Variables.less</file>
+	</media>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_system_darkmagic.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_darkmagic.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+						name="applywhen"
+						type="list"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_APPLYWHEN_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_APPLYWHEN_DESC"
+						default="always"
+				>
+					<option value="always">PLG_SYSTEM_DARKMAGIC_CONFIG_APPLYWHEN_ALWAYS</option>
+					<option value="dusk">PLG_SYSTEM_DARKMAGIC_CONFIG_APPLYWHEN_DUSK</option>
+				</field>
+
+				<field
+						name="autotinymcetheme"
+						type="radio"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_AUTOTINYMCETHEME_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_AUTOTINYMCETHEME_DESC"
+						default="1"
+						class="btn-group btn-group-yesno"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+						name="zenith"
+						type="list"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_ZENITH_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_ZENITH_DESC"
+						default="96"
+				>
+					<option value="90.1389">PLG_SYSTEM_DARKMAGIC_CONFIG_ZENITH_SUNRISE</option>
+					<option value="96">PLG_SYSTEM_DARKMAGIC_CONFIG_ZENITH_CIVIL</option>
+					<option value="102">PLG_SYSTEM_DARKMAGIC_CONFIG_ZENITH_NAUTICAL</option>
+					<option value="108">PLG_SYSTEM_DARKMAGIC_CONFIG_ZENITH_ASTRONOMICAL</option>
+				</field>
+
+				<field
+						name="latitude"
+						type="number"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_LATITUDE_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_LATITUDE_DESC"
+						min="-180"
+						max="180"
+						step="0.01"
+						default="35.185566"
+				/>
+
+				<field
+						name="longitude"
+						type="number"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_LONGITUDE_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_LONGITUDE_DESC"
+						min="-180"
+						max="180"
+						step="0.01"
+						default="33.382275"
+				/>
+
+				<field
+						name="aftersunrise"
+						type="number"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_AFTERSUNRISE_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_AFTERSUNRISE_DESC"
+						min="0"
+						max="90"
+						step="1"
+						default="0"
+				/>
+
+				<field
+						name="beforesunset"
+						type="number"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_BEFORESUNSET_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_BEFORESUNSET_DESC"
+						min="0"
+						max="90"
+						step="1"
+						default="0"
+				/>
+
+			</fieldset>
+		</fields>
+	</config>
+
+	<!-- Installation script -->
+	<scriptfile>script.plg_system_darkmagic.php</scriptfile>
+
+	<!-- Update servers -->
+	<updateservers>
+		<server type="extension" priority="1" name="DarkMagic Updates">https://raw.githubusercontent.com/nikosdion/darkmagic/master/update/plg_darkmagic_updates.xml</server>
+	</updateservers>
+</extension>

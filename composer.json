@@ -1,0 +1,24 @@
+{
+  "name": "nikosdion/darkmagic",
+  "type": "project",
+  "description": "Dark Magic - Turn off the lights in your Joomla! administrator",
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "keywords": [
+    "dark",
+    "joomla",
+    "template",
+    "administrator"
+  ],
+  "homepage": "https://github.com/nikosdion/darkmagic",
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Nicholas K. Dionysopoulos",
+      "email": "nicholas_NO_SPAM_PLEASE@akeeba.com",
+      "homepage": "http://www.dionysopoulos.me",
+      "role": "Lead Developer"
+    }
+  ]
+}
