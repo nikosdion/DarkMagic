@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <project name="DarkMagic" description="Dark Magic" default="git" >
-	<!--<import file="${phing.dir}/../../buildfiles/phing/common.xml" />-->
-	<import file="${phing.dir}/../../../akeeba/buildfiles/phing/common.xml" />
+	<import file="${phing.dir}/../../buildfiles/phing/common.xml" />
 
 	<!--
 	====================================================================================================

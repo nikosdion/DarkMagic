@@ -1,3 +1,0 @@
-For the Dark Magic plugin please consult the LICENSE.txt file in the same folder as this LICENSES.txt file. You can find the github repository for the plugin at https://github.com/nikosdion/darkmagic
-
-For the Joomla 3 Isis Dark Theme (used by this plugin) please consult the LICENSE file in the darktheme folder. You can find the GitHub repository for the dark theme at https://github.com/N6REJ/joomla3-isis-dark-theme

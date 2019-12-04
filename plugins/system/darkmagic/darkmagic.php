@@ -8,6 +8,7 @@
 // Prevent direct access
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Document\HtmlDocument;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\Registry\Registry;
@@ -31,6 +32,7 @@ class plgSystemDarkMagic extends CMSPlugin
 
 	public function onBeforeRender(): void
 	{
+		// Make sure I can get basic Joomla objects before proceeding
 		try
 		{
 			$app      = Factory::getApplication();
@@ -42,65 +44,58 @@ class plgSystemDarkMagic extends CMSPlugin
 			return;
 		}
 
-		// Is this format=html mode?
-		if ($input->getCmd('format', 'html') != 'html')
-		{
-			return;
-		}
-
 		// Are we REALLY sure this is an HTML document?
-		if (!($document instanceof JDocumentHtml))
+		if (!($document instanceof HtmlDocument))
 		{
 			return;
 		}
 
-		// Do I need to change the TinyMCE theme?
-		$changeTinyMCESkin = $this->params->get('autotinymcetheme', 1);
+		// Get the plugin configuration
+		$applyWhen = $this->params->get('applywhen', 'always');
 
-		// Do I need to apply dark mode?
+		// Is this Light Mode?
 		if (!$this->enabled)
 		{
-			// Light Mode. Do I have to reset the TinyMCE skin?
-			if ($changeTinyMCESkin)
-			{
-				$this->changeTinyMceSkin($document, 'lightgray');
-			}
-
 			return;
 		}
 
-		// Special handling for "browser" activation mode
-		if ($this->params->get('applywhen', 'always') == 'browser')
+		switch ($applyWhen)
 		{
-			// Load our special JavaScript
-			$document->addScript('../plugins/system/darkmagic/media/js/darkmagic.js', [
-				'version' => $this->getMediaVersion()
-			], [
-				'type'  => 'text/javascript',
-				'defer' => true,
-				'async' => true,
-			]);
+			case 'always':
+			case 'dusk':
+			default:
+				// Load the dark mode CSS
+				$document->addStyleSheet(
+					'../media/plg_system_darkmagic/css/custom.css', [
+					'version' => $this->getMediaVersion(),
+				], [
+						'type' => 'text/css',
+					]
+				);
 
-			return;
+				// Apply the TinyMCE skin
+				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
+
+				break;
+
+			case 'browser':
+				// Load the dark mode CSS conditionally
+				$document->addStyleSheet(
+					'../media/plg_system_darkmagic/css/custom.css', [
+					'version' => $this->getMediaVersion(),
+
+				], [
+						'type'  => 'text/css',
+						'media' => '(prefers-color-scheme: dark)',
+					]
+				);
+
+				// Apply the TinyMCE skin conditionally
+				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+
+				break;
 		}
 
-		// Apply the dark mode CSS
-		$document->addStyleSheet(
-			'../plugins/system/darkmagic/darktheme/administrator/templates/isis/css/custom.css', [
-			'version' => $this->getMediaVersion(),
-			// conditional
-
-		], [
-				'type'  => 'text/css',
-				'media' => 'screen',
-			]
-		);
-
-		// Apply the TinyMCE skin
-		if ($changeTinyMCESkin)
-		{
-			$this->changeTinyMceSkin($document, 'charcoal');
-		}
 	}
 
 	/**
@@ -150,6 +145,15 @@ class plgSystemDarkMagic extends CMSPlugin
 		}
 	}
 
+	/**
+	 * Is it night yet?
+	 *
+	 * Checks the sun position based on the defined location.
+	 *
+	 * @return  bool
+	 *
+	 * @since   1.0.0.b1
+	 */
 	private function isNight(): bool
 	{
 		try
@@ -206,9 +210,11 @@ class plgSystemDarkMagic extends CMSPlugin
 	}
 
 	/**
-	 * Create a media version query string from the modification dates of the CSS files we are going to be loading. This
-	 * is simultaneously very accurate and does not divulge plugin version information since each site will have a
-	 * different file modification time for each file.
+	 * Create a media version query string for the plugin.
+	 *
+	 * The media version query string is created from the modification dates of the CSS files we are going to be
+	 * loading. This is simultaneously very accurate and does not divulge plugin version information since each site
+	 * will have a different file modification time for each file.
 	 *
 	 * @return  string
 	 * @since   1.0.0.b1
@@ -217,34 +223,30 @@ class plgSystemDarkMagic extends CMSPlugin
 	{
 		$fileModTimes = [
 			filemtime(__FILE__),
-			filemtime(__DIR__ . '/media/js/darkmagic.js'),
-			filemtime(__DIR__ . '/darktheme/administrator/templates/isis/css/custom.css'),
-			filemtime(__DIR__ . '/darktheme/media/editors/tinymce/skins/charcoal/skin.min.css'),
-			filemtime(__DIR__ . '/darktheme/media/editors/tinymce/skins/charcoal/content.inline.min.css'),
-			filemtime(__DIR__ . '/darktheme/media/editors/tinymce/skins/charcoal/content.min.css'),
+			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/custom.css'),
+			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/skin.css'),
+			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/content.css'),
 		];
 
 		return sha1(implode(':', $fileModTimes));
 	}
 
-	/**
-	 * @param   JDocumentHtml  $document
-	 * @param   string         $skin
-	 *
-	 * @return  void
-	 * @since   1.0.0.b1
-	 */
-	private function changeTinyMceSkin(JDocumentHtml $document, string $skin = 'charcoal'): void
+	private function postponeCSSLoad(string $url, string $media = 'screen')
 	{
-		$tinyMceOptions = $document->getScriptOptions('plg_editor_tinymce');
+		$js = <<< JS
+jQuery(document).ready(function($) {
+    window.setTimeout(function() {
+	    var head   = document.getElementsByTagName("head")[0];
+	    var link   = document.createElement("link");
+	    link.rel   = "stylesheet";
+	    link.type  = "text/css";
+	    link.href  = '$url';
+	    link.media = "$media";
+	    head.appendChild(link);
+    }, 250);
+});
 
-		if (!is_array($tinyMceOptions) || empty($tinyMceOptions) || !isset($tinyMceOptions['tinyMCE']) || !isset($tinyMceOptions['tinyMCE']['default']))
-		{
-			return;
-		}
-
-		$tinyMceOptions['tinyMCE']['default']['skin'] = $skin;
-
-		$document->addScriptOptions('plg_editor_tinymce', $tinyMceOptions, true);
+JS;
+		Factory::getApplication()->getDocument()->addScriptDeclaration($js);
 	}
 }

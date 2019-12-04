@@ -16,22 +16,13 @@
 	<files>
 		<filename plugin="darkmagic">darkmagic.php</filename>
 
-		<folder>darktheme</folder>
-		<folder>media</folder>
-
-		<file>LICENSE.txt</file>
-		<file>LICENSES.txt</file>
+		<filename>.htaccess</filename>
+		<filename>web.config</filename>
 	</files>
 
-	<media folder="darkmagic/media/editors/tinymce/skins/charcoal" destination="editors/tinymce/skins/charcoal">
-		<folder>fonts</folder>
+	<media folder="media" destination="plg_system_darkmagic">
+		<folder>css</folder>
 		<folder>img</folder>
-		<file>content.inline.min.css</file>
-		<file>content.min.css</file>
-		<file>skin.ie7.min.css</file>
-		<file>skin.json</file>
-		<file>skin.min.css</file>
-		<file>Variables.less</file>
 	</media>
 
 	<languages folder="language">
@@ -52,18 +43,6 @@
 					<option value="always">PLG_SYSTEM_DARKMAGIC_CONFIG_APPLYWHEN_ALWAYS</option>
 					<option value="browser">PLG_SYSTEM_DARKMAGIC_CONFIG_APPLYWHEN_BROWSER</option>
 					<option value="dusk">PLG_SYSTEM_DARKMAGIC_CONFIG_APPLYWHEN_DUSK</option>
-				</field>
-
-				<field
-						name="autotinymcetheme"
-						type="radio"
-						label="PLG_SYSTEM_DARKMAGIC_CONFIG_AUTOTINYMCETHEME_LABEL"
-						description="PLG_SYSTEM_DARKMAGIC_CONFIG_AUTOTINYMCETHEME_DESC"
-						default="1"
-						class="btn-group btn-group-yesno"
-				>
-					<option value="1">JYES</option>
-					<option value="0">JNO</option>
 				</field>
 
 				<field

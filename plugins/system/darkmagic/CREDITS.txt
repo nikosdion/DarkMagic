@@ -1,0 +1,2 @@
+The Dark Theme CSS builds upon the work of Troy Hall and Alek Volsk, distributed under the MIT license.
+
