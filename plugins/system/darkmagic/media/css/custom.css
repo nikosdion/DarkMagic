@@ -2402,3 +2402,29 @@ input:focus,
 #sbox-content {
     background-color: var(--gray-2);
 }
+
+div.calendar-container {
+    background-color: var(--gray-2) !important;
+    color: var(--gray-a);
+}
+
+div.calendar-container table.table {
+    background-color: var(--gray-2);
+}
+
+div.calendar-container thead.calendar-header {
+    background-color: var(--gray-3);
+}
+
+div.calendar-container tr.daynames {
+    background-color: var(--gray-2);
+}
+
+div.calendar-container table.table tbody {
+    background-color: var(--gray-3);
+}
+
+div.calendar-container table.table tbody td.day.wn {
+    background-color: var(--gray-5);
+    color: var(--gray-a);
+}
