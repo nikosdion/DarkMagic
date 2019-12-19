@@ -33,6 +33,9 @@ out/
 
 ### Files specific to this repository
 
+# Composer (only really used for project management)
+vendor
+
 # Build property overrides
 /build/override.properties
 

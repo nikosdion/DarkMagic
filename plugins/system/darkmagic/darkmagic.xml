@@ -103,6 +103,58 @@
 				/>
 
 			</fieldset>
+
+			<fieldset name="advanced">
+				<field
+						name="templateColor"
+						type="color"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_DESC"
+						class=""
+						default="#051328"
+						validate="color"
+				/>
+
+				<field
+						name="headerColor"
+						type="color"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_HEADER_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_HEADER_DESC"
+						class=""
+						default="#081f43"
+						validate="color"
+				/>
+
+				<field
+						name="sidebarColor"
+						type="color"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_SIDEBAR_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_SIDEBAR_DESC"
+						class=""
+						default="#aaaaaa"
+						validate="color"
+				/>
+
+				<field
+						name="linkColor"
+						type="color"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LINK_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LINK_DESC"
+						class=""
+						default="#aaaaaa"
+						validate="color"
+				/>
+
+				<field
+						name="loginBackgroundColor"
+						type="color"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LOGIN_BACKGROUND_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LOGIN_BACKGROUND_DESC"
+						class=""
+						default="#0B5089"
+						validate="color"
+				/>
+			</fieldset>
 		</fields>
 	</config>
 

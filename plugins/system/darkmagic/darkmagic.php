@@ -50,6 +50,9 @@ class plgSystemDarkMagic extends CMSPlugin
 			return;
 		}
 
+		// Get inline CSS override
+		$overrideCss = $this->getInlineCSSOverride();
+
 		// Get the plugin configuration
 		$applyWhen = $this->params->get('applywhen', 'always');
 
@@ -76,6 +79,12 @@ class plgSystemDarkMagic extends CMSPlugin
 				// Apply the TinyMCE skin
 				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
 
+				// Apply the inline CSS overrides
+				if (!empty($overrideCss))
+				{
+					$document->addStyleDeclaration($overrideCss);
+				}
+
 				break;
 
 			case 'browser':
@@ -92,6 +101,21 @@ class plgSystemDarkMagic extends CMSPlugin
 
 				// Apply the TinyMCE skin conditionally
 				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+
+				// Apply the inline CSS overrides
+				if (!empty($overrideCss))
+				{
+					$overrideCss = <<< CSS
+
+@media screen and (prefers-color-scheme: dark)
+{
+	$overrideCss
+}
+
+CSS;
+
+					$document->addStyleDeclaration($overrideCss);
+				}
 
 				break;
 		}
@@ -231,6 +255,16 @@ class plgSystemDarkMagic extends CMSPlugin
 		return sha1(implode(':', $fileModTimes));
 	}
 
+	/**
+	 * Postpone loading of the specified CSS file until after the DOM is ready
+	 *
+	 * @param   string  $url    The URL to the CSS file to load
+	 * @param   string  $media  Media query for the CSS file, default "screen"
+	 *
+	 *
+	 * @throws Exception
+	 * @since  1.0.0.b1
+	 */
 	private function postponeCSSLoad(string $url, string $media = 'screen')
 	{
 		$js = <<< JS
@@ -248,5 +282,83 @@ jQuery(document).ready(function($) {
 
 JS;
 		Factory::getApplication()->getDocument()->addScriptDeclaration($js);
+	}
+
+	private function getInlineCSSOverride(): string
+	{
+		$css = '';
+
+		$navbar_color     = $this->params->get('templateColor') ?: '';
+		$header_color     = $this->params->get('headerColor') ?: '';
+		$sideBarColor     = $this->params->get('sidebarColor') ?: '';
+		$linkColor        = $this->params->get('linkColor');
+		$background_color = $this->params->get('loginBackgroundColor') ?: '';
+
+		if ($navbar_color)
+		{
+			$css .= <<<CSS
+		
+	.navbar-inner,
+	.navbar-inverse .navbar-inner,
+	.dropdown-menu li > a:hover,
+	.dropdown-menu .active > a,
+	.dropdown-menu .active > a:hover,
+	.navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
+	.navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
+	.navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle,
+	#status.status-top {
+		background: $navbar_color;
+	}
+
+CSS;
+		}
+
+		if ($header_color)
+		{
+			$css .= <<<CSS
+	.header {
+		background: $header_color;
+	}
+
+CSS;
+		}
+
+		if ($sideBarColor)
+		{
+			$css .= <<<CSS
+
+	.nav-list > .active > a,
+	.nav-list > .active > a:hover {
+		background: $sideBarColor;
+	}
+
+CSS;
+		}
+
+		if ($linkColor)
+		{
+			$css .= <<<CSS
+
+	a,
+	.j-toggle-sidebar-button {
+		color: $linkColor;
+	}
+
+CSS;
+		}
+
+		if ($background_color)
+		{
+			$css .= <<<CSS
+
+			
+	.view-login {
+		background-color: $background_color;
+	}
+
+CSS;
+		}
+
+		return $css;
 	}
 }
