@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  @package   DarkMagic
+  ~  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+  ~  @license   GNU General Public License version 3, or later
+  -->
+
 <extension version="3.9.0" type="plugin" group="system" method="upgrade">
 	<name>PLG_SYSTEM_DARKMAGIC</name>
 	<version>1.0.0.b1</version>

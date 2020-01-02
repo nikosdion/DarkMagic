@@ -41,3 +41,6 @@ vendor
 
 # Release output directory
 release/**
+
+# Composer (dev)
+vendor
