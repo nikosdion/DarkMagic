@@ -190,7 +190,6 @@ class plgSystemDarkMagic extends CMSPlugin
 			filemtime(__FILE__),
 			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/content.css'),
 			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/custom.css'),
-			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/protostar.css'),
 			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/skin.css'),
 		];
 
@@ -472,7 +471,7 @@ CSS;
 
 				// Load the dark mode CSS
 				$document->addStyleSheet(
-					'../media/plg_system_darkmagic/css/protostar.css', [
+					'../media/plg_system_darkmagic/css/custom.css', [
 					'version' => $this->getMediaVersion(),
 				], [
 						'type' => 'text/css',
@@ -496,7 +495,7 @@ CSS;
 
 				// Load the dark mode CSS conditionally
 				$document->addStyleSheet(
-					'../media/plg_system_darkmagic/css/protostar.css', [
+					'../media/plg_system_darkmagic/css/custom.css', [
 					'version' => $this->getMediaVersion(),
 
 				], [
@@ -579,7 +578,7 @@ CSS;
 		{
 			$css .= <<<CSS
 
-	body.site {
+	body, body.site {
 		border-top: 3px solid $frontendTemplateColor;
 	}
 
@@ -605,7 +604,7 @@ CSS;
 		{
 			$css .= <<<CSS
 
-	body.site {
+	body, body.site, body .container, .body .container {
 		background-color: $frontendBackgroundColor;
 	}
 

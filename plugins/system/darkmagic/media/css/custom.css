@@ -660,6 +660,7 @@ select:focus:invalid:focus {
 
 .btn {
     background-color: var(--gray-4);
+    background-image: none;
     color: var(--gray-b);
     border: 1px solid var(--gray-4);
 }
@@ -1833,6 +1834,7 @@ div.modal {
 }
 
 .chzn-container-single .chzn-single {
+    background-image: none;
     background-color: var(--gray-4);
     border: 1px solid var(--form-border);
     box-shadow: none;
@@ -1916,11 +1918,13 @@ div.modal {
 
 .chzn-container-multi .chzn-choices {
     background-color: var(--gray-4);
+    background-image: none;
     border: 1px solid var(--form-hover);
 }
 
 .chzn-container-multi .chzn-choices li.search-choice {
     background-color: var(--highlight-2);
+    background-image: none;
     color: var(--gray-a);
 }
 
@@ -2061,6 +2065,10 @@ div.modal {
 .header {
     background-color: var(--nav);
     border-top: none;
+}
+
+body.site .header {
+    background-color: var(--gray-3);
 }
 
 .page-title {
@@ -2434,3 +2442,45 @@ div.calendar-container table.table tbody td.day.wn {
     background-color: var(--gray-5);
     color: var(--gray-a);
 }
+
+/** region Frontend (Protostar) */
+.breadcrumb {
+    background-color: var(--gray-3);
+}
+
+.breadcrumb > li > .divider {
+    color: var(--gray-c);
+}
+
+.breadcrumb > li {
+    color: var(--gray-9);
+    text-shadow: none;
+}
+
+.breadcrumb > li > a.pathway,
+.breadcrumb > li > span {
+    text-shadow: none;
+}
+
+.breadcrumb > .active {
+    color: #999;
+}
+
+.navigation .nav-child {
+    background-color: var(--gray-3);
+    border-color: var(--gray-3);
+    color: var(--gray-b);
+}
+
+.navigation .nav > li > .nav-child:before {
+    border-bottom: 7px solid var(--gray-3);
+}
+
+.navigation .nav > li > .nav-child:after {
+    border-bottom: 6px solid var(--gray-3);
+}
+
+.navigation .nav-child a {
+    color: var(--gray-b);
+}
+/** endregion */
