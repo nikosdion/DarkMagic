@@ -1,8 +1,8 @@
 <?php
 /**
- *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
- *  @license   GNU General Public License version 3, or later
+ * @package   DarkMagic
+ * @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ * @license   GNU General Public License version 3, or later
  */
 
 // Prevent direct access
@@ -30,13 +30,24 @@ class plgSystemDarkMagic extends CMSPlugin
 		$this->enabled = $this->evaluateDarkModeConditions();
 	}
 
+	/**
+	 * Hooks on Joomla onBeforeRender event, manipulating the document header to activate Dark Mode
+	 *
+	 * @throws  Exception
+	 * @since   1.0.0.b1
+	 */
 	public function onBeforeRender(): void
 	{
+		// Is this Light Mode?
+		if (!$this->enabled)
+		{
+			return;
+		}
+
 		// Make sure I can get basic Joomla objects before proceeding
 		try
 		{
 			$app      = Factory::getApplication();
-			$input    = $app->input;
 			$document = $app->getDocument();
 		}
 		catch (Exception $e)
@@ -50,76 +61,18 @@ class plgSystemDarkMagic extends CMSPlugin
 			return;
 		}
 
-		// Get inline CSS override
-		$overrideCss = $this->getInlineCSSOverride();
-
 		// Get the plugin configuration
 		$applyWhen = $this->params->get('applywhen', 'always');
 
-		// Is this Light Mode?
-		if (!$this->enabled)
+		// Administrator dark mode
+		try
 		{
-			return;
+			$this->darkModeAdministrator($applyWhen, $document);
 		}
-
-		switch ($applyWhen)
+		catch (Exception $e)
 		{
-			case 'always':
-			case 'dusk':
-			default:
-				// Load the dark mode CSS
-				$document->addStyleSheet(
-					'../media/plg_system_darkmagic/css/custom.css', [
-					'version' => $this->getMediaVersion(),
-				], [
-						'type' => 'text/css',
-					]
-				);
-
-				// Apply the TinyMCE skin
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
-
-				// Apply the inline CSS overrides
-				if (!empty($overrideCss))
-				{
-					$document->addStyleDeclaration($overrideCss);
-				}
-
-				break;
-
-			case 'browser':
-				// Load the dark mode CSS conditionally
-				$document->addStyleSheet(
-					'../media/plg_system_darkmagic/css/custom.css', [
-					'version' => $this->getMediaVersion(),
-
-				], [
-						'type'  => 'text/css',
-						'media' => '(prefers-color-scheme: dark)',
-					]
-				);
-
-				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
-
-				// Apply the inline CSS overrides
-				if (!empty($overrideCss))
-				{
-					$overrideCss = <<< CSS
-
-@media screen and (prefers-color-scheme: dark)
-{
-	$overrideCss
-}
-
-CSS;
-
-					$document->addStyleDeclaration($overrideCss);
-				}
-
-				break;
+			// It's OK. It's not the end of the world.
 		}
-
 	}
 
 	/**
@@ -130,28 +83,6 @@ CSS;
 	 */
 	private function evaluateDarkModeConditions(): bool
 	{
-		// Can I get a reference to the CMS application?
-		try
-		{
-			$app = Factory::getApplication();
-		}
-		catch (Exception $e)
-		{
-			return false;
-		}
-
-		// Is this the site administrator?
-		if (!$app->isClient('administrator'))
-		{
-			return false;
-		}
-
-		// Is the template in use Isis (the only one supported)?
-		if ($app->getTemplate() != 'isis')
-		{
-			return false;
-		}
-
 		// Are the conditions for Dark Mode met?
 		switch ($this->params->get('applywhen'))
 		{
@@ -247,9 +178,10 @@ CSS;
 	{
 		$fileModTimes = [
 			filemtime(__FILE__),
-			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/custom.css'),
-			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/skin.css'),
 			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/content.css'),
+			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/custom.css'),
+			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/protostar.css'),
+			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/skin.css'),
 		];
 
 		return sha1(implode(':', $fileModTimes));
@@ -284,7 +216,14 @@ JS;
 		Factory::getApplication()->getDocument()->addScriptDeclaration($js);
 	}
 
-	private function getInlineCSSOverride(): string
+	/**
+	 * Gets the inline CSS overrides for the administrator template
+	 *
+	 * @return  string  Inline CSS overrides
+	 *
+	 * @since   1.0.0.b2
+	 */
+	private function getInlineCSSOverrideAdmin(): string
 	{
 		$css = '';
 
@@ -360,5 +299,130 @@ CSS;
 		}
 
 		return $css;
+	}
+
+	/**
+	 * Is this the administrator application using the Isis template?
+	 *
+	 * @return  bool
+	 *
+	 * @since   1.0.0.b2
+	 */
+	private function isAdminIsis(): bool
+	{
+		// Can I get a reference to the CMS application?
+		try
+		{
+			$app = Factory::getApplication();
+		}
+		catch (Exception $e)
+		{
+			return false;
+		}
+
+		// Is this the site administrator?
+		if (!$app->isClient('administrator'))
+		{
+			return false;
+		}
+
+		// Is the template in use Isis (the only one supported)?
+		if ($app->getTemplate() != 'isis')
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Enables Dark Mode for the administrator application
+	 *
+	 * @param   string        $applyWhen
+	 * @param   HtmlDocument  $document
+	 *
+	 * @throws Exception
+	 * @since  1.0.0.b2
+	 */
+	private function darkModeAdministrator(string $applyWhen, HtmlDocument $document): void
+	{
+		// Am I allowed to apply Dark Mode to the administrator?
+		if ($this->params->get('enable_backend', 1) != 1)
+		{
+			return;
+		}
+
+		// Are we in the administrator application, using the Isis template?
+		if (!$this->isAdminIsis())
+		{
+			return;
+		}
+
+		// Get inline CSS override
+		$overrideCss = $this->getInlineCSSOverrideAdmin();
+
+		switch ($applyWhen)
+		{
+			case 'always':
+			case 'dusk':
+			default:
+				// Tell the browser what kind of color scheme we support
+				$document->setMetaData('color-scheme', 'dark');
+
+				// Load the dark mode CSS
+				$document->addStyleSheet(
+					'../media/plg_system_darkmagic/css/custom.css', [
+					'version' => $this->getMediaVersion(),
+				], [
+						'type' => 'text/css',
+					]
+				);
+
+				// Apply the TinyMCE skin
+				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
+
+				// Apply the inline CSS overrides
+				if (!empty($overrideCss))
+				{
+					$document->addStyleDeclaration($overrideCss);
+				}
+
+				break;
+
+			case 'browser':
+				// Tell the browser what kind of color scheme we support
+				$document->setMetaData('color-scheme', 'light dark');
+
+				// Load the dark mode CSS conditionally
+				$document->addStyleSheet(
+					'../media/plg_system_darkmagic/css/custom.css', [
+					'version' => $this->getMediaVersion(),
+
+				], [
+						'type'  => 'text/css',
+						'media' => '(prefers-color-scheme: dark)',
+					]
+				);
+
+				// Apply the TinyMCE skin conditionally
+				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+
+				// Apply the inline CSS overrides
+				if (!empty($overrideCss))
+				{
+					$overrideCss = <<< CSS
+
+@media screen and (prefers-color-scheme: dark)
+{
+	$overrideCss
+}
+
+CSS;
+
+					$document->addStyleDeclaration($overrideCss);
+				}
+
+				break;
+		}
 	}
 }

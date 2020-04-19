@@ -39,6 +39,14 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
+
+				<field
+					name="note1"
+					type="note"
+					class="alert alert-info"
+					description="PLG_SYSTEM_DARKMAGIC_GROUP_BASIC_DESCRIPTION"
+					/>
+
 				<field
 						name="applywhen"
 						type="list"
@@ -110,7 +118,22 @@
 
 			</fieldset>
 
-			<fieldset name="advanced">
+			<fieldset name="backend"
+				label="PLG_SYSTEM_DARKMAGIC_GROUP_BACKEND_LABEL"
+				description="PLG_SYSTEM_DARKMAGIC_GROUP_BACKEND_DESC"
+			>
+				<field
+						name="enable_backend"
+						type="radio"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_ENABLE_BACKEND_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_ENABLE_BACKEND_DESC"
+						class="btn-group btn-group-yesno"
+						default="1"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
 				<field
 						name="templateColor"
 						type="color"
