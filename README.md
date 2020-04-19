@@ -1,12 +1,14 @@
 # DarkMagic
 
-Turn off the lights in Joomla administrator
+Dark Mode for Joomla 3
 
 ## What does it do?
 
-Automatically applies a dark theme in Joomla's administrator.
+Automatically applies a dark theme in Joomla's administrator backend and public frontend.
 
-The dark theme **is not** developed by me. It comes from the [N6REJ/joomla3-isis-dark-theme](https://github.com/N6REJ/joomla3-isis-dark-theme) repository. This plugin merely applies it in a way that allows you to easily switch between the light and dark themes without messing around with your site's files.
+Dark Mode themes are only applied when you are using the Isis template in the backend and the Protostar template in the front-end. If you have customized the template you may need to override the Dark Mode CSS files provided by this plugin to take into account your modifications.
+
+This plugin does not make Dark Mode possible, it only makes it easier. You can always instead custom.css / user.css files in the built-in Joomla templates' folders to enable Dark Mode. The reason this pluign exists is that you don't need to mess around with your site's files. If you change your mind about Dark Mode just disable a plugin and you're back to normal. Easy-peasy!
 
 ## Download
 
@@ -14,15 +16,13 @@ I primarily wrote this for my own, personal use. I do publish occasional pre-bui
 
 ## Support and contributions
 
-As long as _it's not about the CSS_ you can file a GitHub issue with your bug report or feature request. Please follow the template provided.
+As long as your problem is not about a core Joomla feature you don't understand how to use, debugging CSS on your site or supporting third party extensions I am happy to help if you file a GitHub issue.
 
-If you want to contribute code and as long as _it's not about the CSS_ feel free to make a Pull Request. Please follow the template provided.  
+If you want to contribute code, as long as it's not about supporting third party extensions, feel free to make a PR. If your PR is about adding support for additional CSS files so you could more easily support third party extensions, though, it will be considered and plausibly accepted.
+
+Finally, please be kind and understanding when contacting me. I am doing this on my very limited spare time. Thank you for keeping the conversation reasonable and civil!  
 
 ## Building the package
-
-### Requirement
-
-Before doing anything else do `git submodule init` in the repo's root.
 
 ### Quick'n'dirty build
 

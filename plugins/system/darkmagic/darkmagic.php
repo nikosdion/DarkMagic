@@ -73,6 +73,16 @@ class plgSystemDarkMagic extends CMSPlugin
 		{
 			// It's OK. It's not the end of the world.
 		}
+
+		// Site dark mode
+		try
+		{
+			$this->darkModeSite($applyWhen, $document);
+		}
+		catch (Exception $e)
+		{
+			// It's OK. It's not the end of the world.
+		}
 	}
 
 	/**
@@ -425,4 +435,184 @@ CSS;
 				break;
 		}
 	}
+
+	/**
+	 * Enables Dark Mode for the site application
+	 *
+	 * @param   string        $applyWhen
+	 * @param   HtmlDocument  $document
+	 *
+	 * @throws Exception
+	 * @since  1.0.0.b2
+	 */
+	private function darkModeSite(string $applyWhen, HtmlDocument $document): void
+	{
+		// Am I allowed to apply Dark Mode to the administrator?
+		if ($this->params->get('enable_frontend', 1) != 1)
+		{
+			return;
+		}
+
+		// Are we in the administrator application, using the Isis template?
+		if (!$this->isSiteProtostar())
+		{
+			return;
+		}
+
+		// Get inline CSS override
+		$overrideCss = $this->getInlineCSSOverrideSite();
+
+		switch ($applyWhen)
+		{
+			case 'always':
+			case 'dusk':
+			default:
+				// Tell the browser what kind of color scheme we support
+				$document->setMetaData('color-scheme', 'dark');
+
+				// Load the dark mode CSS
+				$document->addStyleSheet(
+					'../media/plg_system_darkmagic/css/protostar.css', [
+					'version' => $this->getMediaVersion(),
+				], [
+						'type' => 'text/css',
+					]
+				);
+
+				// Apply the TinyMCE skin
+				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
+
+				// Apply the inline CSS overrides
+				if (!empty($overrideCss))
+				{
+					$document->addStyleDeclaration($overrideCss);
+				}
+
+				break;
+
+			case 'browser':
+				// Tell the browser what kind of color scheme we support
+				$document->setMetaData('color-scheme', 'light dark');
+
+				// Load the dark mode CSS conditionally
+				$document->addStyleSheet(
+					'../media/plg_system_darkmagic/css/protostar.css', [
+					'version' => $this->getMediaVersion(),
+
+				], [
+						'type'  => 'text/css',
+						'media' => '(prefers-color-scheme: dark)',
+					]
+				);
+
+				// Apply the TinyMCE skin conditionally
+				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+
+				// Apply the inline CSS overrides
+				if (!empty($overrideCss))
+				{
+					$overrideCss = <<< CSS
+
+@media screen and (prefers-color-scheme: dark)
+{
+	$overrideCss
+}
+
+CSS;
+
+					$document->addStyleDeclaration($overrideCss);
+				}
+
+				break;
+		}
+	}
+
+	/**
+	 * Is this the administrator application using the Isis template?
+	 *
+	 * @return  bool
+	 *
+	 * @since   1.0.0.b2
+	 */
+	private function isSiteProtostar(): bool
+	{
+		// Can I get a reference to the CMS application?
+		try
+		{
+			$app = Factory::getApplication();
+		}
+		catch (Exception $e)
+		{
+			return false;
+		}
+
+		// Is this the site administrator?
+		if (!$app->isClient('site'))
+		{
+			return false;
+		}
+
+		// Is the template in use Isis (the only one supported)?
+		if ($app->getTemplate() != 'protostar')
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Gets the inline CSS overrides for the administrator template
+	 *
+	 * @return  string  Inline CSS overrides
+	 *
+	 * @since   1.0.0.b2
+	 */
+	private function getInlineCSSOverrideSite(): string
+	{
+		$css = '';
+
+		$frontendTemplateColor   = $this->params->get('frontendTemplateColor') ?: '';
+		$frontendBackgroundColor = $this->params->get('frontendBackgroundColor') ?: '';
+
+		if ($frontendTemplateColor)
+		{
+			$css .= <<<CSS
+
+	body.site {
+		border-top: 3px solid $frontendTemplateColor;
+	}
+
+	a {
+		color: $frontendTemplateColor;
+	}
+
+	.nav-list > .active > a,
+	.nav-list > .active > a:hover,
+	.dropdown-menu li > a:hover,
+	.dropdown-menu .active > a,
+	.dropdown-menu .active > a:hover,
+	.nav-pills > .active > a,
+	.nav-pills > .active > a:hover,
+	.btn-primary {
+		background: $frontendTemplateColor;
+	}
+
+CSS;
+		}
+
+		if ($frontendBackgroundColor)
+		{
+			$css .= <<<CSS
+
+	body.site {
+		background-color: $frontendBackgroundColor;
+	}
+
+CSS;
+		}
+
+		return $css;
+	}
+
 }

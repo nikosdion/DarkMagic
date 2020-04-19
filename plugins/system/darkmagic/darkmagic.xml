@@ -184,6 +184,44 @@
 						validate="color"
 				/>
 			</fieldset>
+
+			<fieldset name="frontend"
+					  label="PLG_SYSTEM_DARKMAGIC_GROUP_FRONTEND_LABEL"
+					  description="PLG_SYSTEM_DARKMAGIC_GROUP_FRONTEND_DESC"
+			>
+				<field
+						name="enable_frontend"
+						type="radio"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_ENABLE_FRONTEND_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_ENABLE_FRONTEND_DESC"
+						class="btn-group btn-group-yesno"
+						default="1"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+						name="frontendTemplateColor"
+						type="color"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_DESC"
+						class=""
+						default="#5488B7"
+						validate="color"
+				/>
+
+				<field
+						name="frontendBackgroundColor"
+						type="color"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_DESC"
+						class=""
+						default="#222222"
+						validate="color"
+				/>
+			</fieldset>
+
 		</fields>
 	</config>
 
