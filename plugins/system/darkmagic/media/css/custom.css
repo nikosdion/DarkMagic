@@ -2379,7 +2379,7 @@ input:focus,
 }
 
 .com_postinstall fieldset {
-    background-color: var(--gray-a);
+    background-color: var(--gray-3);
     border: 1px solid var(--highlight-1);
 }
 
