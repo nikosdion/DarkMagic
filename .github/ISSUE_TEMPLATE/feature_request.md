@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
-Please note that I cannot answer questions about, fix issues in or make additions to the CSS as it's neither created nor maintained by me. For anything else, keep reading.
-
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 

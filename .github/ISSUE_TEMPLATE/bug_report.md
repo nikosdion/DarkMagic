@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
-Please note that I cannot answer questions about, fix issues in or make additions to the CSS as it's neither created nor maintained by me. For anything else, keep reading.
-
 ### Steps to reproduce the issue
 
 Be specific. You may link to one or more screenshots or a video as long as it's not the only clue you leave. Use words to describe what happens.

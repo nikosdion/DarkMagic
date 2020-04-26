@@ -1,7 +1,5 @@
 Pull Request for Issue # .
 
-Please note that I cannot answer questions about, fix issues in or make additions to the CSS as it's neither created nor maintained by me. For anything else, keep reading.
-
 ### Summary of Changes
 
 The executive summary of what you have changed without getting into technical details. Think of it as your PR's elevator pitch.  
