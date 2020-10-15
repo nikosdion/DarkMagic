@@ -1,7 +1,7 @@
 {
   "name": "nikosdion/darkmagic",
   "type": "project",
-  "description": "Dark Magic - Turn off the lights in your Joomla! administrator",
+  "description": "DarkMagic - Turn off the lights in your Joomla! 3 administrator template",
   "require": {
     "php": ">=7.1.0"
   },
