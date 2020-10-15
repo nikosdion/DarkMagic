@@ -1,20 +1,6 @@
 This software would have not been possible without the original work of other people it builds upon.
 
-Isis Dark Mode
-==============
-
-It's based on the work of Alek Volsk (https://github.com/AlekVolsk/joomla3-isis-dark-theme) and the improvements made on it by Troy Hall (https://github.com/N6REJ/joomla3-isis-dark-theme).
-
-I slightly tweaked it to fix some inconsistencies I ran into.
-
 TinyMCE Dark Skin
 =================
 
 Made with an on-line TinyMCE skin generator and tweaked by hand.
-
-Protostar Dark Mode
-===================
-
-It's based on Darkstrap v0.9.1 by danneu (http://github.com/danneu/darkstrap).
-
-I improved on it by taking into account Joomla's modification to the core Bootstrap experience.

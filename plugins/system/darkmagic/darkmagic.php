@@ -8,9 +8,13 @@
 // Prevent direct access
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Document\HtmlDocument;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\User\User;
 use Joomla\Registry\Registry;
 
 class plgSystemDarkMagic extends CMSPlugin
@@ -21,7 +25,7 @@ class plgSystemDarkMagic extends CMSPlugin
 	 * @var   bool
 	 * @since 1.0.0.b1
 	 */
-	private $enabled = true;
+	private $enabled;
 
 	public function __construct(&$subject, $config = [])
 	{
@@ -47,6 +51,7 @@ class plgSystemDarkMagic extends CMSPlugin
 		// Make sure I can get basic Joomla objects before proceeding
 		try
 		{
+			/** @var CMSApplication $app */
 			$app      = Factory::getApplication();
 			$document = $app->getDocument();
 		}
@@ -73,16 +78,6 @@ class plgSystemDarkMagic extends CMSPlugin
 		{
 			// It's OK. It's not the end of the world.
 		}
-
-		// Site dark mode
-		try
-		{
-			$this->darkModeSite($applyWhen, $document);
-		}
-		catch (Exception $e)
-		{
-			// It's OK. It's not the end of the world.
-		}
 	}
 
 	/**
@@ -93,6 +88,12 @@ class plgSystemDarkMagic extends CMSPlugin
 	 */
 	private function evaluateDarkModeConditions(): bool
 	{
+		// Joomla 4 only, folks
+		if (version_compare(JVERSION, '3.999.999', 'le'))
+		{
+			return false;
+		}
+
 		// Are the conditions for Dark Mode met?
 		switch ($this->params->get('applywhen'))
 		{
@@ -123,7 +124,8 @@ class plgSystemDarkMagic extends CMSPlugin
 	{
 		try
 		{
-			$user   = Factory::getUser();
+			$app    = Factory::getApplication();
+			$user   = $app->getIdentity() ?? new User();
 			$params = $user->params;
 
 			if (!is_object($params) || !($params instanceof Registry))
@@ -150,8 +152,8 @@ class plgSystemDarkMagic extends CMSPlugin
 		}
 
 		$zenith       = $this->params->get('zenith', '96');
-		$afterSunrise = ((int) $this->get('aftersunrise', 0)) * 60;
-		$beforeSunset = ((int) $this->get('beforesunset', 0)) * 60;
+		$afterSunrise = ((int) $this->params->get('aftersunrise', 0)) * 60;
+		$beforeSunset = ((int) $this->params->get('beforesunset', 0)) * 60;
 		$now          = time();
 		$sunrise      = date_sunrise($now, SUNFUNCS_RET_TIMESTAMP, $userLocation[0], $userLocation[1], $zenith);
 		$sunset       = date_sunset($now, SUNFUNCS_RET_TIMESTAMP, $userLocation[0], $userLocation[1], $zenith);
@@ -178,22 +180,18 @@ class plgSystemDarkMagic extends CMSPlugin
 	 * Create a media version query string for the plugin.
 	 *
 	 * The media version query string is created from the modification dates of the CSS files we are going to be
-	 * loading. This is simultaneously very accurate and does not divulge plugin version information since each site
-	 * will have a different file modification time for each file.
+	 * loading and the plugin file itself. This is simultaneously very accurate and does not divulge plugin version
+	 * information since each site will have a different file modification time for each file.
 	 *
 	 * @return  string
 	 * @since   1.0.0.b1
 	 */
 	private function getMediaVersion(): string
 	{
-		$fileModTimes = [
-			filemtime(__FILE__),
-			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/content.css'),
-			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/custom.css'),
-			filemtime(JPATH_ROOT . '/media/plg_system_darkmagic/css/skin.css'),
-		];
+		$files = Folder::files(JPATH_ROOT . '/media/plg_system_darkmagic/css', '.css', false, true);
+		array_unshift($files, __FILE__);
 
-		return sha1(implode(':', $fileModTimes));
+		return sha1(implode(':', array_map('filemtime', $files)));
 	}
 
 	/**
@@ -208,21 +206,30 @@ class plgSystemDarkMagic extends CMSPlugin
 	 */
 	private function postponeCSSLoad(string $url, string $media = 'screen')
 	{
-		$js = <<< JS
-jQuery(document).ready(function($) {
-    window.setTimeout(function() {
-	    var head   = document.getElementsByTagName("head")[0];
-	    var link   = document.createElement("link");
-	    link.rel   = "stylesheet";
-	    link.type  = "text/css";
-	    link.href  = '$url';
-	    link.media = "$media";
-	    head.appendChild(link);
-    }, 250);
-});
+		/** @var CMSApplication $app */
+		$app = Factory::getApplication();
+		/** @var HtmlDocument $doc */
+		$doc = $app->getDocument();
 
-JS;
-		Factory::getApplication()->getDocument()->addScriptDeclaration($js);
+		if (!$doc instanceof HtmlDocument)
+		{
+			return;
+		}
+
+		$wa = $doc->getWebAssetManager();
+
+		if (!$wa->assetExists('script', 'plg_system_darkmagic.postponed'))
+		{
+			$wa->registerAndUseScript('plg_system_darkmagic.postponed', Uri::base() . '../media/plg_system_darkmagic/js/postponed.js', [
+				'version' => $this->getMediaVersion(),
+			], [
+				'defer' => true,
+			]);
+		}
+
+		$doc->addScriptOptions('plg_system_darkmagic.postponedCSS', [
+			$url => $media,
+		], true);
 	}
 
 	/**
@@ -311,13 +318,13 @@ CSS;
 	}
 
 	/**
-	 * Is this the administrator application using the Isis template?
+	 * Is this the administrator application using the Atum template?
 	 *
 	 * @return  bool
 	 *
 	 * @since   1.0.0.b2
 	 */
-	private function isAdminIsis(): bool
+	private function isAdminAtum(): bool
 	{
 		// Can I get a reference to the CMS application?
 		try
@@ -335,8 +342,8 @@ CSS;
 			return false;
 		}
 
-		// Is the template in use Isis (the only one supported)?
-		if ($app->getTemplate() != 'isis')
+		// Is the template in use Atum (the only one supported)?
+		if ($app->getTemplate() != 'atum')
 		{
 			return false;
 		}
@@ -355,14 +362,8 @@ CSS;
 	 */
 	private function darkModeAdministrator(string $applyWhen, HtmlDocument $document): void
 	{
-		// Am I allowed to apply Dark Mode to the administrator?
-		if ($this->params->get('enable_backend', 1) != 1)
-		{
-			return;
-		}
-
-		// Are we in the administrator application, using the Isis template?
-		if (!$this->isAdminIsis())
+		// Are we in the administrator application, using the Atum template?
+		if (!$this->isAdminAtum())
 		{
 			return;
 		}
@@ -370,6 +371,10 @@ CSS;
 		// Get inline CSS override
 		$overrideCss = $this->getInlineCSSOverrideAdmin();
 
+		/** @var CMSApplication $app */
+		$app = Factory::getApplication();
+		$wa  = $app->getDocument()->getWebAssetManager();
+
 		switch ($applyWhen)
 		{
 			case 'always':
@@ -379,13 +384,11 @@ CSS;
 				$document->setMetaData('color-scheme', 'dark');
 
 				// Load the dark mode CSS
-				$document->addStyleSheet(
-					'../media/plg_system_darkmagic/css/custom.css', [
+				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/custom.css', [
 					'version' => $this->getMediaVersion(),
 				], [
-						'type' => 'text/css',
-					]
-				);
+					'type' => 'text/css',
+				]);
 
 				// Apply the TinyMCE skin
 				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
@@ -393,7 +396,7 @@ CSS;
 				// Apply the inline CSS overrides
 				if (!empty($overrideCss))
 				{
-					$document->addStyleDeclaration($overrideCss);
+					$wa->addInlineStyle($overrideCss);
 				}
 
 				break;
@@ -403,15 +406,12 @@ CSS;
 				$document->setMetaData('color-scheme', 'light dark');
 
 				// Load the dark mode CSS conditionally
-				$document->addStyleSheet(
-					'../media/plg_system_darkmagic/css/custom.css', [
+				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/custom.css', [
 					'version' => $this->getMediaVersion(),
-
 				], [
-						'type'  => 'text/css',
-						'media' => '(prefers-color-scheme: dark)',
-					]
-				);
+					'type'  => 'text/css',
+					'media' => '(prefers-color-scheme: dark)',
+				]);
 
 				// Apply the TinyMCE skin conditionally
 				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
@@ -428,190 +428,10 @@ CSS;
 
 CSS;
 
-					$document->addStyleDeclaration($overrideCss);
+					$wa->addInlineStyle($overrideCss);
 				}
 
 				break;
 		}
 	}
-
-	/**
-	 * Enables Dark Mode for the site application
-	 *
-	 * @param   string        $applyWhen
-	 * @param   HtmlDocument  $document
-	 *
-	 * @throws Exception
-	 * @since  1.0.0.b2
-	 */
-	private function darkModeSite(string $applyWhen, HtmlDocument $document): void
-	{
-		// Am I allowed to apply Dark Mode to the administrator?
-		if ($this->params->get('enable_frontend', 1) != 1)
-		{
-			return;
-		}
-
-		// Are we in the administrator application, using the Isis template?
-		if (!$this->isSiteProtostar())
-		{
-			return;
-		}
-
-		// Get inline CSS override
-		$overrideCss = $this->getInlineCSSOverrideSite();
-
-		switch ($applyWhen)
-		{
-			case 'always':
-			case 'dusk':
-			default:
-				// Tell the browser what kind of color scheme we support
-				$document->setMetaData('color-scheme', 'dark');
-
-				// Load the dark mode CSS
-				$document->addStyleSheet(
-					'../media/plg_system_darkmagic/css/custom.css', [
-					'version' => $this->getMediaVersion(),
-				], [
-						'type' => 'text/css',
-					]
-				);
-
-				// Apply the TinyMCE skin
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
-
-				// Apply the inline CSS overrides
-				if (!empty($overrideCss))
-				{
-					$document->addStyleDeclaration($overrideCss);
-				}
-
-				break;
-
-			case 'browser':
-				// Tell the browser what kind of color scheme we support
-				$document->setMetaData('color-scheme', 'light dark');
-
-				// Load the dark mode CSS conditionally
-				$document->addStyleSheet(
-					'../media/plg_system_darkmagic/css/custom.css', [
-					'version' => $this->getMediaVersion(),
-
-				], [
-						'type'  => 'text/css',
-						'media' => '(prefers-color-scheme: dark)',
-					]
-				);
-
-				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
-
-				// Apply the inline CSS overrides
-				if (!empty($overrideCss))
-				{
-					$overrideCss = <<< CSS
-
-@media screen and (prefers-color-scheme: dark)
-{
-	$overrideCss
-}
-
-CSS;
-
-					$document->addStyleDeclaration($overrideCss);
-				}
-
-				break;
-		}
-	}
-
-	/**
-	 * Is this the administrator application using the Isis template?
-	 *
-	 * @return  bool
-	 *
-	 * @since   1.0.0.b2
-	 */
-	private function isSiteProtostar(): bool
-	{
-		// Can I get a reference to the CMS application?
-		try
-		{
-			$app = Factory::getApplication();
-		}
-		catch (Exception $e)
-		{
-			return false;
-		}
-
-		// Is this the site administrator?
-		if (!$app->isClient('site'))
-		{
-			return false;
-		}
-
-		// Is the template in use Isis (the only one supported)?
-		if ($app->getTemplate() != 'protostar')
-		{
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Gets the inline CSS overrides for the administrator template
-	 *
-	 * @return  string  Inline CSS overrides
-	 *
-	 * @since   1.0.0.b2
-	 */
-	private function getInlineCSSOverrideSite(): string
-	{
-		$css = '';
-
-		$frontendTemplateColor   = $this->params->get('frontendTemplateColor') ?: '';
-		$frontendBackgroundColor = $this->params->get('frontendBackgroundColor') ?: '';
-
-		if ($frontendTemplateColor)
-		{
-			$css .= <<<CSS
-
-	body, body.site {
-		border-top: 3px solid $frontendTemplateColor;
-	}
-
-	a {
-		color: $frontendTemplateColor;
-	}
-
-	.nav-list > .active > a,
-	.nav-list > .active > a:hover,
-	.dropdown-menu li > a:hover,
-	.dropdown-menu .active > a,
-	.dropdown-menu .active > a:hover,
-	.nav-pills > .active > a,
-	.nav-pills > .active > a:hover,
-	.btn-primary {
-		background: $frontendTemplateColor;
-	}
-
-CSS;
-		}
-
-		if ($frontendBackgroundColor)
-		{
-			$css .= <<<CSS
-
-	body, body.site, body .container, .body .container {
-		background-color: $frontendBackgroundColor;
-	}
-
-CSS;
-		}
-
-		return $css;
-	}
-
 }

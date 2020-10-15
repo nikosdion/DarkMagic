@@ -1,6 +1,6 @@
 # DarkMagic
 
-DarkMagic - Turn off the lights in your Joomla! 3 administrator template
+DarkMagic - Turn off the lights in your Joomla! 4 administrator template
 
 Copyright (C) 2020  Nicholas K. Dionysopoulos
 
@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## What does it do?
 
-Automatically applies a dark theme in Joomla 3's administrator backend and public frontend.
+Automatically applies a dark theme in Joomla 4's administrator backend and public frontend.
 
 ## Download
 
@@ -27,7 +27,7 @@ I primarily wrote this for my own, personal use. I do publish occasional pre-bui
 
 ## Caveats
 
-Dark Mode themes are only applied when you are using the Isis template in the backend and the Protostar template in the front-end. If you have customized the template you may need to override the Dark Mode CSS files provided by this plugin to take into account your modifications.
+Dark Mode themes are only applied when you are using the Atum template in the backend. If you have customized the template you may need to override the Dark Mode CSS files provided by this plugin to take into account your modifications.
 
 This plugin does not make Dark Mode possible, it only makes it easier. You can always instead custom.css / user.css files in the built-in Joomla templates' folders to enable Dark Mode. The reason this pluign exists is that you don't need to mess around with your site's files. If you change your mind about Dark Mode just disable a plugin and you're back to normal. Easy-peasy!
 

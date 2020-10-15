@@ -39,23 +39,16 @@ class plgSystemDarkmagicInstallerScript
 	 */
 	public function preflight($route, $adapter)
 	{
-		if (version_compare(PHP_VERSION, '7.1.0', 'lt'))
+		if (version_compare(PHP_VERSION, '7.2.0', 'lt'))
 		{
-			JLog::add('You need PHP 7.1.0 or higher to install this plugin.', JLog::WARNING, 'jerror');
+			JLog::add('You need PHP 7.2.0 or higher to install this plugin.', JLog::WARNING, 'jerror');
 
 			return false;
 		}
 
-		if (version_compare(JVERSION, '3.9.0', 'lt'))
+		if (version_compare(JVERSION, '3.999.999', 'le'))
 		{
-			JLog::add('You need Joomla 3.9 to install this plugin.', JLog::WARNING, 'jerror');
-
-			return false;
-		}
-
-		if (version_compare(JVERSION, '3.999.999', 'gt'))
-		{
-			JLog::add('This plugin is not compatible with Joomla 4.', JLog::WARNING, 'jerror');
+			JLog::add('You need Joomla 4.0 to install this plugin.', JLog::WARNING, 'jerror');
 
 			return false;
 		}

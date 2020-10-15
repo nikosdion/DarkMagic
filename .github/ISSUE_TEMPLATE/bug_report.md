@@ -30,7 +30,7 @@ Please tell me about any troubleshooting you already performed and its results.
 Issues without this information can not be replied to.
 
 * **Joomla! version**: x.y.z
-* **Joomla! backend template**: e.g. Isis
+* **Joomla! backend template**: e.g. Atum
 * **PHP version**: x.y.z
 * **Server Operating System**: Windows, Linux, macOS, Don't Know
 * **Browser**: Chrome, Firefox, Edge, Internet Explorer, Safari, Opera, ...
