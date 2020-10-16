@@ -1,0 +1,15 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+.dropdown-item {
+  color: $white;
+  background-color: $gray-700;
+
+  &:hover {
+    background-color: $gray-900;
+    color: $gray-300;
+  }
+}

@@ -1,0 +1,15 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+.badge {
+  &-secondary {
+    color: $gray-800;
+  }
+
+  &-info {
+    background-color: $blue;
+  }
+}

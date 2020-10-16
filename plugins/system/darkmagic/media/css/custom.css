@@ -310,6 +310,38 @@ label {
   border-color: #ba2926;
 }
 
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.page-link {
+  color: #e8e8e8;
+  background-color: #212529;
+  border-color: #6c757d;
+}
+.page-link:hover {
+  color: #e8e8e8;
+  background-color: #495057;
+  border-color: #adb5bd;
+}
+
+.page-item.active .page-link {
+  color: #e8e8e8;
+  background-color: #2a69b8;
+  border-color: #cdcdcd;
+}
+.page-item.disabled .page-link {
+  color: #cdcdcd;
+  background-color: #495057;
+  border-color: #495057;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
 .form-control {
   background-color: #292d32;
   color: #fff;
@@ -323,6 +355,11 @@ label {
   color: #fff;
 }
 
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
 .list-group-item {
   background-color: #495057;
 }
@@ -330,6 +367,11 @@ label {
   color: #e8e8e8;
 }
 
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
 .dropdown-item {
   color: #fff;
   background-color: #495057;
@@ -339,8 +381,16 @@ label {
   color: #dee2e6;
 }
 
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
 .badge-secondary {
   color: #343a40;
+}
+.badge-info {
+  background-color: #2a69b7;
 }
 
 /*!
@@ -756,6 +806,11 @@ joomla-tab[view=accordion] joomla-tab[view=accordion] a[role=tab][active]::after
   background-color: var(--atum-bg-dark);
 }
 
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
 .com_cpanel .card-header {
   color: #e8e8e8;
 }
@@ -780,6 +835,11 @@ joomla-tab[view=accordion] joomla-tab[view=accordion] a[role=tab][active]::after
   color: #adb5bd;
 }
 
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
 joomla-field-media .field-media-preview {
   background-color: #6c757d;
 }

@@ -1,0 +1,41 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+.com_cpanel {
+  .card-header {
+    color: $gray-200;
+  }
+}
+
+.com_config {
+  .rule-notes,
+  .filter-notes {
+    background-color: transparent;
+  }
+}
+
+.com_content {
+  section[role=tabpanel] {
+    .bg-white {
+      background-color: $gray-800 !important;
+    }
+  }
+}
+
+.com_installer {
+  #loading {
+    background-color: $gray-900;
+    opacity: 0.85;
+  }
+
+  #dragarea {
+    background-color: $gray-800;
+
+    .lead {
+      color: $gray-500;
+    }
+  }
+}

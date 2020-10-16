@@ -1,0 +1,47 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+$pagination-color: $gray-200;
+$pagination-bg: $gray-900;
+$pagination-border-color: $gray-600;
+
+$pagination-hover-color: $gray-200;
+$pagination-hover-bg: $gray-700;
+$pagination-hover-border-color: $gray-500;
+
+$pagination-active-color: $gray-200;
+$pagination-active-bg: $light-blue;
+$pagination-active-border-color: $gray-400;
+
+$pagination-disabled-color: $gray-400;
+$pagination-disabled-bg: $gray-700;
+$pagination-disabled-border-color: $gray-700;
+
+.page-link {
+  color: $pagination-color;
+  background-color: $pagination-bg;
+  border-color: $pagination-border-color;
+
+  &:hover {
+    color: $pagination-hover-color;
+    background-color: $pagination-hover-bg;
+    border-color: $pagination-hover-border-color;
+  }
+}
+
+.page-item {
+  &.active .page-link {
+    color: $pagination-active-color;
+    background-color: $pagination-active-bg;
+    border-color: $pagination-active-border-color;
+  }
+
+  &.disabled .page-link {
+    color: $pagination-disabled-color;
+    background-color: $pagination-disabled-bg;
+    border-color: $pagination-disabled-border-color;
+  }
+}

@@ -36,50 +36,26 @@
 // Alerts
 @import "alerts";
 
-.form-control {
-  background-color: darken($gray-800, 5%);
-  color: $white;
+// Pagination
+@import "pagination";
 
-  &:disabled, &[readonly] {
-    background-color: lighten($gray-800, 15%);
-    color: $gray-200;
-  }
+// Forms
+@import "form";
 
-  &:focus {
-    background-color: $gray-800;
-    color: $white;
-  }
-}
+// Lists
+@import "lists";
 
-.list-group-item {
-  background-color: $gray-700;
+// Dropdowns
+@import "dropdowns";
 
-  a {
-    color: $gray-200;
-  }
-}
-
-.dropdown-item {
-  color: $white;
-  background-color: $gray-700;
-
-  &:hover {
-    background-color: $gray-900;
-    color: $gray-300;
-  }
-}
-
-.badge {
-  &-secondary {
-    color: $gray-800;
-  }
-}
-
+// Badges
+@import "badge";
 // endregion
 
 // Akeeba FEF
 @import "fef";
 
+// region Joomla
 // Top header
 @import "header";
 
@@ -107,45 +83,9 @@
 // Joomla tabs
 @import "joomla_tabs";
 
-// region Core Joomla Components
-.com_cpanel {
-  .card-header {
-    color: $gray-200;
-  }
-}
+// Core Joomla Components
+@import "joomla_components";
 
-.com_config {
-  .rule-notes,
-  .filter-notes {
-    background-color: transparent;
-  }
-}
-
-.com_content {
-  section[role=tabpanel] {
-    .bg-white {
-      background-color: $gray-800 !important;
-    }
-  }
-}
-
-.com_installer {
-  #loading {
-    background-color: $gray-900;
-    opacity: 0.85;
-  }
-
-  #dragarea {
-    background-color: $gray-800;
-
-    .lead {
-      color: $gray-500;
-    }
-  }
-}
-
+// Core Joomla fields
+@import "joomla_fields";
 // endregion
-
-joomla-field-media .field-media-preview {
-  background-color: $gray-600;
-}
