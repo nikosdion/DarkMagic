@@ -14,7 +14,7 @@
 	<authorEmail>no-reply@akeebabackup.com</authorEmail>
 	<authorUrl>https://www.dionysopoulos.me</authorUrl>
 
-	<copyright>Copyright (c)2019-2019 Nicholas K. Dionysopoulos</copyright>
+	<copyright>Copyright (c)2019-2020 Nicholas K. Dionysopoulos</copyright>
 	<license>GNU GPL v3 or later</license>
 
 	<description>PLG_SYSTEM_DARKMAGIC_DESCRIPTION</description>
@@ -177,6 +177,6 @@
 
 	<!-- Update servers -->
 	<updateservers>
-		<server type="extension" priority="1" name="DarkMagic Updates">https://raw.githubusercontent.com/nikosdion/darkmagic/master/update/plg_darkmagic_updates.xml</server>
+		<server type="extension" priority="1" name="DarkMagic for Joomla 4 Updates">https://raw.githubusercontent.com/nikosdion/darkmagic/main/update/plg_darkmagic_updates_j4.xml</server>
 	</updateservers>
 </extension>
