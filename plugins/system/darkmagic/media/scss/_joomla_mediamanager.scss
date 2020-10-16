@@ -1,0 +1,229 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+$grid-item-hover-color: rgba($light-blue, 0.3);
+$grid-item-icon-bg-color: $gray-700;
+$grid-item-icon-bg-color-hover: $gray-200;
+$grid-item-icon-color: $gray-300;
+$grid-item-icon-color-hover: $gray-900;
+$grid-item-icon-warning-icon-bg: darken($yellow, 20%);
+$grid-item-no-preview-bg: $gray-800;
+$table-item-icon-bg: $gray-700;
+$table-item-icon-color: $gray-200;
+$table-item-icon-color-selected: $black;
+$table-item-icon-bg-selected: $light-blue;
+$info-bg: $gray-700;
+$info-title-bg: $gray-800;
+$info-close-color: $gray-200;
+$info-close-color-hover: $white;
+$toolbar-bg: $gray-700;
+$toolbar-icon-bg-hover: $gray-800;
+$toolbar-loader-color: $light-blue;
+$sidebar-drive-bg: $gray-800;
+$sidebar-tree-line-color: $gray-200;
+$sidebar-tree-item-hover-bg: $gray-700;
+$sidebar-tree-icon-color: $gray-300;
+$sidebar-active-icon-color: $light-blue;
+$modal-backdrop-color: rgba($black, 0.9);
+$modal-box-shadow: $gray-500;
+$modal-preview-text-color: $gray-200;
+$modal-box-shadow: cornflowerblue;
+
+.media-main {
+  background-color: $gray-900;
+  border-color: $gray-400;
+}
+
+.media-breadcrumb {
+  border-left-color: $gray-400;
+}
+
+.media-breadcrumb-item {
+  background-color: $gray-900;
+  &:last-of-type {
+    background-color: $gray-800;
+    &::after {
+      border-left-color: $gray-800;
+    }
+  }
+  &:hover {
+    color: $gray-700;
+  }
+}
+
+.media-breadcrumb-item {
+  &::before {
+    border-left-color: $gray-400;
+  }
+  &::after {
+    border-left-color: $gray-900;
+  }
+}
+
+html[dir=rtl] .media-breadcrumb-item::before {
+  border-right-color: $gray-400;
+}
+
+html[dir=rtl] .media-breadcrumb-item:last-of-type::after {
+  border-right-color: $gray-400;
+}
+
+.media-browser-item-preview {
+  color: #007eb7;
+  &::after {
+    background-color: $grid-item-hover-color;
+  }
+}
+
+.media-browser-select {
+  background-color: $grid-item-icon-bg-color;
+  border-color: $grid-item-icon-bg-color-hover;
+  box-shadow: inset 0 0 0 0 $grid-item-icon-color;
+  .selected & {
+    color: $grid-item-icon-color-hover;
+    background-color: $grid-item-icon-bg-color-hover;
+    box-shadow: inset 0 0 0 15px $grid-item-icon-bg-color-hover;
+  }
+}
+
+.image-browser-action {
+  color: $grid-item-icon-color;
+  background-color: $grid-item-icon-bg-color;
+  .action-delete & {
+    background-color: $grid-item-icon-warning-icon-bg;
+  }
+  &:hover {
+    color: $grid-item-icon-color-hover;
+    background-color: $grid-item-icon-bg-color-hover;
+  }
+}
+
+.image-background {
+  background-color: #fff;
+  background-image: linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee 100%), linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee 100%);
+}
+
+.file-background, .folder-background {
+  background-color: $grid-item-no-preview-bg;
+}
+
+.file-icon, .folder-icon {
+  color: #bbb;
+}
+
+.media-browser-table {
+  .type {
+    background-color: $table-item-icon-bg;
+    &::before {
+      color: $table-item-icon-color;
+      .selected & {
+        color: $table-item-icon-color-selected;
+      }
+    }
+    &::after {
+      background-color: $table-item-icon-bg-selected;
+    }
+  }
+}
+
+.media-infobar {
+  background-color: $info-bg;
+  border-left-color: $border-color;
+  h2 {
+    background-color: $info-title-bg;
+    border-bottom-color: #eee;
+  }
+
+  dl {
+    dt {
+      color: $bluegray;
+    }
+  }
+}
+
+.infobar-close {
+  color: $info-close-color;
+  &:hover {
+    color: $info-close-color-hover;
+  }
+}
+
+.placeholder-icon.fas {
+  color: #ccc;
+  border: 2px solid #ccc;
+}
+
+.media-toolbar {
+  background-color: $toolbar-bg;
+  border-bottom: 1px solid $border-color;
+  input {
+    color: $gray-200;
+    border: 1px solid #ced4da;
+  }
+}
+
+.media-toolbar-icon {
+  color: $gray-300;
+  border-left-color: $border-color;
+  box-shadow: 1px 0 #fefefe inset;
+  &:hover {
+    background-color: $toolbar-icon-bg-hover;
+  }
+}
+
+.media-loader {
+  background-image: $toolbar-loader-color;
+}
+
+.media-drive {
+  background-color: $sidebar-drive-bg;
+  border: 1px solid $border-color;
+}
+
+.media-disk-name {
+  color: #767676;
+}
+
+.media-tree-item {
+  &::before {
+    background-color: $sidebar-tree-line-color;
+  }
+  &::after {
+    background-color: $sidebar-tree-line-color;
+  }
+}
+
+.media-tree-item.active > a {
+  &:hover {
+    background-color: $sidebar-tree-item-hover-bg;
+  }
+}
+
+.media-tree-item .item-icon {
+  color: $sidebar-tree-icon-color;
+}
+
+.media-tree-item.active > a .item-icon {
+  color: $sidebar-active-icon-color;
+}
+
+.media-modal-backdrop {
+  background-color: $modal-backdrop-color;
+
+  .modal-content {
+    box-shadow: $modal-box-shadow;
+  }
+
+}
+
+.media-preview-modal {
+  color: $modal-preview-text-color;
+
+  .modal-body {
+    background-color: #fff;
+    box-shadow: $modal-box-shadow;
+  }
+}
