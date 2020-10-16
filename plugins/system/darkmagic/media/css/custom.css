@@ -835,6 +835,198 @@ joomla-tab[view=accordion] joomla-tab[view=accordion] a[role=tab][active]::after
   color: #adb5bd;
 }
 
+.com_messages .card.bg-light {
+  background-color: #343a40 !important;
+  color: #e8e8e8;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.media-main {
+  background-color: #212529;
+  border-color: #cdcdcd;
+}
+
+.media-breadcrumb {
+  border-left-color: #cdcdcd;
+}
+
+.media-breadcrumb-item {
+  background-color: #212529;
+}
+.media-breadcrumb-item:last-of-type {
+  background-color: #343a40;
+}
+.media-breadcrumb-item:last-of-type::after {
+  border-left-color: #343a40;
+}
+.media-breadcrumb-item:hover {
+  color: #495057;
+}
+
+.media-breadcrumb-item::before {
+  border-left-color: #cdcdcd;
+}
+.media-breadcrumb-item::after {
+  border-left-color: #212529;
+}
+
+html[dir=rtl] .media-breadcrumb-item::before {
+  border-right-color: #cdcdcd;
+}
+
+html[dir=rtl] .media-breadcrumb-item:last-of-type::after {
+  border-right-color: #cdcdcd;
+}
+
+.media-browser-item-preview {
+  color: #007eb7;
+}
+.media-browser-item-preview::after {
+  background-color: rgba(42, 105, 184, 0.3);
+}
+
+.media-browser-select {
+  background-color: #495057;
+  border-color: #e8e8e8;
+  box-shadow: inset 0 0 0 0 #dee2e6;
+}
+.selected .media-browser-select {
+  color: #212529;
+  background-color: #e8e8e8;
+  box-shadow: inset 0 0 0 15px #e8e8e8;
+}
+
+.image-browser-action {
+  color: #dee2e6;
+  background-color: #495057;
+}
+.action-delete .image-browser-action {
+  background-color: #ad7700;
+}
+.image-browser-action:hover {
+  color: #212529;
+  background-color: #e8e8e8;
+}
+
+.image-background {
+  background-color: #fff;
+  background-image: linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee 100%), linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee 100%);
+}
+
+.file-background, .folder-background {
+  background-color: #343a40;
+}
+
+.file-icon, .folder-icon {
+  color: #bbb;
+}
+
+.media-browser-table .type {
+  background-color: #495057;
+}
+.media-browser-table .type::before {
+  color: #e8e8e8;
+}
+.selected .media-browser-table .type::before {
+  color: #000;
+}
+.media-browser-table .type::after {
+  background-color: #2a69b8;
+}
+
+.media-infobar {
+  background-color: #495057;
+  border-left-color: #dee2e6;
+}
+.media-infobar h2 {
+  background-color: #343a40;
+  border-bottom-color: #eee;
+}
+.media-infobar dl dt {
+  color: #b2bfcd;
+}
+
+.infobar-close {
+  color: #e8e8e8;
+}
+.infobar-close:hover {
+  color: #fff;
+}
+
+.placeholder-icon.fas {
+  color: #ccc;
+  border: 2px solid #ccc;
+}
+
+.media-toolbar {
+  background-color: #495057;
+  border-bottom: 1px solid #dee2e6;
+}
+.media-toolbar input {
+  color: #e8e8e8;
+  border: 1px solid #ced4da;
+}
+
+.media-toolbar-icon {
+  color: #dee2e6;
+  border-left-color: #dee2e6;
+  box-shadow: 1px 0 #fefefe inset;
+}
+.media-toolbar-icon:hover {
+  background-color: #343a40;
+}
+
+.media-loader {
+  background-image: #2a69b8;
+}
+
+.media-drive {
+  background-color: #343a40;
+  border: 1px solid #dee2e6;
+}
+
+.media-disk-name {
+  color: #767676;
+}
+
+.media-tree-item::before {
+  background-color: #e8e8e8;
+}
+.media-tree-item::after {
+  background-color: #e8e8e8;
+}
+
+.media-tree-item.active > a:hover {
+  background-color: #495057;
+}
+
+.media-tree-item .item-icon {
+  color: #dee2e6;
+}
+
+.media-tree-item.active > a .item-icon {
+  color: #2a69b8;
+}
+
+.media-modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.media-modal-backdrop .modal-content {
+  box-shadow: cornflowerblue;
+}
+
+.media-preview-modal {
+  color: #e8e8e8;
+}
+.media-preview-modal .modal-body {
+  background-color: #fff;
+  box-shadow: cornflowerblue;
+}
+
 /*!
  *  @package   DarkMagic
  *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos

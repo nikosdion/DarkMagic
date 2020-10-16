@@ -39,3 +39,12 @@
     }
   }
 }
+
+.com_messages {
+  .card {
+    &.bg-light {
+      background-color: $gray-800 !important;
+      color: $gray-200;
+    }
+  }
+}
