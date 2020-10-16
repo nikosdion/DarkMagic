@@ -1,0 +1,28 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+.modal {
+
+  .btn {
+    color: $gray-200;
+    background: $gray-800;
+    border-color: $gray-600;
+    box-shadow: 1px 1px 1px 0 rgba(255, 255, 255, .25);
+  }
+
+  .btn-primary:not([href]),
+  .btn-success:not([href]),
+  .btn-danger:not([href]),
+  .btn-secondary:not([href]) {
+    color: $gray-200;
+    background: $gray-600;
+    border-color: $gray-700;
+  }
+}
+
+.modal-content {
+  background-color: $gray-800;
+}

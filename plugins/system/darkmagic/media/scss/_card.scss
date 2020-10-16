@@ -1,0 +1,35 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Card (BS4)
+$dark-card-bg: $gray-800;
+$dark-card-border-color: rgba($gray-200, .125);
+$dark-card-color: null !default;
+$dark-card-cap-color: null !default;
+$dark-card-cap-bg: rgba($white, .2);
+
+.card {
+  background-color: $dark-card-bg;
+  border-color: $dark-card-border-color;
+}
+
+.card-body {
+  color: $dark-card-color;
+}
+
+.card-header {
+  color: $dark-card-cap-color;
+  background-color: $dark-card-cap-bg !important;
+  border-bottom-color: $dark-card-border-color;
+}
+
+.card-footer {
+  color: $dark-card-cap-color;
+  background-color: $dark-card-cap-bg;
+  border-top-color: $dark-card-border-color;
+}
+
+// endregion

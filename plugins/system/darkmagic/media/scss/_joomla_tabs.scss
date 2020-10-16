@@ -1,0 +1,103 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Joomla tabs
+joomla-tab {
+  > ul {
+    a[role=tab] {
+      color: var(--atum-link-color);
+      border-color: $gray-600;
+
+      &[active],
+      &:hover {
+        background-color: $gray-600;
+        color: $gray-200;
+        border-color: $gray-600;
+        border-bottom-color: $gray-400;
+        &::after {
+          background-color: var(--atum-contrast);
+        }
+      }
+    }
+  }
+
+  > section {
+    background-color: $gray-900;
+    border-color: $gray-600;
+  }
+
+  &[orientation=vertical] {
+    > ul {
+      border: 1px solid $gray-300;
+    }
+
+    a[role=tab] {
+      color: var(--atum-special-color);
+      border-bottom-color: $gray-300;
+
+      &[active],
+      &:hover {
+        color: var(--atum-text-light);
+        background-color: var(--atum-link-color);
+
+        &::after {
+          background-color: var(--atum-bg-dark);
+        }
+      }
+    }
+  }
+
+  &[view=accordion] {
+    > ul {
+      background-color: var(--atum-link-color);
+      box-shadow: 0 1px $white inset, 0 0 3px rgba(0, 0, 0, .04);
+    }
+
+    section {
+      &[active] {
+        border-bottom: 1px solid $gray-300;
+      }
+    }
+
+    [active] {
+      background-color: $white;
+    }
+
+    a[role=tab] {
+      color: var(--atum-text-light);
+      background-color: var(--atum-link-color);
+      border-color: var(--atum-text-light);
+
+      &[active],
+      &:hover,
+      &:focus {
+        color: var(--atum-text-light);
+        background-color: var(--atum-bg-dark);
+      }
+
+      .text-muted {
+        color: var(--atum-text-light) !important;
+      }
+    }
+
+    joomla-tab[view=accordion] {
+      > ul {
+        background-color: $white;
+      }
+
+      a[role=tab] {
+        color: var(--atum-text-light);
+        border-bottom-color: $gray-300;
+
+        &[active]::after,
+        &:hover::after {
+          background-color: var(--atum-bg-dark);
+        }
+      }
+    }
+  }
+}
+// endregion

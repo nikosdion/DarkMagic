@@ -1,0 +1,151 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// Include the Atum variables provided with Joomla
+@import '../../../../../../../master/joomla4/administrator/templates/atum/scss/variables';
+// Include the Bootstrap 4 variables provided with Joomla
+@import '../../../../../../../master/joomla4/media/vendor/bootstrap/scss/variables';
+
+// region General
+// Main Atum colors
+@import "atum_colors";
+
+// Typography
+@import "typography_dark";
+// endregion
+
+// region Bootstrap 4 overrides
+// Buttons
+@import "buttons";
+
+// Cards
+@import "card";
+
+// Tables
+@import "table";
+
+// Custom selects
+@import "custom_select";
+
+// Modals
+@import "modal";
+
+// Alerts
+@import "alerts";
+
+.form-control {
+  background-color: darken($gray-800, 5%);
+  color: $white;
+
+  &:disabled, &[readonly] {
+    background-color: lighten($gray-800, 15%);
+    color: $gray-200;
+  }
+
+  &:focus {
+    background-color: $gray-800;
+    color: $white;
+  }
+}
+
+.list-group-item {
+  background-color: $gray-700;
+
+  a {
+    color: $gray-200;
+  }
+}
+
+.dropdown-item {
+  color: $white;
+  background-color: $gray-700;
+
+  &:hover {
+    background-color: $gray-900;
+    color: $gray-300;
+  }
+}
+
+.badge {
+  &-secondary {
+    color: $gray-800;
+  }
+}
+
+// endregion
+
+// Akeeba FEF
+@import "fef";
+
+// Top header
+@import "header";
+
+// Joomla sidebar (main menu)
+@import "sidebar";
+
+// Joomla toolbar
+@import "toolbar";
+
+// Joomla messages
+@import "joomla_messages";
+
+// Joomla Control Panel: Quick Icons
+@import "quickicons";
+
+// Joomla Control Panel: miscellanea
+@import "cpanel";
+
+// Chosen – for J3 compatibility
+@import "chosen";
+
+// Choices – the J4 way
+@import "choices";
+
+// Joomla tabs
+@import "joomla_tabs";
+
+// region Core Joomla Components
+.com_cpanel {
+  .card-header {
+    color: $gray-200;
+  }
+}
+
+.com_config {
+  .rule-notes,
+  .filter-notes {
+    background-color: transparent;
+  }
+}
+
+.com_content {
+  section[role=tabpanel] {
+    .bg-white {
+      background-color: $gray-800 !important;
+    }
+  }
+}
+
+.com_installer {
+  #loading {
+    background-color: $gray-900;
+    opacity: 0.85;
+  }
+
+  #dragarea {
+    background-color: $gray-800;
+
+    .lead {
+      color: $gray-500;
+    }
+  }
+}
+
+// endregion
+
+joomla-field-media .field-media-preview {
+  background-color: $gray-600;
+}

@@ -1,0 +1,46 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Chosen
+div.chzn-container {
+  color: $gray-200;
+
+  &[class*=-active] {
+    a[class*=chzn] {
+      background-color: darken($gray-800, 15%);
+      background-image: unset;
+      color: $gray-200;
+    }
+  }
+
+  a[class*=chzn] {
+    background-color: darken($gray-800, 15%);
+    background-image: unset;
+    color: $gray-200;
+  }
+
+  div.chzn-drop {
+    background: darken($gray-800, 15%);
+    border-color: darken($gray-800, 10%);
+  }
+
+  div.chzn-search {
+    input[type=text] {
+      background-color: darken($gray-800, 10%);
+      background-image: url(jui/chosen-sprite.png);
+      color: $gray-200;
+    }
+  }
+
+  ul.chzn-results {
+    li.no-results {
+      background: $red;
+      color: $white;
+    }
+  }
+}
+
+// endregion

@@ -1,0 +1,112 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Header
+
+.header {
+  color: $white;
+  //background: $gray-900;
+  background: darken($light-blue, 35%);
+
+  .logo {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: $sidebar-width;
+    height: 100%;
+    transition: all .3s ease-in-out;
+
+    &.small {
+      svg,
+      img {
+        path {
+          fill: $white;
+        }
+      }
+    }
+
+    svg {
+      path {
+        fill: $gray-200;
+      }
+    }
+  }
+
+  .page-title {
+    color: $bluegray;
+  }
+
+  .header-item {
+    .header-item-content {
+      > *:first-child {
+        color: $white;
+      }
+
+      .text-muted {
+        color: #fff !important;
+        opacity: .6;
+      }
+
+      a,
+      button {
+        &:hover,
+        &[aria-expanded="true"] {
+          color: var(--atum-link-hover-color);
+          background-color: var(--atum-bg-dark);
+        }
+
+        &.disabled,
+        &.disabled:hover,
+        &.disabled[aria-expanded="true"] {
+          color: #fff;
+          opacity: .6;
+        }
+      }
+    }
+  }
+
+  .dropdown-menu {
+    background-color: $gray-600;
+
+    .dropdown-header {
+      color: $white;
+      background-color: $gray-600;
+      box-shadow: $atum-box-shadow;
+    }
+  }
+
+  .dropdown-item {
+    color: $white;
+    background-color: $gray-700;
+  }
+
+  #header-more-items {
+    .header-more-menu {
+      background-color: var(--atum-bg-dark-70);
+      border: 1px solid $gray-500;
+    }
+
+    .header-item {
+      .header-item-content > :first-child {
+        color: var(--white);
+
+        &[aria-expanded=true] {
+          color: var(--atum-text-light);
+        }
+      }
+    }
+
+    .header-more-btn {
+      color: var(--white-offset);
+      background-color: var(--atum-bg-dark);
+
+      &:hover {
+        background-color: var(--atum-bg-dark-80);
+      }
+    }
+  }
+}
+// endregion

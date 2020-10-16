@@ -1,0 +1,54 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Typography
+html, body {
+  background: darken($gray-800, 15%);
+  color: $gray-200;
+
+  .wrapper {
+    .container {
+      background: $gray-800;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: $white;
+  }
+
+  .module {
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      color: $white;
+    }
+  }
+
+  input, select, textarea {
+    color: $gray-200;
+    background-color: darken($gray-800, 10%);
+  }
+}
+
+fieldset, .options-form {
+  background-color: transparent;
+
+  legend {
+    background-color: transparent;
+  }
+}
+
+.headline {
+  h4 {
+    color: $gray-200;
+  }
+}
+
+label {
+  color: $bluegray;
+}
+
+// endregion

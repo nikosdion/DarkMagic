@@ -1,0 +1,787 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+:root {
+  --blue: #2a69b7;
+  --indigo: #0377be;
+  --purple: #6f42c1;
+  --pink: #971250;
+  --red: #c52827;
+  --orange: #fd7e14;
+  --yellow: #ffb514;
+  --green: #2f7d32;
+  --teal: #20c997;
+  --cyan: #107d8e;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --card-bg: #fff;
+  --bluegray: #b2bfcd;
+  --lightbluegray: #f6f9fc;
+  --toolbar-bg: #212529;
+  --success-border: #2f7d32;
+  --info-border: #2a69b8;
+  --warning-border: #ffb514;
+  --danger-border: #c52827;
+  --login-main-bg: #0b1c32;
+  --border: #cdcdcd;
+  --white-offset: #fefefe;
+  --focus: #39f;
+  --focus-shadow: 0 0 0 0.2rem #eaeaea;
+  --toggle-color: #fff;
+  --atum-sidebar-bg: #212529;
+  --atum-sidebar-font-color: #e8e8e8;
+  --atum-sidebar-link-color: #e8e8e8;
+  --atum-bg-light: #343a40;
+  --atum-text-light: #212529;
+  --atum-special-color: #b2bfcd;
+  --atum-link-color: #80abe2;
+  --atum-link-hover-color: #6b9edd;
+  --atum-contrast: #2a69b8;
+  --atum-bg-dark: #212529;
+  --atum-bg-dark-5: #03050c;
+  --atum-bg-dark-10: #081123;
+  --atum-bg-dark-20: #0d1e3a;
+  --atum-bg-dark-30: #284971;
+  --atum-bg-dark-40: #526982;
+  --atum-bg-dark-50: #818b93;
+  --atum-bg-dark-70: #acacac;
+  --atum-bg-dark-80: #cacaca;
+  --atum-bg-dark-90: #d9d9d9;
+  --primary: #132f53;
+  --secondary: #495057;
+  --success: #2f7d32;
+  --info: #2a69b8;
+  --warning: #ffb514;
+  --danger: #c52827;
+  --light: #212529;
+  --dark: #f8f9fa;
+  --atum-text-dark: #dee2e6;
+  --action: #132f53;
+  --error: #c52827;
+  --alert-success: #2f7d32;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+html, body {
+  background: #121416;
+  color: #e8e8e8;
+}
+html .wrapper .container, body .wrapper .container {
+  background: #343a40;
+}
+html h1, html h2, html h3, html h4, html h5, html h6,
+html .h1, html .h2, html .h3, html .h4, html .h5, html .h6, body h1, body h2, body h3, body h4, body h5, body h6,
+body .h1, body .h2, body .h3, body .h4, body .h5, body .h6 {
+  color: #fff;
+}
+html .module h1, html .module h2, html .module h3, html .module h4, html .module h5, html .module h6,
+html .module .h1, html .module .h2, html .module .h3, html .module .h4, html .module .h5, html .module .h6, body .module h1, body .module h2, body .module h3, body .module h4, body .module h5, body .module h6,
+body .module .h1, body .module .h2, body .module .h3, body .module .h4, body .module .h5, body .module .h6 {
+  color: #fff;
+}
+html input, html select, html textarea, body input, body select, body textarea {
+  color: #e8e8e8;
+  background-color: #1d2124;
+}
+
+fieldset, .options-form {
+  background-color: transparent;
+}
+fieldset legend, .options-form legend {
+  background-color: transparent;
+}
+
+.headline h4 {
+  color: #e8e8e8;
+}
+
+label {
+  color: #b2bfcd;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.btn {
+  color: #e8e8e8;
+}
+
+.btn-primary {
+  background-color: #2a69b8;
+}
+
+.btn-light {
+  color: #343a40;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.card {
+  background-color: #343a40;
+  border-color: rgba(232, 232, 232, 0.125);
+}
+
+.card-header {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-bottom-color: rgba(232, 232, 232, 0.125);
+}
+
+.card-footer {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-top-color: rgba(232, 232, 232, 0.125);
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.table {
+  color: #e8e8e8;
+  background-color: #343a40;
+}
+.table th,
+.table td,
+.table thead th {
+  border-color: #4b545c;
+}
+.table.table-bordered {
+  border: 0;
+}
+.table.table-striped h1, .table.table-striped h2, .table.table-striped h3, .table.table-striped h4, .table.table-striped h5, .table.table-striped h6 {
+  color: #e8e8e8;
+}
+.table.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #4b545c;
+}
+.table.table-striped tbody tr:nth-of-type(odd) h1, .table.table-striped tbody tr:nth-of-type(odd) h2, .table.table-striped tbody tr:nth-of-type(odd) h3, .table.table-striped tbody tr:nth-of-type(odd) h4, .table.table-striped tbody tr:nth-of-type(odd) h5, .table.table-striped tbody tr:nth-of-type(odd) h6 {
+  color: #343a40;
+}
+.table.table-hover tbody tr:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+.table-dark {
+  color: var(--atum-text-dark);
+  background-color: var(--white);
+}
+.table-dark th,
+.table-dark td,
+.table-dark thead th {
+  border-top-color: #dee2e6;
+}
+.table-dark.table-bordered {
+  border: 0;
+}
+.table-dark.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.table-dark.table-hover tbody tr:hover {
+  color: var(--atum-text-dark);
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.custom-select {
+  color: #fff;
+  background-image: url("../img/select-bg.svg");
+  background-color: #343a40;
+}
+[dir=rtl] .custom-select {
+  background-image: url("../img/select-bg-rtl.svg");
+  background-color: #343a40;
+}
+.custom-select[multiple] {
+  background-color: #343a40;
+  color: #fff;
+}
+.custom-select[multiple] option {
+  background-color: #343a40;
+}
+.custom-select[multiple] option:checked {
+  background-color: #343a40;
+}
+.custom-select:focus::-ms-value {
+  color: #fff;
+  background-color: #292d32;
+}
+.custom-select:disabled {
+  color: #c2c2c2;
+  background-color: #56606a;
+}
+.custom-select:-moz-focusring {
+  text-shadow: 0 0 0 #fff;
+}
+.custom-select optgroup,
+.custom-select option {
+  color: #e8e8e8;
+  background-color: #343a40;
+}
+.custom-select.custom-select-color-state.custom-select-success {
+  color: #53bf58;
+}
+.custom-select.custom-select-color-state.custom-select-danger {
+  color: #e3706f;
+}
+
+.choices__input::-moz-placeholder {
+  color: #6c757d;
+}
+.choices__input::-webkit-input-placeholder {
+  color: #6c757d;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.modal .btn {
+  color: #e8e8e8;
+  background: #343a40;
+  border-color: #6c757d;
+  box-shadow: 1px 1px 1px 0 rgba(255, 255, 255, 0.25);
+}
+.modal .btn-primary:not([href]),
+.modal .btn-success:not([href]),
+.modal .btn-danger:not([href]),
+.modal .btn-secondary:not([href]) {
+  color: #e8e8e8;
+  background: #6c757d;
+  border-color: #495057;
+}
+
+.modal-content {
+  background-color: #343a40;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.alert.alert-info {
+  color: #adb5bd;
+  background-color: var(--atum-bg-dark-10);
+  border-color: var(--atum-bg-dark-20);
+}
+.alert.alert-warning {
+  color: #cdcdcd;
+  background-color: #7a5400;
+  border-color: var(--warning-border);
+}
+.alert.alert-success {
+  color: #adb5bd;
+  background-color: #133314;
+  border-color: #0f2f21;
+}
+.alert.alert-error {
+  color: #dee2e6;
+  background-color: #701716;
+  border-color: #ba2926;
+}
+
+.form-control {
+  background-color: #292d32;
+  color: #fff;
+}
+.form-control:disabled, .form-control[readonly] {
+  background-color: #56606a;
+  color: #e8e8e8;
+}
+.form-control:focus {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.list-group-item {
+  background-color: #495057;
+}
+.list-group-item a {
+  color: #e8e8e8;
+}
+
+.dropdown-item {
+  color: #fff;
+  background-color: #495057;
+}
+.dropdown-item:hover {
+  background-color: #212529;
+  color: #dee2e6;
+}
+
+.badge-secondary {
+  color: #343a40;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.akeeba-renderer-fef {
+  background-color: #121416 !important;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.header {
+  color: #fff;
+  background: #091627;
+}
+.header .logo {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 18rem;
+  height: 100%;
+  transition: all 0.3s ease-in-out;
+}
+.header .logo.small svg path,
+.header .logo.small img path {
+  fill: #fff;
+}
+.header .logo svg path {
+  fill: #e8e8e8;
+}
+.header .page-title {
+  color: #b2bfcd;
+}
+.header .header-item .header-item-content > *:first-child {
+  color: #fff;
+}
+.header .header-item .header-item-content .text-muted {
+  color: #fff !important;
+  opacity: 0.6;
+}
+.header .header-item .header-item-content a:hover, .header .header-item .header-item-content a[aria-expanded=true],
+.header .header-item .header-item-content button:hover,
+.header .header-item .header-item-content button[aria-expanded=true] {
+  color: var(--atum-link-hover-color);
+  background-color: var(--atum-bg-dark);
+}
+.header .header-item .header-item-content a.disabled, .header .header-item .header-item-content a.disabled:hover, .header .header-item .header-item-content a.disabled[aria-expanded=true],
+.header .header-item .header-item-content button.disabled,
+.header .header-item .header-item-content button.disabled:hover,
+.header .header-item .header-item-content button.disabled[aria-expanded=true] {
+  color: #fff;
+  opacity: 0.6;
+}
+.header .dropdown-menu {
+  background-color: #6c757d;
+}
+.header .dropdown-menu .dropdown-header {
+  color: #fff;
+  background-color: #6c757d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23);
+}
+.header .dropdown-item {
+  color: #fff;
+  background-color: #495057;
+}
+.header #header-more-items .header-more-menu {
+  background-color: var(--atum-bg-dark-70);
+  border: 1px solid #adb5bd;
+}
+.header #header-more-items .header-item .header-item-content > :first-child {
+  color: var(--white);
+}
+.header #header-more-items .header-item .header-item-content > :first-child[aria-expanded=true] {
+  color: var(--atum-text-light);
+}
+.header #header-more-items .header-more-btn {
+  color: var(--white-offset);
+  background-color: var(--atum-bg-dark);
+}
+.header #header-more-items .header-more-btn:hover {
+  background-color: var(--atum-bg-dark-80);
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+a.mm-active {
+  background-color: #495057 !important;
+}
+
+.sidebar-wrapper .sidebar-toggle {
+  background-color: #0e223b;
+}
+.sidebar-wrapper .sidebar-toggle a {
+  color: #e8e8e8;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.subhead {
+  background-color: #16181b;
+  box-shadow: none;
+  border-bottom: thin solid #343a40;
+}
+.subhead.bg-white {
+  background-color: #16181b !important;
+}
+.subhead .btn, .subhead .dropdown-toggle {
+  background-color: #495057;
+}
+.subhead .btn[disabled], .subhead .dropdown-toggle[disabled] {
+  background-color: #6c757d !important;
+}
+.subhead .btn.btn-success, .subhead .dropdown-toggle.btn-success {
+  --subhead-btn-accent: #53bf58;
+}
+.subhead .btn.btn-danger, .subhead .dropdown-toggle.btn-danger {
+  --subhead-btn-accent: #e3706f;
+}
+.subhead .btn.btn-info, .subhead .dropdown-toggle.btn-info {
+  --subhead-btn-accent: #6b9edd;
+}
+.subhead .dropdown-menu .dropdown-item {
+  background-color: #495057;
+  color: #e8e8e8 !important;
+}
+.subhead .dropdown-menu .dropdown-item:hover {
+  color: #212529 !important;
+}
+
+.js-stools-container-filters-visible {
+  background-color: #343a40;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+#system-message-container joomla-alert {
+  color: var(--atum-text-dark);
+  background-color: #343a40 !important;
+  border-color: var(--alert-accent-color, transparent);
+}
+#system-message-container joomla-alert .alert-heading {
+  color: var(--alert-heading-text);
+  background-color: var(--alert-accent-color, transparent);
+}
+#system-message-container joomla-alert .alert-link {
+  color: var(--success, inherit);
+}
+#system-message-container joomla-alert[type=success], #system-message-container joomla-alert[type=message] {
+  --alert-accent-color: var(--success);
+  --alert-heading-text: rgba(255, 255, 255, .95);
+  --alert-close-button: var(--success);
+  background-color: #343a40;
+}
+#system-message-container joomla-alert[type=info], #system-message-container joomla-alert[type=notice] {
+  --alert-accent-color: var(--info);
+  --alert-heading-text: rgba(255, 255, 255, .95);
+  --alert-close-button: var(--info);
+  background-color: #343a40;
+}
+#system-message-container joomla-alert[type=warning] {
+  --alert-accent-color: var(--warning);
+  --alert-heading-text: #000;
+  --alert-close-button: #000;
+  background-color: #343a40;
+}
+#system-message-container joomla-alert[type=error], #system-message-container joomla-alert[type=danger] {
+  --alert-accent-color: var(--danger);
+  --alert-heading-text: rgba(255, 255, 255, .95);
+  --alert-close-button: var(--danger);
+  background-color: #343a40;
+}
+#system-message-container joomla-alert .joomla-alert--close,
+#system-message-container joomla-alert .joomla-alert-button--close {
+  color: var(--alert-close-button);
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.quick-icons {
+  background-color: transparent;
+}
+.quick-icons a {
+  color: #e8e8e8;
+  background-color: #343a40;
+}
+.quick-icons a .fas,
+.quick-icons a .fab {
+  color: var(--atum-link-color);
+}
+.quick-icons a:hover, .quick-icons a:focus, .quick-icons a:active {
+  color: #343a40;
+  text-decoration: none;
+  background: #cdcdcd;
+}
+.quick-icons a:hover .fas,
+.quick-icons a:hover .fab, .quick-icons a:focus .fas,
+.quick-icons a:focus .fab, .quick-icons a:active .fas,
+.quick-icons a:active .fab {
+  color: #343a40;
+}
+.quick-icons .quickicon-group .quickicon-linkadd {
+  background-color: inherit;
+}
+.quick-icons .quickicon-single {
+  background: #343a40;
+}
+.quick-icons .quickicon a {
+  background-color: #343a40;
+}
+.quick-icons .quickicon a.warning, .quick-icons .quickicon a.danger {
+  color: #fff;
+  background: var(--danger);
+  border: 1px solid white;
+}
+.quick-icons .quickicon a.warning .fas,
+.quick-icons .quickicon a.warning .fab, .quick-icons .quickicon a.danger .fas,
+.quick-icons .quickicon a.danger .fab {
+  color: #fff;
+}
+.quick-icons .quickicon a.warning:hover, .quick-icons .quickicon a.warning:focus, .quick-icons .quickicon a.warning:active, .quick-icons .quickicon a.danger:hover, .quick-icons .quickicon a.danger:focus, .quick-icons .quickicon a.danger:active {
+  color: var(--white);
+  background: var(--danger);
+}
+.quick-icons .quickicon a.warning:hover .fas::before,
+.quick-icons .quickicon a.warning:hover .fab::before, .quick-icons .quickicon a.warning:focus .fas::before,
+.quick-icons .quickicon a.warning:focus .fab::before, .quick-icons .quickicon a.warning:active .fas::before,
+.quick-icons .quickicon a.warning:active .fab::before, .quick-icons .quickicon a.danger:hover .fas::before,
+.quick-icons .quickicon a.danger:hover .fab::before, .quick-icons .quickicon a.danger:focus .fas::before,
+.quick-icons .quickicon a.danger:focus .fab::before, .quick-icons .quickicon a.danger:active .fas::before,
+.quick-icons .quickicon a.danger:active .fab::before {
+  color: var(--white);
+}
+.quick-icons .quickicon a.success {
+  color: #79cc7c;
+  border: 1px solid white;
+}
+.quick-icons .quickicon a.success .fas,
+.quick-icons .quickicon a.success .fab {
+  color: #79cc7c;
+}
+.quick-icons .quickicon a.success:hover, .quick-icons .quickicon a.success:focus, .quick-icons .quickicon a.success:active {
+  color: #fff;
+  background: var(--success);
+}
+.quick-icons .quickicon a.success:hover .fas::before,
+.quick-icons .quickicon a.success:hover .fab::before, .quick-icons .quickicon a.success:focus .fas::before,
+.quick-icons .quickicon a.success:focus .fab::before, .quick-icons .quickicon a.success:active .fas::before,
+.quick-icons .quickicon a.success:active .fab::before {
+  color: #fff;
+}
+.quick-icons .quickicon a:hover, .quick-icons .quickicon a:focus, .quick-icons .quickicon a:active {
+  color: #343a40;
+  background: #cdcdcd;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.cpanel-add-module {
+  background-color: #212529 !important;
+}
+.cpanel-add-module .fas {
+  color: #343a40 !important;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+div.chzn-container {
+  color: #e8e8e8;
+}
+div.chzn-container[class*=-active] a[class*=chzn] {
+  background-color: #121416;
+  background-image: unset;
+  color: #e8e8e8;
+}
+div.chzn-container a[class*=chzn] {
+  background-color: #121416;
+  background-image: unset;
+  color: #e8e8e8;
+}
+div.chzn-container div.chzn-drop {
+  background: #121416;
+  border-color: #1d2124;
+}
+div.chzn-container div.chzn-search input[type=text] {
+  background-color: #1d2124;
+  background-image: url(jui/chosen-sprite.png);
+  color: #e8e8e8;
+}
+div.chzn-container ul.chzn-results li.no-results {
+  background: #c52827;
+  color: #fff;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.choices__list--multiple .choices__item {
+  background-color: #343a40;
+}
+.choices__list--multiple .choices__item.is-highlighted {
+  background-color: #343a40;
+}
+
+.choices[data-type*=select-one] .choices__inner,
+.choices[data-type*=select-multiple] .choices__inner {
+  background-image: url("../img/select-bg.svg");
+  background-color: #343a40;
+}
+[dir=rtl] .choices[data-type*=select-one] .choices__inner,
+[dir=rtl] .choices[data-type*=select-multiple] .choices__inner {
+  background-image: url("../img/select-bg-rtl.svg");
+  background-color: #343a40;
+}
+
+.choices__list--dropdown {
+  background-color: #343a40;
+}
+.choices__list--dropdown .choices__item--selectable.is-highlighted {
+  background-color: #495057;
+}
+
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+joomla-tab > ul a[role=tab] {
+  color: var(--atum-link-color);
+  border-color: #6c757d;
+}
+joomla-tab > ul a[role=tab][active], joomla-tab > ul a[role=tab]:hover {
+  background-color: #6c757d;
+  color: #e8e8e8;
+  border-color: #6c757d;
+  border-bottom-color: #cdcdcd;
+}
+joomla-tab > ul a[role=tab][active]::after, joomla-tab > ul a[role=tab]:hover::after {
+  background-color: var(--atum-contrast);
+}
+joomla-tab > section {
+  background-color: #212529;
+  border-color: #6c757d;
+}
+joomla-tab[orientation=vertical] > ul {
+  border: 1px solid #dee2e6;
+}
+joomla-tab[orientation=vertical] a[role=tab] {
+  color: var(--atum-special-color);
+  border-bottom-color: #dee2e6;
+}
+joomla-tab[orientation=vertical] a[role=tab][active], joomla-tab[orientation=vertical] a[role=tab]:hover {
+  color: var(--atum-text-light);
+  background-color: var(--atum-link-color);
+}
+joomla-tab[orientation=vertical] a[role=tab][active]::after, joomla-tab[orientation=vertical] a[role=tab]:hover::after {
+  background-color: var(--atum-bg-dark);
+}
+joomla-tab[view=accordion] > ul {
+  background-color: var(--atum-link-color);
+  box-shadow: 0 1px #fff inset, 0 0 3px rgba(0, 0, 0, 0.04);
+}
+joomla-tab[view=accordion] section[active] {
+  border-bottom: 1px solid #dee2e6;
+}
+joomla-tab[view=accordion] [active] {
+  background-color: #fff;
+}
+joomla-tab[view=accordion] a[role=tab] {
+  color: var(--atum-text-light);
+  background-color: var(--atum-link-color);
+  border-color: var(--atum-text-light);
+}
+joomla-tab[view=accordion] a[role=tab][active], joomla-tab[view=accordion] a[role=tab]:hover, joomla-tab[view=accordion] a[role=tab]:focus {
+  color: var(--atum-text-light);
+  background-color: var(--atum-bg-dark);
+}
+joomla-tab[view=accordion] a[role=tab] .text-muted {
+  color: var(--atum-text-light) !important;
+}
+joomla-tab[view=accordion] joomla-tab[view=accordion] > ul {
+  background-color: #fff;
+}
+joomla-tab[view=accordion] joomla-tab[view=accordion] a[role=tab] {
+  color: var(--atum-text-light);
+  border-bottom-color: #dee2e6;
+}
+joomla-tab[view=accordion] joomla-tab[view=accordion] a[role=tab][active]::after, joomla-tab[view=accordion] joomla-tab[view=accordion] a[role=tab]:hover::after {
+  background-color: var(--atum-bg-dark);
+}
+
+.com_cpanel .card-header {
+  color: #e8e8e8;
+}
+
+.com_config .rule-notes,
+.com_config .filter-notes {
+  background-color: transparent;
+}
+
+.com_content section[role=tabpanel] .bg-white {
+  background-color: #343a40 !important;
+}
+
+.com_installer #loading {
+  background-color: #212529;
+  opacity: 0.85;
+}
+.com_installer #dragarea {
+  background-color: #343a40;
+}
+.com_installer #dragarea .lead {
+  color: #adb5bd;
+}
+
+joomla-field-media .field-media-preview {
+  background-color: #6c757d;
+}
+
+/*# sourceMappingURL=custom.css.map */

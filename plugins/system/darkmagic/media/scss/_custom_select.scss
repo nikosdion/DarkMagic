@@ -1,0 +1,79 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+
+.custom-select {
+  color: $white;
+  background-image: url("../img/select-bg.svg");
+  background-color: $gray-800;
+
+  [dir="rtl"] & {
+    background-image: url("../img/select-bg-rtl.svg");
+    background-color: $gray-800;
+  }
+
+  &[multiple] {
+    background-color: $gray-800;
+    color: $white;
+
+    option {
+      background-color: $gray-800;
+
+      &:checked {
+        background-color: $gray-800;
+      }
+    }
+  }
+
+  &:focus {
+    &::-ms-value {
+      // For visual consistency with other platforms/browsers,
+      // suppress the default white text on blue background highlight given to
+      // the selected option text when the (still closed) <select> receives focus
+      // in IE and (under certain conditions) Edge.
+      // See https://github.com/twbs/bootstrap/issues/19398.
+      color: $white;
+      background-color: darken($gray-800, 5%);
+    }
+  }
+
+  &:disabled {
+    color: darken($gray-200, 15%);
+    background-color: lighten($gray-800, 15%);
+  }
+
+  // Remove outline from select box in FF
+  &:-moz-focusring {
+    text-shadow: 0 0 0 $white;
+  }
+
+  optgroup,
+  option {
+    color: $gray-200;
+    background-color: $gray-800;
+  }
+
+  &.custom-select-color-state {
+
+    &.custom-select-success {
+      color: lighten($green, 20%);
+    }
+
+    &.custom-select-danger {
+      color: lighten($red, 20%);
+    }
+  }
+}
+
+.choices__input {
+  &::-moz-placeholder {
+    color: $gray-600;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $gray-600;
+  }
+}

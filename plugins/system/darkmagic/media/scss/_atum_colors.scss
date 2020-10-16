@@ -1,0 +1,76 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+// region Main Atum colors
+
+:root {
+  --blue: #2a69b7;
+  --indigo: #0377be;
+  --purple: #6f42c1;
+  --pink: #971250;
+  --red: #c52827;
+  --orange: #fd7e14;
+  --yellow: #ffb514;
+  --green: #2f7d32;
+  --teal: #20c997;
+  --cyan: #107d8e;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --card-bg: #fff;
+  --bluegray: #b2bfcd;
+  --lightbluegray: #f6f9fc;
+  --toolbar-bg: #{$gray-900};
+  --success-border: #2f7d32;
+  --info-border: #2a69b8;
+  --warning-border: #ffb514;
+  --danger-border: #c52827;
+  --login-main-bg: #0b1c32;
+  --border: #cdcdcd;
+  --white-offset: #fefefe;
+  --focus: #39f;
+  --focus-shadow: 0 0 0 0.2rem #eaeaea;
+  --toggle-color: #fff;
+  --atum-sidebar-bg: #{$gray-900};
+  --atum-sidebar-font-color: #{$gray-200};
+  --atum-sidebar-link-color: #{$gray-200};
+  --atum-bg-light: #{$gray-800};
+  --atum-text-light: #{$gray-900};
+  --atum-special-color: #{$bluegray};
+  --atum-link-color: #{lighten(#2a69b8, 25%)};
+  --atum-link-hover-color: #{lighten($light-blue, 20%)};
+  --atum-contrast: #{$light-blue};
+  --atum-bg-dark: #{$gray-900};
+  --atum-bg-dark-5: #03050c;
+  --atum-bg-dark-10: #081123;
+  --atum-bg-dark-20: #0d1e3a;
+  --atum-bg-dark-30: #284971;
+  --atum-bg-dark-40: #526982;
+  --atum-bg-dark-50: #818b93;
+  --atum-bg-dark-70: #acacac;
+  --atum-bg-dark-80: #cacaca;
+  --atum-bg-dark-90: #d9d9d9;
+  --primary: #132f53;
+  --secondary: #495057;
+  --success: #2f7d32;
+  --info: #2a69b8;
+  --warning: #ffb514;
+  --danger: #c52827;
+  --light: #212529;
+  --dark: #f8f9fa;
+  --atum-text-dark: #{$gray-300};
+  --action: #132f53;
+  --error: #{$red};
+  --alert-success: #{$green};
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+// endregion

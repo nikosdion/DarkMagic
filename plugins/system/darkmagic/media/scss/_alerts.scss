@@ -1,0 +1,35 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Alerts
+
+.alert {
+  &.alert-info {
+    color: $gray-500;
+    background-color: var(--atum-bg-dark-10);
+    border-color: var(--atum-bg-dark-20);
+  }
+
+  &.alert-warning {
+    color: $gray-400;
+    background-color: darken($yellow, 30%);
+    border-color:  $state-warning-border;
+  }
+
+  &.alert-success {
+    color: $gray-500;
+    background-color: darken($green, 20%);
+    border-color:  $state-success-border;
+  }
+
+  &.alert-error {
+    color: $gray-300;
+    background-color: darken($red, 20%);
+    border-color:  $state-error-border;
+  }
+}
+
+// endregion

@@ -241,6 +241,8 @@ class plgSystemDarkMagic extends CMSPlugin
 	 */
 	private function getInlineCSSOverrideAdmin(): string
 	{
+		return '';
+
 		$css = '';
 
 		$navbar_color     = $this->params->get('templateColor') ?: '';

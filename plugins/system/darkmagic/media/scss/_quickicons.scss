@@ -1,0 +1,95 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Quickicons
+.quick-icons {
+  background-color: transparent;
+
+  a {
+    color: $gray-200;
+    background-color: $gray-800;
+
+    .fas,
+    .fab {
+      color: var(--atum-link-color);
+    }
+
+    &:hover, &:focus, &:active {
+      color: $gray-800;
+      text-decoration: none;
+      background: $gray-400;
+
+      .fas,
+      .fab {
+        color: $gray-800;
+      }
+    }
+  }
+
+  // Group link to the overview and link to the edit form in a container
+  .quickicon-group {
+    .quickicon-linkadd {
+      background-color: inherit;
+    }
+  }
+
+  // Single icon
+  .quickicon-single {
+    background: $gray-800;
+  }
+
+  .quickicon a {
+    background-color: $gray-800;
+
+    &.warning,
+    &.danger {
+      color: $danger-txt;
+      background: var(--danger);
+      border: 1px solid lighten($danger-txt, 30%);
+
+      .fas,
+      .fab {
+        color: $danger-txt;
+      }
+
+      &:hover, &:focus, &:active {
+        color: var(--white);
+        background: var(--danger);
+
+        .fas::before,
+        .fab::before {
+          color: var(--white);
+        }
+      }
+    }
+
+    &.success {
+      color: lighten($green, 30%);
+      border: 1px solid lighten($success-txt, 20%);
+
+      .fas,
+      .fab {
+        color: lighten($green, 30%);
+      }
+
+      &:hover, &:focus, &:active {
+        color: $white;
+        background: var(--success);
+
+        .fas::before,
+        .fab::before {
+          color: $white;
+        }
+      }
+    }
+
+    &:hover, &:focus, &:active {
+      color: $gray-800;
+      background: $gray-400;
+    }
+  }
+}
+// endregion

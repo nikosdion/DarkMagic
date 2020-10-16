@@ -1,0 +1,20 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Sidebar
+a.mm-active {
+  background-color: $gray-700 !important;
+}
+
+.sidebar-wrapper .sidebar-toggle {
+  background-color: darken($light-blue, 30%);
+  // $gray-800
+
+  a {
+    color: $gray-200;
+  }
+}
+// endregion

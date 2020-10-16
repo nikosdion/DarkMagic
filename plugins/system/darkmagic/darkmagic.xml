@@ -30,6 +30,7 @@
 		<folder>css</folder>
 		<folder>img</folder>
 		<folder>js</folder>
+		<folder>scss</folder>
 	</media>
 
 	<languages folder="language">
