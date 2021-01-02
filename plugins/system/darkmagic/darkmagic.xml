@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~  @package   DarkMagic
-  ~  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+  ~  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
   ~  @license   GNU General Public License version 3, or later
   -->
 
@@ -14,7 +14,7 @@
 	<authorEmail>no-reply@akeebabackup.com</authorEmail>
 	<authorUrl>https://www.dionysopoulos.me</authorUrl>
 
-	<copyright>Copyright (c)2019-2020 Nicholas K. Dionysopoulos</copyright>
+	<copyright>Copyright (c)2019-2021 Nicholas K. Dionysopoulos</copyright>
 	<license>GNU GPL v3 or later</license>
 
 	<description>PLG_SYSTEM_DARKMAGIC_DESCRIPTION</description>

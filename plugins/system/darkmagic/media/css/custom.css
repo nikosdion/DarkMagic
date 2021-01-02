@@ -1,11 +1,11 @@
 /*!
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 :root {
@@ -76,9 +76,9 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 html, body {
@@ -118,9 +118,9 @@ label {
   color: #b2bfcd;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .btn {
@@ -135,9 +135,9 @@ label {
   color: #343a40;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .card {
@@ -155,9 +155,9 @@ label {
   border-top-color: rgba(232, 232, 232, 0.125);
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .table {
@@ -206,9 +206,9 @@ label {
   background-color: rgba(0, 0, 0, 0.075);
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .custom-select {
@@ -260,9 +260,9 @@ label {
   color: #6c757d;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .modal .btn {
@@ -284,9 +284,9 @@ label {
   background-color: #343a40;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .alert.alert-info {
@@ -310,9 +310,9 @@ label {
   border-color: #ba2926;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .page-link {
@@ -337,9 +337,9 @@ label {
   border-color: #495057;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .form-control {
@@ -355,9 +355,9 @@ label {
   color: #fff;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .list-group-item {
@@ -367,9 +367,9 @@ label {
   color: #e8e8e8;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .dropdown-item {
@@ -381,9 +381,9 @@ label {
   color: #dee2e6;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .badge-secondary {
@@ -393,18 +393,18 @@ label {
   background-color: #2a69b7;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .akeeba-renderer-fef {
   background-color: #121416 !important;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .header {
@@ -479,9 +479,9 @@ label {
   background-color: var(--atum-bg-dark-80);
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 a.mm-active {
@@ -495,9 +495,9 @@ a.mm-active {
   color: #e8e8e8;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .subhead {
@@ -535,9 +535,9 @@ a.mm-active {
   background-color: #343a40;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 #system-message-container joomla-alert {
@@ -581,9 +581,9 @@ a.mm-active {
   color: var(--alert-close-button);
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .quick-icons {
@@ -663,9 +663,9 @@ a.mm-active {
   background: #cdcdcd;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .cpanel-add-module {
@@ -675,9 +675,9 @@ a.mm-active {
   color: #343a40 !important;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 div.chzn-container {
@@ -707,9 +707,9 @@ div.chzn-container ul.chzn-results li.no-results {
   color: #fff;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .choices__list--multiple .choices__item {
@@ -737,9 +737,9 @@ div.chzn-container ul.chzn-results li.no-results {
   background-color: #495057;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 joomla-tab > ul a[role=tab] {
@@ -806,9 +806,9 @@ joomla-tab[view=accordion] joomla-tab[view=accordion] a[role=tab][active]::after
   background-color: var(--atum-bg-dark);
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .com_cpanel .card-header {
@@ -840,9 +840,9 @@ joomla-tab[view=accordion] joomla-tab[view=accordion] a[role=tab][active]::after
   color: #e8e8e8;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 .media-main {
@@ -1027,9 +1027,9 @@ html[dir=rtl] .media-breadcrumb-item:last-of-type::after {
   box-shadow: cornflowerblue;
 }
 
-/*!
+/*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 joomla-field-media .field-media-preview {

@@ -1,12 +1,13 @@
 /*!
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2020 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 
 // Include the Atum variables provided with Joomla
 @import '../../../../../../../master/joomla4/administrator/templates/atum/scss/variables';
 // Include the Bootstrap 4 variables provided with Joomla
+@import '../../../../../../../master/joomla4/media/vendor/bootstrap/scss/functions';
 @import '../../../../../../../master/joomla4/media/vendor/bootstrap/scss/variables';
 
 // region General
