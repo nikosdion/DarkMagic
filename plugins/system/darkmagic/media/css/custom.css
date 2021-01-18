@@ -402,6 +402,19 @@ label {
   background-color: #121416 !important;
 }
 
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+body.com_login.view-login div.login {
+  background-color: #343a40;
+  box-shadow: 0 0 10px #6c757d;
+}
+body.com_login.view-login div.login input:focus {
+  background-color: #495057;
+}
+
 /*
  *  @package   DarkMagic
  *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
