@@ -742,6 +742,33 @@ div.chzn-container ul.chzn-results li.no-results {
   color: #fff;
 }
 
+.chosen-container {
+  color: #e8e8e8;
+}
+.chosen-container .chosen-choices, .chosen-container-multi .chosen-choices, .chosen-container-single .chosen-choices, .chosen-container-active .chosen-choices {
+  background-color: #121416;
+  background-image: none;
+}
+.chosen-container .chosen-choices li.search-choice, .chosen-container-multi .chosen-choices li.search-choice, .chosen-container-single .chosen-choices li.search-choice, .chosen-container-active .chosen-choices li.search-choice {
+  color: #e8e8e8;
+  background-color: #121416;
+  background-image: none;
+}
+.chosen-container .chosen-choices li.search-field input[type=text], .chosen-container-multi .chosen-choices li.search-field input[type=text], .chosen-container-single .chosen-choices li.search-field input[type=text], .chosen-container-active .chosen-choices li.search-field input[type=text] {
+  color: #dee2e6 !important;
+}
+.chosen-container .chosen-drop {
+  color: #e8e8e8;
+  background-color: #121416;
+}
+.chosen-container .chosen-results {
+  color: #e8e8e8;
+}
+.chosen-container .chosen-results li.no-results {
+  background-color: #495057;
+  color: #cdcdcd;
+}
+
 /*
  *  @package   DarkMagic
  *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos

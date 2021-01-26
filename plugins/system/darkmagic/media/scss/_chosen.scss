@@ -44,3 +44,42 @@ div.chzn-container {
 }
 
 // endregion
+
+// region Chosen J4.0 RC1
+.chosen-container {
+  color: $gray-200;
+
+  &, &-multi, &-single, &-active {
+    .chosen-choices {
+      background-color: darken($gray-800, 15%);
+      background-image: none;
+
+      li.search-choice {
+        color: $gray-200;
+        background-color: darken($gray-800, 15%);
+        background-image: none;
+      }
+
+      li.search-field input[type="text"] {
+        color: $gray-300 !important;
+      }
+    }
+  }
+
+  .chosen-drop {
+    color: $gray-200;
+    background-color: darken($gray-800, 15%);
+
+  }
+
+  .chosen-results {
+    color: $gray-200;
+
+    li.no-results {
+      background-color: $gray-700;
+      color: $gray-400;
+    }
+  }
+}
+
+// endregion
