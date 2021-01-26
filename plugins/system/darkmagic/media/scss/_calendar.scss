@@ -1,0 +1,68 @@
+/**
+ * @copyright	(C) 2016 Open Source Matters, Inc. <https://www.joomla.org>
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+.calendar-container {
+  background-color: var(--gray-dark) !important;
+
+  table {
+    background-color: var(--gray-dark) !important;
+
+    thead {
+      td.headrow {
+        background: var(--gray);
+        color: $gray-200;
+      }
+
+      td.day-name {
+        border-bottom-color: #fff;
+        color: $gray-300;
+      }
+
+      td.wn {
+        color: $gray-400;
+      }
+    }
+
+    /* The body part -- contains all the days in month. */
+    tbody {
+      td.wn {
+        background: $gray-600;
+        color: $gray-900;
+      }
+
+      td.day.wn {
+        background-color: $gray-600;
+      }
+
+      td.day.selected { /* Cell showing today date */
+        background: var(--blue);
+        color: var(--white);
+      }
+
+      td.today:after {
+        background-color: var(--success);
+      }
+
+      td.today.selected:after {
+        background-color: var(--gray);
+      }
+
+      td.day:hover {
+        background: var(--blue);
+        color: var(--white);
+      }
+
+      td.day:hover:after {
+        background-color: var(--gray);
+      }
+
+      .disabled {
+        color: var(--gray);
+        background-color: var(--gray-dark);
+      }
+    }
+
+  }
+}

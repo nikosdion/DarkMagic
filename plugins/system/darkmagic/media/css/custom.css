@@ -168,6 +168,7 @@ label {
 .table td,
 .table thead th {
   border-color: #4b545c;
+  background-color: transparent;
 }
 .table.table-bordered {
   border: 0;
@@ -182,8 +183,8 @@ label {
   color: #343a40;
 }
 .table.table-hover tbody tr:hover {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.075);
+  color: var(--atum-text-dark);
+  background-color: rgba(0, 0, 0, 0.075);
 }
 
 .table-dark {
@@ -211,45 +212,46 @@ label {
  *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
-.custom-select {
+.custom-select, .form-select {
   color: #fff;
   background-image: url("../img/select-bg.svg");
   background-color: #343a40;
 }
-[dir=rtl] .custom-select {
+[dir=rtl] .custom-select, [dir=rtl] .form-select {
   background-image: url("../img/select-bg-rtl.svg");
   background-color: #343a40;
 }
-.custom-select[multiple] {
+.custom-select[multiple], .form-select[multiple] {
   background-color: #343a40;
   color: #fff;
 }
-.custom-select[multiple] option {
+.custom-select[multiple] option, .form-select[multiple] option {
   background-color: #343a40;
 }
-.custom-select[multiple] option:checked {
+.custom-select[multiple] option:checked, .form-select[multiple] option:checked {
   background-color: #343a40;
 }
-.custom-select:focus::-ms-value {
+.custom-select:focus::-ms-value, .form-select:focus::-ms-value {
   color: #fff;
   background-color: #292d32;
 }
-.custom-select:disabled {
+.custom-select:disabled, .form-select:disabled {
   color: #c2c2c2;
   background-color: #56606a;
 }
-.custom-select:-moz-focusring {
+.custom-select:-moz-focusring, .form-select:-moz-focusring {
   text-shadow: 0 0 0 #fff;
 }
 .custom-select optgroup,
-.custom-select option {
+.custom-select option, .form-select optgroup,
+.form-select option {
   color: #e8e8e8;
   background-color: #343a40;
 }
-.custom-select.custom-select-color-state.custom-select-success {
+.custom-select.custom-select-color-state.custom-select-success, .form-select.custom-select-color-state.custom-select-success {
   color: #53bf58;
 }
-.custom-select.custom-select-color-state.custom-select-danger {
+.custom-select.custom-select-color-state.custom-select-danger, .form-select.custom-select-color-state.custom-select-danger {
   color: #e3706f;
 }
 
@@ -389,8 +391,14 @@ label {
 .badge-secondary {
   color: #343a40;
 }
+.badge.bg-secondary {
+  color: #343a40 !important;
+}
 .badge-info {
   background-color: #2a69b7;
+}
+.badge.bg-info {
+  background-color: #2a69b7 !important;
 }
 
 /*
@@ -627,6 +635,10 @@ a.mm-active {
 .quick-icons .quickicon-single {
   background: #343a40;
 }
+.quick-icons a:hover [class*=fa-], .quick-icons a:hover [class*=icon-], .quick-icons a:hover [class^=fa-], .quick-icons a:hover [class^=icon-], .quick-icons a:focus [class*=fa-], .quick-icons a:focus [class*=icon-], .quick-icons a:focus [class^=fa-], .quick-icons a:focus [class^=icon-], .quick-icons a:active [class*=fa-], .quick-icons a:active [class*=icon-], .quick-icons a:active [class^=fa-], .quick-icons a:active [class^=icon-] {
+  color: var(--gray-dark);
+  background-image: none;
+}
 .quick-icons .quickicon a {
   background-color: #343a40;
 }
@@ -675,17 +687,24 @@ a.mm-active {
   color: #343a40;
   background: #cdcdcd;
 }
+.quick-icons .quickicon a:hover [class*=fa-], .quick-icons .quickicon a:hover [class*=icon-], .quick-icons .quickicon a:hover [class^=fa-], .quick-icons .quickicon a:hover [class^=icon-], .quick-icons .quickicon a:focus [class*=fa-], .quick-icons .quickicon a:focus [class*=icon-], .quick-icons .quickicon a:focus [class^=fa-], .quick-icons .quickicon a:focus [class^=icon-], .quick-icons .quickicon a:active [class*=fa-], .quick-icons .quickicon a:active [class*=icon-], .quick-icons .quickicon a:active [class^=fa-], .quick-icons .quickicon a:active [class^=icon-] {
+  color: var(--gray-dark) !important;
+  background-image: none !important;
+}
 
 /*
  *  @package   DarkMagic
  *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
-.cpanel-add-module {
-  background-color: #212529 !important;
+.com_cpanel .cpanel-add-module {
+  background-color: #212529;
 }
-.cpanel-add-module .fas {
-  color: #343a40 !important;
+.com_cpanel .cpanel-add-module .cpanel-add-module-icon [class^=icon-] {
+  color: rgba(52, 58, 64, 0.8) !important;
+}
+.com_cpanel .cpanel-add-module:active, .com_cpanel .cpanel-add-module:hover, .com_cpanel .cpanel-add-module:focus {
+  background-color: #495057;
 }
 
 /*
@@ -1047,6 +1066,58 @@ html[dir=rtl] .media-breadcrumb-item:last-of-type::after {
  */
 joomla-field-media .field-media-preview {
   background-color: #6c757d;
+}
+
+/**
+ * @copyright	(C) 2016 Open Source Matters, Inc. <https://www.joomla.org>
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+.calendar-container {
+  background-color: var(--gray-dark) !important;
+}
+.calendar-container table {
+  background-color: var(--gray-dark) !important;
+  /* The body part -- contains all the days in month. */
+}
+.calendar-container table thead td.headrow {
+  background: var(--gray);
+  color: #e8e8e8;
+}
+.calendar-container table thead td.day-name {
+  border-bottom-color: #fff;
+  color: #dee2e6;
+}
+.calendar-container table thead td.wn {
+  color: #cdcdcd;
+}
+.calendar-container table tbody td.wn {
+  background: #6c757d;
+  color: #212529;
+}
+.calendar-container table tbody td.day.wn {
+  background-color: #6c757d;
+}
+.calendar-container table tbody td.day.selected {
+  /* Cell showing today date */
+  background: var(--blue);
+  color: var(--white);
+}
+.calendar-container table tbody td.today:after {
+  background-color: var(--success);
+}
+.calendar-container table tbody td.today.selected:after {
+  background-color: var(--gray);
+}
+.calendar-container table tbody td.day:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+.calendar-container table tbody td.day:hover:after {
+  background-color: var(--gray);
+}
+.calendar-container table tbody .disabled {
+  color: var(--gray);
+  background-color: var(--gray-dark);
 }
 
 /*# sourceMappingURL=custom.css.map */
