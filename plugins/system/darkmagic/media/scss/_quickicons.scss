@@ -41,6 +41,13 @@
     background: $gray-800;
   }
 
+  a:hover, a:focus, a:active {
+    [class*="fa-"], [class*="icon-"], [class^=fa-], [class^=icon-] {
+      color: var(--gray-dark);
+      background-image: none;
+    }
+  }
+
   .quickicon a {
     background-color: $gray-800;
 
@@ -89,7 +96,13 @@
     &:hover, &:focus, &:active {
       color: $gray-800;
       background: $gray-400;
+
+      [class*="fa-"], [class*="icon-"], [class^=fa-], [class^=icon-] {
+        color: var(--gray-dark) !important;
+        background-image: none !important;
+      }
     }
   }
 }
+
 // endregion

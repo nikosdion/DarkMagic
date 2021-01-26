@@ -9,7 +9,15 @@
     color: $gray-800;
   }
 
+  &.bg-secondary {
+    color: $gray-800 !important;
+  }
+
   &-info {
     background-color: $blue;
+  }
+
+  &.bg-info {
+    background-color: $blue !important;
   }
 }

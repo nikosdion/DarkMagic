@@ -4,10 +4,17 @@
  *  @license   GNU General Public License version 3, or later
  */
 
-.cpanel-add-module {
-  background-color: $gray-900 !important;
+.com_cpanel {
+  .cpanel-add-module {
+    background-color: $gray-900;
 
-  .fas {
-    color: $gray-800 !important;
+    .cpanel-add-module-icon [class^=icon-] {
+      color: rgba($gray-800, 0.8) !important;
+    }
+
+    &:active, &:hover, &:focus {
+      background-color: $gray-700;
+    }
   }
 }
+
