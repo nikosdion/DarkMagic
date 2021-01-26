@@ -88,6 +88,9 @@ html, body {
 html .wrapper .container, body .wrapper .container {
   background: #343a40;
 }
+html .wrapper .container-main:after, body .wrapper .container-main:after {
+  background-image: none;
+}
 html h1, html h2, html h3, html h4, html h5, html h6,
 html .h1, html .h2, html .h3, html .h4, html .h5, html .h6, body h1, body h2, body h3, body h4, body h5, body h6,
 body .h1, body .h2, body .h3, body .h4, body .h5, body .h6 {

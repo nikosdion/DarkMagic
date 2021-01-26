@@ -12,6 +12,10 @@ html, body {
   .wrapper {
     .container {
       background: $gray-800;
+
+      &-main:after {
+        background-image: none;
+      }
     }
   }
 
