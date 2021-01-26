@@ -121,6 +121,11 @@ label {
   color: #b2bfcd;
 }
 
+.bg-light {
+  background-color: #343a40 !important;
+  color: #e8e8e8;
+}
+
 /*
  *  @package   DarkMagic
  *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
@@ -916,6 +921,10 @@ joomla-tab[view=accordion] joomla-tab[view=accordion] a[role=tab][active]::after
 .com_messages .card.bg-light {
   background-color: #343a40 !important;
   color: #e8e8e8;
+}
+
+.com_jce .ui-jce nav .btn {
+  background: #343a40;
 }
 
 /*
