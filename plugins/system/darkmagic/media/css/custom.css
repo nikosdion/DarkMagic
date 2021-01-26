@@ -745,6 +745,22 @@ div.chzn-container ul.chzn-results li.no-results {
 .chosen-container {
   color: #e8e8e8;
 }
+.chosen-container .chosen-single, .chosen-container-multi .chosen-single, .chosen-container-single .chosen-single, .chosen-container-active .chosen-single {
+  background-color: #343a40;
+  background-image: none;
+  color: #e8e8e8;
+}
+.chosen-container .chosen-single:hover, .chosen-container-multi .chosen-single:hover, .chosen-container-single .chosen-single:hover, .chosen-container-active .chosen-single:hover {
+  color: #e8e8e8 !important;
+}
+.chosen-container.chosen-with-drop .chosen-single, .chosen-container-multi.chosen-with-drop .chosen-single, .chosen-container-single.chosen-with-drop .chosen-single, .chosen-container-active.chosen-with-drop .chosen-single {
+  background-color: #adb5bd;
+  background-image: none;
+  color: #343a40;
+}
+.chosen-container.chosen-with-drop .chosen-single:hover, .chosen-container-multi.chosen-with-drop .chosen-single:hover, .chosen-container-single.chosen-with-drop .chosen-single:hover, .chosen-container-active.chosen-with-drop .chosen-single:hover {
+  color: #343a40 !important;
+}
 .chosen-container .chosen-choices, .chosen-container-multi .chosen-choices, .chosen-container-single .chosen-choices, .chosen-container-active .chosen-choices {
   background-color: #121416;
   background-image: none;

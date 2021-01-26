@@ -50,6 +50,26 @@ div.chzn-container {
   color: $gray-200;
 
   &, &-multi, &-single, &-active {
+    .chosen-single {
+      background-color: $gray-800;
+      background-image: none;
+      color: $gray-200;
+
+      &:hover {
+        color: $gray-200 !important;
+      }
+    }
+
+    &.chosen-with-drop .chosen-single {
+      background-color: $gray-500;
+      background-image: none;
+      color: $gray-800;
+
+      &:hover {
+        color: $gray-800 !important;
+      }
+    }
+
     .chosen-choices {
       background-color: darken($gray-800, 15%);
       background-image: none;
