@@ -12,90 +12,90 @@
 
 // region General
 // Main Atum colors
-@import "atum_colors";
+@import "atum/atum_colors";
 
 // Typography
-@import "typography_dark";
+@import "atum/typography_dark";
 // endregion
 
-// region Bootstrap 4 overrides
+// region Bootstrap 5 overrides
 // Buttons
-@import "buttons";
+@import "atum/buttons";
 
 // Cards
-@import "card";
+@import "atum/card";
 
 // Tables
-@import "table";
+@import "atum/table";
 
 // Custom selects
-@import "custom_select";
+@import "atum/custom_select";
 
 // Modals
-@import "modal";
+@import "atum/modal";
 
 // Alerts
-@import "alerts";
+@import "atum/alerts";
 
 // Pagination
-@import "pagination";
+@import "atum/pagination";
 
 // Forms
-@import "form";
+@import "atum/form";
 
 // Lists
-@import "lists";
+@import "atum/lists";
 
 // Dropdowns
-@import "dropdowns";
+@import "atum/dropdowns";
 
 // Badges
-@import "badge";
+@import "atum/badge";
 // endregion
 
 // Akeeba FEF
-@import "fef";
+@import "atum/fef";
 
 // region Joomla
 // Top header
-@import "login";
+@import "atum/login";
 
 // Top header
-@import "header";
+@import "atum/header";
 
 // Joomla sidebar (main menu)
-@import "sidebar";
+@import "atum/sidebar";
 
 // Joomla toolbar
-@import "toolbar";
+@import "atum/toolbar";
 
 // Joomla messages
-@import "joomla_messages";
+@import "atum/joomla_messages";
 
 // Joomla Control Panel: Quick Icons
-@import "quickicons";
+@import "atum/quickicons";
 
 // Joomla Control Panel: miscellanea
-@import "cpanel";
+@import "atum/cpanel";
 
 // Chosen – for J3 compatibility
-@import "chosen";
+@import "atum/chosen";
 
 // Choices – the J4 way
-@import "choices";
+@import "atum/choices";
 
 // Joomla tabs
-@import "joomla_tabs";
+@import "atum/joomla_tabs";
 
 // Core Joomla Components
-@import "joomla_components";
+@import "atum/joomla_components";
 
 // Media Manager
-@import "joomla_mediamanager";
+@import "atum/joomla_mediamanager";
 
 // Core Joomla fields
-@import "joomla_fields";
+@import "atum/joomla_fields";
 
 // Calendar
-@import "calendar";
+@import "atum/calendar";
 // endregion

@@ -1,0 +1,56 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+// region Main Cassiopeia colors
+
+$standard-color-primary: hsl(220, 67%, 20%);
+$standard-color-gradient-start: rgb(79, 13, 76);
+$standard-color-gradient-end: rgb(11, 81, 88);
+$standard-color-link: hsl(220, 67%, 70%);
+$standard-color-hover: hsl(242, 30%, 76%);
+
+$cassiopeia-container-main-bg: $gray-900;
+$cassiopeia-border-color: $gray-800;
+$cassiopeia-block-header-bg: $gray-700;
+
+$input-border: solid 1px $gray-600;
+$form-select-bg: $gray-700;
+
+$cassiopeia-header-grad:              linear-gradient(135deg, var(--cassiopeia-color-gradient-start) 0%, var(--cassiopeia-color-gradient-end) 100%);
+$cassiopeia-header-grad:              linear-gradient(135deg, var(--cassiopeia-color-gradient-end) 0%, var(--cassiopeia-color-gradient-start) 100%);
+$cassiopeia-header-grad-rtl:          linear-gradient(135deg, var(--cassiopeia-color-gradient-end) 0%, var(--cassiopeia-color-primary) 100%);
+// endregion
+
+// region Additional
+$bluegray: #b2bfcd;
+$light-blue: #2a69b8;
+$dark-blue: #001b4c;
+// endregion
+
+// region BS Colours
+$blue:                             hsl(213, 63%, 44%); // base color for calculation, Primary-color
+$indigo:                           #0377be; //used in bootstrap
+$purple:                           #6f42c1; //used in bootstrap
+$pink:                             #971250; //used in bootstrap
+$red:                              #c52827; //used in bootstrap
+$red-dark:                         #3b0d0c; //used for alerts error
+$yellow:                           #ffb514; //used in bootstrap
+$green:                            #2f7d32; //used in bootstrap
+$green-dark:                       #0f2f21; //used for alert success
+$teal:                             #20c997; //used in bootstrap
+$cyan:                             #107d8e; //used in bootstrap
+$darkblue:                         #132f53;
+$base-color:                       $darkblue;
+// endregion
+
+// region CSS variables override
+:root {
+  --cassiopeia-color-primary: #{$standard-color-primary};
+  --cassiopeia-color-gradient-start: #{$standard-color-gradient-start};
+  --cassiopeia-color-gradient-end: #{$standard-color-gradient-end};
+  --cassiopeia-color-link: #{$standard-color-link};
+  --cassiopeia-color-hover: #{$standard-color-hover};
+}
+// endregion

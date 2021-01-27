@@ -78,6 +78,16 @@ class plgSystemDarkMagic extends CMSPlugin
 		{
 			// It's OK. It's not the end of the world.
 		}
+
+		// Site dark mode
+		try
+		{
+			$this->darkModeSite($applyWhen, $document);
+		}
+		catch (Exception $e)
+		{
+			// It's OK. It's not the end of the world.
+		}
 	}
 
 	/**
@@ -233,90 +243,183 @@ class plgSystemDarkMagic extends CMSPlugin
 	}
 
 	/**
-	 * Gets the inline CSS overrides for the administrator template
+	 * Enables Dark Mode for the administrator application
 	 *
-	 * @return  string  Inline CSS overrides
+	 * @param   string        $applyWhen
+	 * @param   HtmlDocument  $document
 	 *
-	 * @since   1.0.0.b2
+	 * @throws Exception
+	 * @since  1.0.0.b2
 	 */
-	private function getInlineCSSOverrideAdmin(): string
+	private function darkModeAdministrator(string $applyWhen, HtmlDocument $document): void
 	{
-		return '';
-
-		$css = '';
-
-		$navbar_color     = $this->params->get('templateColor') ?: '';
-		$header_color     = $this->params->get('headerColor') ?: '';
-		$sideBarColor     = $this->params->get('sidebarColor') ?: '';
-		$linkColor        = $this->params->get('linkColor');
-		$background_color = $this->params->get('loginBackgroundColor') ?: '';
-
-		if ($navbar_color)
+		// Am I allowed to apply Dark Mode to the administrator?
+		if ($this->params->get('enable_backend', 1) != 1)
 		{
-			$css .= <<<CSS
-		
-	.navbar-inner,
-	.navbar-inverse .navbar-inner,
-	.dropdown-menu li > a:hover,
-	.dropdown-menu .active > a,
-	.dropdown-menu .active > a:hover,
-	.navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
-	.navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
-	.navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle,
-	#status.status-top {
-		background: $navbar_color;
-	}
-
-CSS;
+			return;
 		}
 
-		if ($header_color)
+		// Are we in the administrator application, using the Atum template?
+		if (!$this->isAdminAtum())
 		{
-			$css .= <<<CSS
-	.header {
-		background: $header_color;
-	}
-
-CSS;
+			return;
 		}
 
-		if ($sideBarColor)
-		{
-			$css .= <<<CSS
+		// TODO Get inline CSS override
+		$overrideCss = '';
 
-	.nav-list > .active > a,
-	.nav-list > .active > a:hover {
-		background: $sideBarColor;
-	}
+		/** @var CMSApplication $app */
+		$app = Factory::getApplication();
+		$wa  = $app->getDocument()->getWebAssetManager();
+
+		switch ($applyWhen)
+		{
+			case 'always':
+			case 'dusk':
+			default:
+				// Tell the browser what kind of color scheme we support
+				$document->setMetaData('color-scheme', 'dark');
+
+				// Load the dark mode CSS
+				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/atum.css', [
+					'version' => $this->getMediaVersion(),
+				], [
+					'type' => 'text/css',
+				]);
+
+				// Apply the TinyMCE skin
+				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
+
+				// Apply the inline CSS overrides
+				if (!empty($overrideCss))
+				{
+					$wa->addInlineStyle($overrideCss);
+				}
+
+				break;
+
+			case 'browser':
+				// Tell the browser what kind of color scheme we support
+				$document->setMetaData('color-scheme', 'light dark');
+
+				// Load the dark mode CSS conditionally
+				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/atum.css', [
+					'version' => $this->getMediaVersion(),
+				], [
+					'type'  => 'text/css',
+					'media' => '(prefers-color-scheme: dark)',
+				]);
+
+				// Apply the TinyMCE skin conditionally
+				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+
+				// Apply the inline CSS overrides
+				if (!empty($overrideCss))
+				{
+					$overrideCss = <<< CSS
+
+@media screen and (prefers-color-scheme: dark)
+{
+	$overrideCss
+}
 
 CSS;
+
+					$wa->addInlineStyle($overrideCss);
+				}
+
+				break;
 		}
-
-		if ($linkColor)
-		{
-			$css .= <<<CSS
-
-	a,
-	.j-toggle-sidebar-button {
-		color: $linkColor;
 	}
 
-CSS;
-		}
-
-		if ($background_color)
+	/**
+	 * Enables Dark Mode for the site application
+	 *
+	 * @param   string        $applyWhen
+	 * @param   HtmlDocument  $document
+	 *
+	 * @throws Exception
+	 * @since  1.0.0.b2
+	 */
+	private function darkModeSite(string $applyWhen, HtmlDocument $document): void
+	{
+		// Am I allowed to apply Dark Mode to the administrator?
+		if ($this->params->get('enable_frontend', 1) != 1)
 		{
-			$css .= <<<CSS
-
-			
-	.view-login {
-		background-color: $background_color;
-	}
-
-CSS;
+			return;
 		}
 
-		return $css;
+		// Are we in the administrator application, using the Isis template?
+		if (!$this->isSiteCassiopeia())
+		{
+			return;
+		}
+
+		// TODO Get inline CSS override
+		$overrideCss = '';
+
+		/** @var CMSApplication $app */
+		$app = Factory::getApplication();
+		$wa  = $app->getDocument()->getWebAssetManager();
+
+		switch ($applyWhen)
+		{
+			case 'always':
+			case 'dusk':
+			default:
+				// Tell the browser what kind of color scheme we support
+				$document->setMetaData('color-scheme', 'dark');
+
+				// Load the dark mode CSS
+				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/cassiopeia.css', [
+					'version' => $this->getMediaVersion(),
+				], [
+					'type' => 'text/css',
+				]);
+
+				// Apply the TinyMCE skin
+				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
+
+				// Apply the inline CSS overrides
+				if (!empty($overrideCss))
+				{
+					$wa->addInlineStyle($overrideCss);
+				}
+
+				break;
+
+			case 'browser':
+				// Tell the browser what kind of color scheme we support
+				$document->setMetaData('color-scheme', 'light dark');
+
+				// Load the dark mode CSS conditionally
+				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/cassiopeia.css', [
+					'version' => $this->getMediaVersion(),
+				], [
+					'type'  => 'text/css',
+					'media' => '(prefers-color-scheme: dark)',
+				]);
+
+				// Apply the TinyMCE skin conditionally
+				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+
+				// Apply the inline CSS overrides
+				if (!empty($overrideCss))
+				{
+					$overrideCss = <<< CSS
+
+@media screen and (prefers-color-scheme: dark)
+{
+	$overrideCss
+}
+
+CSS;
+
+					$wa->addInlineStyle($overrideCss);
+				}
+
+				break;
+		}
 	}
 
 	/**
@@ -324,7 +427,7 @@ CSS;
 	 *
 	 * @return  bool
 	 *
-	 * @since   1.0.0.b2
+	 * @since   2.0.0
 	 */
 	private function isAdminAtum(): bool
 	{
@@ -354,86 +457,37 @@ CSS;
 	}
 
 	/**
-	 * Enables Dark Mode for the administrator application
+	 * Is this the site application using the Cassiopeia template?
 	 *
-	 * @param   string        $applyWhen
-	 * @param   HtmlDocument  $document
+	 * @return  bool
 	 *
-	 * @throws Exception
-	 * @since  1.0.0.b2
+	 * @since   2.0.0
 	 */
-	private function darkModeAdministrator(string $applyWhen, HtmlDocument $document): void
+	private function isSiteCassiopeia(): bool
 	{
-		// Are we in the administrator application, using the Atum template?
-		if (!$this->isAdminAtum())
+		// Can I get a reference to the CMS application?
+		try
 		{
-			return;
+			$app = Factory::getApplication();
+		}
+		catch (Exception $e)
+		{
+			return false;
 		}
 
-		// Get inline CSS override
-		$overrideCss = $this->getInlineCSSOverrideAdmin();
-
-		/** @var CMSApplication $app */
-		$app = Factory::getApplication();
-		$wa  = $app->getDocument()->getWebAssetManager();
-
-		switch ($applyWhen)
+		// Is this the site administrator?
+		if (!$app->isClient('site'))
 		{
-			case 'always':
-			case 'dusk':
-			default:
-				// Tell the browser what kind of color scheme we support
-				$document->setMetaData('color-scheme', 'dark');
-
-				// Load the dark mode CSS
-				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/custom.css', [
-					'version' => $this->getMediaVersion(),
-				], [
-					'type' => 'text/css',
-				]);
-
-				// Apply the TinyMCE skin
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
-
-				// Apply the inline CSS overrides
-				if (!empty($overrideCss))
-				{
-					$wa->addInlineStyle($overrideCss);
-				}
-
-				break;
-
-			case 'browser':
-				// Tell the browser what kind of color scheme we support
-				$document->setMetaData('color-scheme', 'light dark');
-
-				// Load the dark mode CSS conditionally
-				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/custom.css', [
-					'version' => $this->getMediaVersion(),
-				], [
-					'type'  => 'text/css',
-					'media' => '(prefers-color-scheme: dark)',
-				]);
-
-				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
-
-				// Apply the inline CSS overrides
-				if (!empty($overrideCss))
-				{
-					$overrideCss = <<< CSS
-
-@media screen and (prefers-color-scheme: dark)
-{
-	$overrideCss
-}
-
-CSS;
-
-					$wa->addInlineStyle($overrideCss);
-				}
-
-				break;
+			return false;
 		}
+
+		// Is the template in use Isis (the only one supported)?
+		if ($app->getTemplate() != 'cassiopeia')
+		{
+			return false;
+		}
+
+		return true;
 	}
+
 }

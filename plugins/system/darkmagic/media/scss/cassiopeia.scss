@@ -1,0 +1,62 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// Include the Bootstrap 4 variables provided with Joomla
+@import '../../../../../../../master/joomla4/media/vendor/bootstrap/scss/functions';
+@import '../../../../../../../master/joomla4/media/vendor/bootstrap/scss/variables';
+
+// Include the Cassiopeia variables provided with Joomla
+@import '../../../../../../../master/joomla4/templates/cassiopeia/scss/tools/variables/variables';
+
+// region General
+// Main Cassiopeia colors
+@import "cassiopeia/cassiopeia_colors";
+
+// Typography
+@import "cassiopeia/typography_dark";
+// endregion
+
+// region Bootstrap 5 overrides
+// Buttons
+@import "cassiopeia/buttons";
+
+// Cards
+@import "cassiopeia/card";
+
+// Tables
+@import "cassiopeia/table";
+
+// Custom selects
+@import "cassiopeia/custom_select";
+
+// Modals
+@import "cassiopeia/modal";
+
+// Alerts
+@import "cassiopeia/alerts";
+
+// Pagination
+@import "cassiopeia/pagination";
+
+// Forms
+@import "cassiopeia/form";
+
+// Lists
+@import "cassiopeia/lists";
+
+// Dropdowns
+@import "cassiopeia/dropdowns";
+
+// Badges
+@import "cassiopeia/badge";
+
+// endregion
+
+// Akeeba FEF
+@import "cassiopeia/fef";
+
+// Cassiopeia blocks
+@import "cassiopeia/blocks";

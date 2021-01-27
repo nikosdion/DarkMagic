@@ -1,0 +1,72 @@
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// back-to-top
+.back-to-top-link {
+  color: $light-blue;
+  background-color: $gray-700;
+
+  &:hover,
+  &:focus {
+    color: var(--white, $white);
+    background-color: $gray-600;
+    border-color: $standard-color-primary;
+  }
+}
+
+// banner
+.container-banner {
+  .banner-overlay {
+    color: $white;
+
+    .overlay {
+      background-color: hsla(0, 0%, 0%, .5);
+
+      .text-thin {
+        &::after {
+          background: $white;
+        }
+      }
+    }
+  }
+}
+
+// footer
+.footer {
+  color: $white;
+  background-color: var(--cassiopeia-color-primary);
+  background-image: $cassiopeia-header-grad;
+}
+
+// form
+[role="tooltip"]:not(.show) {
+  color: $gray-100;
+  background: $gray-700;
+  border: 1px solid $gray-500;
+}
+
+// frontend-edit
+.btn.jmodedit {
+  background-color: $light-blue;
+  border: 1px solid $bluegray;
+}
+
+// header
+.container-header {
+  background-image: $cassiopeia-header-grad;
+}
+
+// layout
+.container-header header .site {
+  background-color: $gray-800;
+}
+
+// modifiers
+.blog-item {
+  .boxed & {
+    background-color: $gray-800;
+  }
+}

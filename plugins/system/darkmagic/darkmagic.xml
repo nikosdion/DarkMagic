@@ -125,50 +125,35 @@
 				description="PLG_SYSTEM_DARKMAGIC_GROUP_BACKEND_DESC"
 			>
 				<field
-						name="templateColor"
-						type="color"
-						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LABEL"
-						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_DESC"
-						default="#051328"
-						filter="color"
-				/>
-
-				<field
-						name="headerColor"
-						type="color"
-						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_HEADER_LABEL"
-						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_HEADER_DESC"
-						default="#081f43"
-						filter="color"
-				/>
-
-				<field
-						name="sidebarColor"
-						type="color"
-						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_SIDEBAR_LABEL"
-						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_SIDEBAR_DESC"
-						default="#aaaaaa"
-						filter="color"
-				/>
-
-				<field
-						name="linkColor"
-						type="color"
-						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LINK_LABEL"
-						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LINK_DESC"
-						default="#aaaaaa"
-						filter="color"
-				/>
-
-				<field
-						name="loginBackgroundColor"
-						type="color"
-						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LOGIN_BACKGROUND_LABEL"
-						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOR_LOGIN_BACKGROUND_DESC"
-						default="#0B5089"
-						filter="color"
-				/>
+						name="enable_backend"
+						type="radio"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_ENABLE_BACKEND_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_ENABLE_BACKEND_DESC"
+						layout="joomla.form.field.radio.switcher"
+						default="1"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
 			</fieldset>
+
+			<fieldset name="frontend"
+					  label="PLG_SYSTEM_DARKMAGIC_GROUP_FRONTEND_LABEL"
+					  description="PLG_SYSTEM_DARKMAGIC_GROUP_FRONTEND_DESC"
+			>
+				<field
+						name="enable_frontend"
+						type="radio"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_ENABLE_FRONTEND_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_ENABLE_FRONTEND_DESC"
+						layout="joomla.form.field.radio.switcher"
+						default="1"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+			</fieldset>
+
 		</fields>
 	</config>
 
