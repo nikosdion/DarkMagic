@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Document\HtmlDocument;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
 
 class plgSystemDarkMagic extends CMSPlugin
@@ -388,7 +389,7 @@ CSS;
 				);
 
 				// Apply the TinyMCE skin
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
+				$this->postponeCSSLoad(Uri::root(true) . '/media/plg_system_darkmagic/css/skin.css');
 
 				// Apply the inline CSS overrides
 				if (!empty($overrideCss))
@@ -414,7 +415,7 @@ CSS;
 				);
 
 				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+				$this->postponeCSSLoad(Uri::root(true) . '/media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
 
 				// Apply the inline CSS overrides
 				if (!empty($overrideCss))
@@ -479,7 +480,7 @@ CSS;
 				);
 
 				// Apply the TinyMCE skin
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
+			$this->postponeCSSLoad(Uri::root(true) . '/media/plg_system_darkmagic/css/skin.css');
 
 				// Apply the inline CSS overrides
 				if (!empty($overrideCss))
@@ -505,7 +506,7 @@ CSS;
 				);
 
 				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+				$this->postponeCSSLoad(Uri::root(true) . '/media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
 
 				// Apply the inline CSS overrides
 				if (!empty($overrideCss))
