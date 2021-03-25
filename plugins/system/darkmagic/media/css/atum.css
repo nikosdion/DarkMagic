@@ -154,7 +154,7 @@ label {
 }
 
 .card-header {
-  background-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.2);
   border-bottom-color: rgba(232, 232, 232, 0.125);
 }
 
@@ -407,6 +407,52 @@ label {
 }
 .badge.bg-info {
   background-color: #2a69b7 !important;
+}
+
+.popover {
+  background-color: #343a40;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.bs-popover-top > .popover-arrow::before, .bs-popover-auto[data-popper-placement^=top] > .popover-arrow::before {
+  border-top-color: rgba(0, 0, 0, 0.25);
+}
+.bs-popover-top > .popover-arrow::after, .bs-popover-auto[data-popper-placement^=top] > .popover-arrow::after {
+  border-top-color: #343a40;
+}
+
+.bs-popover-end > .popover-arrow::before, .bs-popover-auto[data-popper-placement^=right] > .popover-arrow::before {
+  border-right-color: rgba(0, 0, 0, 0.25);
+}
+.bs-popover-end > .popover-arrow::after, .bs-popover-auto[data-popper-placement^=right] > .popover-arrow::after {
+  border-right-color: #343a40;
+}
+
+.bs-popover-bottom > .popover-arrow::before, .bs-popover-auto[data-popper-placement^=bottom] > .popover-arrow::before {
+  border-bottom-color: rgba(0, 0, 0, 0.25);
+}
+.bs-popover-bottom > .popover-arrow::after, .bs-popover-auto[data-popper-placement^=bottom] > .popover-arrow::after {
+  border-bottom-color: #343a40;
+}
+.bs-popover-bottom .popover-header::before, .bs-popover-auto[data-popper-placement^=bottom] .popover-header::before {
+  border-bottom-color: #212529;
+}
+
+.bs-popover-start > .popover-arrow::before, .bs-popover-auto[data-popper-placement^=left] > .popover-arrow::before {
+  border-left-color: rgba(0, 0, 0, 0.25);
+}
+.bs-popover-start > .popover-arrow::after, .bs-popover-auto[data-popper-placement^=left] > .popover-arrow::after {
+  border-left-color: #343a40;
+}
+
+.popover-header {
+  color: #e8e8e8;
+  background-color: #212529;
+  border-bottom-color: #1e2125;
+}
+
+.popover-body {
+  color: #e8e8e8;
 }
 
 /*
@@ -818,6 +864,10 @@ div.chzn-container ul.chzn-results li.no-results {
   background-image: url("../img/select-bg-rtl.svg");
   background-color: #343a40;
 }
+.choices[data-type*=select-one] .choices__list input,
+.choices[data-type*=select-multiple] .choices__list input {
+  background-color: #343a40;
+}
 
 .choices__list--dropdown {
   background-color: #343a40;
@@ -1179,6 +1229,22 @@ joomla-field-media .field-media-preview {
 .calendar-container table tbody .disabled {
   color: var(--gray);
   background-color: var(--gray-dark);
+}
+
+/*
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+.link-primary {
+  color: #5991d9;
+}
+.link-primary:hover {
+  color: #3076d0;
+}
+
+[class*=btn-outline].text-dark {
+  color: #adb5bd !important;
 }
 
 /*# sourceMappingURL=atum.css.map */

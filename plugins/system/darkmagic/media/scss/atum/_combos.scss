@@ -1,0 +1,17 @@
+/*
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+.link-primary {
+  color: lighten(#132f53, 40%);
+
+  &:hover {
+    color: lighten(#132f53, 30%);
+  }
+}
+
+[class*=btn-outline].text-dark {
+  color: $gray-500 !important;
+}

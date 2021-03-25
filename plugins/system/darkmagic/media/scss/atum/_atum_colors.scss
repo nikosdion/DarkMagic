@@ -75,3 +75,15 @@
 
 // endregion
 
+// Popovers
+
+$popover-bg:                        $gray-800;
+
+$popover-header-bg:                 $gray-900;
+$popover-header-color:              $gray-200;
+
+$popover-body-color:                $gray-200;
+
+$popover-arrow-color:               $popover-bg;
+
+$popover-arrow-outer-color:         fade-in($popover-border-color, .05) !default;
