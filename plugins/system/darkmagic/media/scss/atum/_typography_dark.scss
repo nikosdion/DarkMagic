@@ -24,6 +24,13 @@ html, body {
     color: $white;
   }
 
+  .alert {
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      color: inherit;
+    }
+  }
+
   .module {
     h1, h2, h3, h4, h5, h6,
     .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -58,6 +65,10 @@ label {
 .bg-light {
   background-color: $gray-800 !important;
   color: $gray-200;
+}
+
+code {
+  color: lighten($red, 13%);
 }
 
 // endregion

@@ -96,6 +96,11 @@ html .h1, html .h2, html .h3, html .h4, html .h5, html .h6, body h1, body h2, bo
 body .h1, body .h2, body .h3, body .h4, body .h5, body .h6 {
   color: #fff;
 }
+html .alert h1, html .alert h2, html .alert h3, html .alert h4, html .alert h5, html .alert h6,
+html .alert .h1, html .alert .h2, html .alert .h3, html .alert .h4, html .alert .h5, html .alert .h6, body .alert h1, body .alert h2, body .alert h3, body .alert h4, body .alert h5, body .alert h6,
+body .alert .h1, body .alert .h2, body .alert .h3, body .alert .h4, body .alert .h5, body .alert .h6 {
+  color: inherit;
+}
 html .module h1, html .module h2, html .module h3, html .module h4, html .module h5, html .module h6,
 html .module .h1, html .module .h2, html .module .h3, html .module .h4, html .module .h5, html .module .h6, body .module h1, body .module h2, body .module h3, body .module h4, body .module h5, body .module h6,
 body .module .h1, body .module .h2, body .module .h3, body .module .h4, body .module .h5, body .module .h6 {
@@ -124,6 +129,10 @@ label {
 .bg-light {
   background-color: #343a40 !important;
   color: #e8e8e8;
+}
+
+code {
+  color: #dd5352;
 }
 
 /*
