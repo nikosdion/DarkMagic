@@ -403,6 +403,15 @@ label {
   color: #eaedf0;
 }
 
+/*!
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+#system-message-container joomla-alert[type=info], #system-message-container joomla-alert[type=notice], #system-message-container joomla-alert[type=success], #system-message-container joomla-alert[type=message], #system-message-container joomla-alert[type=error], #system-message-container joomla-alert[type=danger] {
+  background-color: #353b41 !important;
+}
+
 /*
  *  @package   DarkMagic
  *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
