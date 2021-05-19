@@ -309,6 +309,10 @@ label {
   color: white;
 }
 
+.js-stools-container-filters {
+  background-color: #121416;
+}
+
 /*
  *  @package   DarkMagic
  *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
