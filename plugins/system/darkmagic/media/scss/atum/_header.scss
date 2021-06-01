@@ -12,6 +12,7 @@
   background: darken($light-blue, 35%);
 
   .logo {
+    background-color: $gray-800;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;

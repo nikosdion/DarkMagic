@@ -9,12 +9,16 @@ a.mm-active {
   background-color: $gray-700 !important;
 }
 
-.sidebar-wrapper .sidebar-toggle {
-  background-color: darken($light-blue, 30%);
-  // $gray-800
+.sidebar-wrapper {
+  box-shadow: none;
 
-  a {
-    color: $gray-200;
+  .sidebar-toggle {
+    background-color: darken($light-blue, 30%);
+    // $gray-800
+
+    a {
+      color: $gray-200;
+    }
   }
 }
 // endregion

@@ -266,7 +266,15 @@ class plgSystemDarkMagic extends CMSPlugin
 		}
 
 		// TODO Get inline CSS override
-		$overrideCss = '';
+		$overrideCss = <<< CSS
+:root {
+		--atum-bg-light: #343a40l;
+		--atum-text-dark: #dee2e6;
+		--atum-text-light: #212529;
+		--atum-link-color: #80abe2;
+		--atum-special-color: #b2bfcd;
+	}
+CSS;
 
 		/** @var CMSApplication $app */
 		$app = Factory::getApplication();

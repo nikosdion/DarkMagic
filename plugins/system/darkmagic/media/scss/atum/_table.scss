@@ -13,6 +13,7 @@
   thead th {
     border-color: lighten($gray-800, 10%);
     background-color: transparent;
+    box-shadow: none;
   }
 
   &.table-bordered {
