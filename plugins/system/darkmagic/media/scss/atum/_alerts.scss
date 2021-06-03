@@ -17,6 +17,11 @@
     color: $gray-400;
     background-color: darken($yellow, 30%);
     border-color:  $state-warning-border;
+
+    .text-black, .text-dark,
+    &.text-black, &.text-dark{
+      color: $gray-400 !important;
+    }
   }
 
   &.alert-success {

@@ -65,6 +65,10 @@ label {
 .bg-light {
   background-color: $gray-800 !important;
   color: $gray-200;
+
+  &.text-black, &.text-dark {
+    color: $gray-200 !important;
+  }
 }
 
 code {

@@ -13,5 +13,13 @@
 }
 
 [class*=btn-outline].text-dark {
-  color: $gray-500 !important;
+  color: $gray-200 !important;
+
+  .bg-warning {
+    color: $gray-900 !important;
+  }
+
+  &:hover {
+    color: $gray-900 !important;
+  }
 }

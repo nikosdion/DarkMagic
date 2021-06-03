@@ -10,7 +10,12 @@ $dark-card-border-color: rgba($gray-200, .125);
 
 .card {
   background-color: $dark-card-bg;
-  border-color: $dark-card-border-color;
+  //border-color: $dark-card-border-color;
+  border: 1px solid $dark-card-border-color;
+
+  .card-header {
+    color: $gray-200;
+  }
 
   .card-body {
     padding: 1rem .5rem;
