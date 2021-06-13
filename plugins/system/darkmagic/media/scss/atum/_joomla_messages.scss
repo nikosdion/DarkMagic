@@ -6,7 +6,7 @@
 
 #system-message-container joomla-alert {
   color: var(--atum-text-dark);
-  background-color: $gray-800 !important;
+  //background-color: $gray-800 !important;
   border-color: var(--alert-accent-color, transparent);
 
   .alert-heading {
@@ -23,7 +23,8 @@
     --alert-accent-color: var(--success);
     --alert-heading-text: rgba(255, 255, 255, .95);
     --alert-close-button: var(--success);
-    background-color: $gray-800;
+    //background-color: $gray-800;
+    background-color: darken($success, 30%);
   }
 
   &[type="info"],
@@ -31,14 +32,14 @@
     --alert-accent-color: var(--info);
     --alert-heading-text: rgba(255, 255, 255, .95);
     --alert-close-button: var(--info);
-    background-color: $gray-800;
+    background-color: darken($info, 32%);
   }
 
   &[type="warning"] {
     --alert-accent-color: var(--warning);
     --alert-heading-text: #000;
     --alert-close-button: #000;
-    background-color: $gray-800;
+    background-color: darken($warning, 47%);
   }
 
   &[type="error"],
@@ -46,7 +47,8 @@
     --alert-accent-color: var(--danger);
     --alert-heading-text: rgba(255, 255, 255, .95);
     --alert-close-button: var(--danger);
-    background-color: $gray-800;
+    background-color: darken($danger, 39%);
+    //background-color: $gray-800;
   }
 
   .joomla-alert--close,

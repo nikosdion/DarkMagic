@@ -9,13 +9,13 @@
 .alert {
   &.alert-info {
     color: $gray-500;
-    background-color: var(--atum-bg-dark-10);
-    border-color: var(--atum-bg-dark-20);
+    background-color: var(--atum-bg-dark-20);
+    border-color: var(--atum-bg-dark-30);
   }
 
   &.alert-warning {
     color: $gray-400;
-    background-color: darken($yellow, 30%);
+    background-color: darken($warning, 41%);
     border-color:  $state-warning-border;
 
     .text-black, .text-dark,
@@ -30,9 +30,10 @@
     border-color:  $state-success-border;
   }
 
+  &.alert-danger,
   &.alert-error {
     color: $gray-300;
-    background-color: darken($red, 20%);
+    background-color: darken($danger, 25%);
     border-color:  $state-error-border;
   }
 }

@@ -9,10 +9,12 @@
 .header {
   color: $white;
   //background: $gray-900;
-  background: darken($light-blue, 35%);
+  //background: darken($light-blue, 35%);
+  background: hsl(var(--hue), 72%, 14%);
 
   .logo {
-    background-color: $gray-800;
+    background-color: hsl(var(--hue), 72%, 14%);
+    //background-color: $gray-800;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;

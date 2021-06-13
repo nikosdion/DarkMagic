@@ -19,7 +19,8 @@
   --white: #fff;
   --gray: #6c757d;
   --gray-dark: #343a40;
-  --card-bg: #{$gray-700};
+  //--card-bg: #{$gray-700};
+  --card-bg: hsl(var(--hue), 42%, 25%);
   --table-bg: #{$gray-800};
   --bluegray: #b2bfcd;
   --lightbluegray: #f6f9fc;
@@ -37,10 +38,11 @@
   --atum-sidebar-bg: #{$gray-900};
   --atum-sidebar-font-color: #{$gray-200};
   --atum-sidebar-link-color: #{$gray-200};
-  --atum-bg-light: #{$gray-800};
-  --atum-text-light: #{$gray-900};
+  --atum-bg-light: #{$gray-800} !important;
+  --atum-text-light: #{$gray-200} !important;
+  --atum-text-dark: #{$gray-300} !important;
   --atum-special-color: #{$bluegray};
-  --atum-link-color: #{lighten(#2a69b8, 25%)};
+  --atum-link-color: #{lighten(#2a69b8, 25%)} !important;
   --atum-link-hover-color: #{lighten($light-blue, 20%)};
   --atum-contrast: #{$light-blue};
   --atum-bg-dark: #{$gray-900};
@@ -61,7 +63,6 @@
   --danger: #c52827;
   --light: #212529;
   --dark: #f8f9fa;
-  --atum-text-dark: #{$gray-300};
   --action: #132f53;
   --error: #{$red};
   --alert-success: #{$green};
