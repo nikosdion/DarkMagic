@@ -19,6 +19,8 @@ use Joomla\Registry\Registry;
 
 class plgSystemDarkMagic extends CMSPlugin
 {
+	protected $app;
+
 	/**
 	 * Should I apply the dark theme?
 	 *
@@ -51,9 +53,7 @@ class plgSystemDarkMagic extends CMSPlugin
 		// Make sure I can get basic Joomla objects before proceeding
 		try
 		{
-			/** @var CMSApplication $app */
-			$app      = Factory::getApplication();
-			$document = $app->getDocument();
+			$document = $this->app->getDocument();
 		}
 		catch (Exception $e)
 		{
@@ -88,6 +88,153 @@ class plgSystemDarkMagic extends CMSPlugin
 		{
 			// It's OK. It's not the end of the world.
 		}
+	}
+
+	/**
+	 * Convert a hex RGB color to a Hue, Saturation, Brightness array.
+	 *
+	 * @param   string  $hexCode
+	 *
+	 * @return  array
+	 *
+	 * @since   2.0.0
+	 */
+	private function rgbToHsv($hexCode): array
+	{
+		// Normalize the hex code
+		$hexCode = trim(ltrim($hexCode, '#'));
+
+		if (strlen($hexCode) == 3)
+		{
+			$hexCode = $hexCode[0] . $hexCode[0] . $hexCode[1] . $hexCode[1] . $hexCode[2] . $hexCode[2];
+		}
+
+		// Convert to RGB values
+		[$red, $green, $blue] = array_map('hexdec', str_split($hexCode, 2));
+
+		$relativeR = ($red / 255);
+		$relativeG = ($green / 255);
+		$relativeB = ($blue / 255);
+
+		$minRGB = min($relativeR, $relativeG, $relativeB);
+		$maxRGB = max($relativeR, $relativeG, $relativeB);
+		$chroma = $maxRGB - $minRGB;
+
+		// Brightness is simply the maximum RGB value
+		$brightness = 100 * $maxRGB;
+
+		// Saturation is the Chroma divided by the maximum RGB relative value, if Chroma is non-zero. Else it's zero.
+		$saturation = 100 * (($chroma < 0.01) ? 0 : ($chroma / $maxRGB));
+
+		// When Chroma is 0 the Hue is also 0 by convention
+		$hue = 0;
+
+		// For non-zero Chroma values we need to calculate the hue.
+		if ($chroma >= 0.01)
+		{
+			/**
+			 * Hue is calculated on a 360 color circle. The circle is divided into six sectors with an angle of 60
+			 * degrees each.
+			 *
+			 * The first thing we need to do is find which sector and which portion of that sector we're in, depending
+			 * on which RGB component was the minimum RGB value.
+			 */
+			if (($red - $minRGB) <= 0.01)
+			{
+				$hue = 3 - (($relativeG - $relativeB) / $chroma);
+			}
+			elseif (($blue - $minRGB) <= 0.01)
+			{
+				$hue = 1 - (($relativeR - $relativeG) / $chroma);
+			}
+			else
+			{
+				$hue = 5 - (($relativeB - $relativeR) / $chroma);
+			}
+
+			/**
+			 * So far our hue calculation told us which part of a sector we're in. For example, 5.1 means 10% into the
+			 * fifth sector. Each sector is 60 degrees. Therefore we multiply by the sector's angle (60 degrees) to get
+			 * the position in the 360 degree color wheel.
+			 */
+			$hue = 60 * $hue;
+		}
+
+		return [(int) $hue, (int) $saturation, (int) $brightness];
+	}
+
+	private function hsvToRgb(int $hue, int $saturation, int $value): string
+	{
+		// Normalize HSV to 0-360, 0-1, 0-1 respectively
+		$hue        = max(0, ($hue > 360) ? 0 : $hue);
+		$saturation = max(0.0, min($saturation / 100, 1.0));
+		$value      = max(0.0, min($value / 100, 1.0));
+
+		/**
+		 * Fully unsaturated colors have the same RGB values as the lightness
+		 */
+		if ($saturation < 0.01)
+		{
+			$hexValue = str_pad(dechex($value), 2, '0', STR_PAD_LEFT);
+
+			return '#' . str_repeat($hexValue, 3);
+		}
+
+		$sectoredHue    = $hue / 60;
+		$sector         = floor($sectoredHue);
+		$sectorPosition = $sectoredHue - $sector;
+
+		$p = $value * (1.0 - $saturation);
+		$q = $value * (1.0 - ($saturation * $sectorPosition));
+		$t = $value * (1.0 - ($saturation * (1.0 - $sectorPosition)));
+
+		switch ($sector)
+		{
+			case 0:
+				$r = $value;
+				$g = $t;
+				$b = $p;
+				break;
+
+			case 1:
+				$r = $q;
+				$g = $value;
+				$b = $p;
+				break;
+
+			case 2:
+				$r = $p;
+				$g = $value;
+				$b = $t;
+				break;
+
+			case 3:
+				$r = $p;
+				$g = $q;
+				$b = $value;
+				break;
+
+			case 4:
+				$r = $t;
+				$g = $p;
+				$b = $value;
+				break;
+
+			case 5:
+			default:
+				$r = $value;
+				$g = $p;
+				$b = $q;
+		}
+
+		$r = 255 * $r;
+		$g = 255 * $g;
+		$b = 255 * $b;
+
+		return '#' .
+			str_pad(dechex($r), 2, '0', STR_PAD_LEFT) .
+			str_pad(dechex($g), 2, '0', STR_PAD_LEFT) .
+			str_pad(dechex($b), 2, '0', STR_PAD_LEFT);
 	}
 
 	/**
@@ -134,8 +281,7 @@ class plgSystemDarkMagic extends CMSPlugin
 	{
 		try
 		{
-			$app    = Factory::getApplication();
-			$user   = $app->getIdentity() ?? new User();
+			$user   = $this->app->getIdentity() ?? new User();
 			$params = $user->params;
 
 			if (!is_object($params) || !($params instanceof Registry))
@@ -216,10 +362,8 @@ class plgSystemDarkMagic extends CMSPlugin
 	 */
 	private function postponeCSSLoad(string $url, string $media = 'screen')
 	{
-		/** @var CMSApplication $app */
-		$app = Factory::getApplication();
 		/** @var HtmlDocument $doc */
-		$doc = $app->getDocument();
+		$doc = $this->app->getDocument();
 
 		if (!$doc instanceof HtmlDocument)
 		{
@@ -265,20 +409,48 @@ class plgSystemDarkMagic extends CMSPlugin
 			return;
 		}
 
-		// TODO Get inline CSS override
+		// Get inline CSS override
+		$bgLight      = $this->params->get('bg-light', '#343a40') ?: '#343a40l';
+		$textDark     = $this->params->get('text-dark', '#dee2e6') ?: '#dee2e6';
+		$textLight    = $this->params->get('text-light', '#212529') ?: '#212529';
+		$linkColor    = $this->params->get('link-color', '#80abe2') ?: '#80abe2';
+		$specialColor = $this->params->get('special-color', '#b2bfcd') ?: '#b2bfcd';
+
+		/** @var Registry $tParams */
+		$tParams = $this->app->getTemplate(true)->params;
+		$lightSpecialColor = $tParams->get('special-color', '#001B4C');
+
+		/**
+		 * The link hover color needs to have a fixed lightness difference to the link color. If the link color's
+		 * lightness plus that difference would get it to be brighter than 100% we will make it darker. Otherwise, we
+		 * will make it lighter. For this, we need to convert the RGB to HSL, make adjustments and convert back to RGB.
+		 */
+		[$h, $s, $v] = $this->rgbToHsv($linkColor);
+		$fixedDiff = 15;
+
+		if ($v > (100 - $fixedDiff))
+		{
+			$v = $v - $fixedDiff;
+		}
+		else
+		{
+			$v = $v + $fixedDiff;
+		}
+
+		$linkHoverColor = $this->hsvToRgb($h, $s, $v);
+
 		$overrideCss = <<< CSS
 :root {
-		--atum-bg-light: #343a40l;
-		--atum-text-dark: #dee2e6;
-		--atum-text-light: #212529;
-		--atum-link-color: #80abe2;
-		--atum-special-color: #b2bfcd;
+		--atum-bg-light: $bgLight;
+		--atum-text-dark: $textDark;
+		--atum-text-light: $textLight;
+		--atum-link-color: $linkColor;
+		--atum-link-hover-color: $linkHoverColor;
+		--atum-special-color: $specialColor;
 	}
 CSS;
 
-		/** @var CMSApplication $app */
-		$app = Factory::getApplication();
-		$wa  = $app->getDocument()->getWebAssetManager();
+		$wa = $document->getWebAssetManager();
 
 		switch ($applyWhen)
 		{
@@ -299,10 +471,9 @@ CSS;
 				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
 
 				// Apply the inline CSS overrides
-				if (!empty($overrideCss))
-				{
-					$wa->addInlineStyle($overrideCss);
-				}
+				$wa->addInlineStyle($overrideCss);
+
+				$document->setMetaData('theme-color', $specialColor);
 
 				break;
 
@@ -322,19 +493,19 @@ CSS;
 				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
 
 				// Apply the inline CSS overrides
-				if (!empty($overrideCss))
-				{
-					$overrideCss = <<< CSS
+				$overrideCss = <<< CSS
 
 @media screen and (prefers-color-scheme: dark)
 {
-	$overrideCss
+$overrideCss
 }
 
 CSS;
 
-					$wa->addInlineStyle($overrideCss);
-				}
+				$wa->addInlineStyle($overrideCss);
+
+				$document->addCustomTag(sprintf('<meta name="theme-color" content="%s" media="(prefers-color-scheme: light)">', $lightSpecialColor));
+				$document->addCustomTag(sprintf('<meta name="theme-color" content="%s" media="(prefers-color-scheme: dark)">', $specialColor));
 
 				break;
 		}
@@ -367,8 +538,7 @@ CSS;
 		$overrideCss = '';
 
 		/** @var CMSApplication $app */
-		$app = Factory::getApplication();
-		$wa  = $app->getDocument()->getWebAssetManager();
+		$wa  = $document->getWebAssetManager();
 
 		switch ($applyWhen)
 		{
@@ -439,24 +609,14 @@ CSS;
 	 */
 	private function isAdminAtum(): bool
 	{
-		// Can I get a reference to the CMS application?
-		try
-		{
-			$app = Factory::getApplication();
-		}
-		catch (Exception $e)
-		{
-			return false;
-		}
-
 		// Is this the site administrator?
-		if (!$app->isClient('administrator'))
+		if (!$this->app->isClient('administrator'))
 		{
 			return false;
 		}
 
 		// Is the template in use Atum (the only one supported)?
-		if ($app->getTemplate() != 'atum')
+		if ($this->app->getTemplate() != 'atum')
 		{
 			return false;
 		}
@@ -473,29 +633,18 @@ CSS;
 	 */
 	private function isSiteCassiopeia(): bool
 	{
-		// Can I get a reference to the CMS application?
-		try
-		{
-			$app = Factory::getApplication();
-		}
-		catch (Exception $e)
-		{
-			return false;
-		}
-
 		// Is this the site administrator?
-		if (!$app->isClient('site'))
+		if (!$this->app->isClient('site'))
 		{
 			return false;
 		}
 
 		// Is the template in use Isis (the only one supported)?
-		if ($app->getTemplate() != 'cassiopeia')
+		if ($this->app->getTemplate() != 'cassiopeia')
 		{
 			return false;
 		}
 
 		return true;
 	}
-
 }

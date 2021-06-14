@@ -22,4 +22,9 @@ $dark-card-border-color: rgba($gray-200, .125);
   }
 }
 
+body:not(.contentpane) .main-card
+{
+  background-color: $gray-800;
+}
+
 // endregion
