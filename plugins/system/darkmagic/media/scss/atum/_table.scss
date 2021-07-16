@@ -46,6 +46,22 @@
       }
     }
   }
+
+  .text-info {
+    color: lighten($info, 20%) !important;
+  }
+
+  .text-success {
+    color: lighten($success, 20%) !important;
+  }
+
+  .text-danger {
+    color: lighten($danger, 25%) !important;
+  }
+
+  .text-warning {
+    color: lighten($warning, 20%) !important;
+  }
 }
 
 .table-dark {
@@ -55,6 +71,7 @@
   th,
   td,
   thead th {
+    color: $dark;
     border-top-color: $table-border-color;
   }
 
