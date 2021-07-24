@@ -3,8 +3,8 @@
  *  @copyright Copyright (c)2019-2021 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
-// region Main Cassiopeia colors
 
+// region Main Cassiopeia colors
 $standard-color-primary: hsl(220, 67%, 20%);
 $standard-color-gradient-start: rgb(79, 13, 76);
 $standard-color-gradient-end: rgb(11, 81, 88);
@@ -50,7 +50,7 @@ $popover-header-bg:                 $gray-900;
 $popover-header-color:              $gray-200;
 $popover-body-color:                $gray-200;
 $popover-arrow-color:               $popover-bg;
-$popover-arrow-outer-color:         fade-in($popover-border-color, .05) !default;
+$popover-arrow-outer-color:         fade-in($popover-border-color, .05);
 
 // endregion
 
