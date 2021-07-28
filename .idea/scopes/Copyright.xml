@@ -1,3 +1,3 @@
 <component name="DependencyValidationManager">
-  <scope name="Copyright" pattern="file[darkmagic]:build//*||file[darkmagic]:plugins//*" />
+  <scope name="Copyright" pattern="file[DarkMagic for Joomla 4]:build//*||file[DarkMagic for Joomla 4]:plugins//*" />
 </component>
