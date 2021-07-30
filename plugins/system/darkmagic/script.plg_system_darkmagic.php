@@ -39,6 +39,12 @@ class plgSystemDarkmagicInstallerScript
 	 */
 	public function preflight($route, $adapter)
 	{
+		// Do not run on uninstall.
+		if ($route === 'uninstall')
+		{
+			return true;
+		}
+
 		if (version_compare(PHP_VERSION, '7.2.0', 'lt'))
 		{
 			JLog::add('You need PHP 7.2.0 or higher to install this plugin.', JLog::WARNING, 'jerror');
@@ -70,6 +76,12 @@ class plgSystemDarkmagicInstallerScript
 	 */
 	public function postflight($type, $adapter)
 	{
+		// Do not run on uninstall.
+		if ($type === 'uninstall')
+		{
+			return;
+		}
+
 		// Remove obsolete files and folders
 		$this->removeFilesAndFolders($this->removeFiles);
 	}
