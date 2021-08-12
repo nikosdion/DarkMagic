@@ -2,7 +2,7 @@
 
 DarkMagic - Turn off the lights in your Joomla! 4 administrator template
 
-Copyright (C) 2020  Nicholas K. Dionysopoulos
+Copyright (C) 2020-2021  Nicholas K. Dionysopoulos
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,19 +29,17 @@ I primarily wrote this for my own, personal use. I do publish occasional pre-bui
 
 Dark Mode themes are only applied when you are using the Atum template in the backend. If you have customized the template you may need to override the Dark Mode CSS files provided by this plugin to take into account your modifications.
 
-This plugin does not make Dark Mode possible, it only makes it easier. You can always instead custom.css / user.css files in the built-in Joomla templates' folders to enable Dark Mode. The reason this pluign exists is that you don't need to mess around with your site's files. If you change your mind about Dark Mode just disable a plugin and you're back to normal. Easy-peasy!
+This plugin does not make Dark Mode possible, it only makes it easier. You can always recompile Joomla's CSS to support dark mode or have a permanently dark mode template. After all, that's what I do here. This plugin is easier in the sense that you don't have to “hack core” to let Joomla use the dark CSS, therefore your changes won't be overwritten the next time you update Joomla. Moreover, if yuo change your mind you can just disable thi s plugin instead of trying to restore Joomla's original CSS. That's signifficantly easier!
 
 Dark Mode has a lower contrast than the normal, light mode. If you're using Dark Mode you'll need to keep your screen brightness / backlight at a higher setting than if you're using light mode at night. This is deliberate, not a bug. If you are looking for something with a black background and white foreground what you're looking for is called "high contrast" or "inverse color" mode, not dark mode. This plugin _does not_ do high contrast / inverse color mode.
 
 ## Support and contributions
 
-Please bear in mind that using Free and Open Source Software does not entitle you to free support or labor from its developers. There are no guarantees that your request will be implemented or ever responded to in a certain timeframe or at all.
+I do not offer any kind of support. Using freely distributed software does not entitle you to free support or labor from its developers. There are no guarantees that your request will be implemented or ever responded to in a certain timeframe or at all.
 
-In an effort to save both of us time and frustration I am going to explain what I can help with and how you should contact me about it.
+Please note that the scope of this project is strictly the core Joomla templates Atum and Cassiopeia as delivered with Joomla itself and the core Joomla extensions. Modified or third party templates are explicitly outside the scope of this project. You can use this project's SCSS files as a starting point if you want but you're on your own. Third party extensions are explicitly outside the scope of this project as well. How your browser and OS implements dark mode is also out of scope, _especially_ if you are on Linux, older Windows versions or macOS versions older than Catalina.
 
-Certain things are out of this project's scope and when filing a GitHub issue. Using core Joomla features, debugging / implementing CSS on your site and supporting third party extensions are out of scope. Using this plugin in an environment other than the one described in its requirements including but not limited to different PHP and Joomla versions, different frontend or backend templates or browsers are also out of scope. How your browser and OS implements dark mode is also out of scope, _especially_ if you are on Linux, older Windows versions or macOS versions older than Catalina.
-
-In scope issues are wrong colors in dark mode for core Joomla features only. Do note that some third party plugins may extend or override core features. For example: WYSIWYG editors, plugins which add fields to the Users page, or plugins which override the Media Manager and the media selection fields. These are considered third party extensions and are out of scope. 
+Do note that some third party plugins may extend or override core features. For example: WYSIWYG editors, plugins which add fields to the Users page, or plugins which override the Media Manager and the media selection fields. These are considered third party extensions and are out of scope. 
 
 If you have an in-scope issue please do file a GitHub issue where you give concise and precise reproduction instructions _on a brand new Joomla site with only DarkMagic installed and enabled_ and a clear description of your issue. Screenshots in PNG or JPG format attached to your GitHub issue are welcome. Screencasts (videos; inline or on third party sites like YouTube), animated GIFs, PDFs, Word documents etc are not acceptable and won't be opened unless you are explicitly asked to provide them.
 
