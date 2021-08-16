@@ -4,19 +4,29 @@
  *  @license   GNU General Public License version 3, or later
  */
 
-body.com_login.view-login div.login {
-  background-color: $gray-800;
-  box-shadow: 0 0 10px $gray-600;
-
-  // Auto-filled forms get an impossible to override color... unless you do this UNHOLY TRICK.
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px $gray-800 inset!important;
+body.com_login.view-login {
+  #main-brand {
+    h2 {
+      color: $secondary;
+    }
   }
 
-  input:focus {
-    background-color: $gray-700;
+  div.login {
+    background-color: $gray-800;
+    box-shadow: 0 0 10px $gray-600;
+
+    // Auto-filled forms get an impossible to override color... unless you do this UNHOLY TRICK.
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px $gray-800 inset!important;
+    }
+
+    input:focus {
+      background-color: $gray-700;
+    }
+
+
   }
 }

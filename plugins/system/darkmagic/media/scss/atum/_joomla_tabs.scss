@@ -6,9 +6,39 @@
 
 // region Joomla tabs
 joomla-tab {
+  > div[role=tablist] {
+    border-color: var(--template-bg-dark-50);
+
+    button[role=tab] {
+      color: var(--template-link-color);
+      background-color: $gray-900;
+
+      &[aria-expanded=true],
+      &:focus,
+      &:hover {
+        &::after {
+          background-color: var(--template-link-color);
+        }
+
+        .text-muted {
+          color: var(--template-text-light) !important;
+        }
+      }
+
+      &[aria-expanded=true] {
+        background: var(--template-bg-dark-70);
+        color: $gray-800;
+      }
+
+      .text-muted {
+        color: var(--template-text-dark) !important;
+      }
+    }
+  }
+
   > ul {
     a[role=tab] {
-      color: var(--atum-link-color);
+      color: var(--template-link-color);
       border-color: $gray-600;
 
       &[active],
@@ -18,13 +48,13 @@ joomla-tab {
         border-color: $gray-600;
         border-bottom-color: $gray-400;
         &::after {
-          background-color: var(--atum-contrast);
+          background-color: var(--template-contrast);
         }
       }
     }
   }
 
-  > section {
+  > section, > joomla-tab-element {
     background-color: $gray-900;
     border-color: $gray-600;
   }
