@@ -65,16 +65,16 @@ joomla-tab {
     }
 
     a[role=tab] {
-      color: var(--atum-special-color);
+      color: var(--template-special-color);
       border-bottom-color: $gray-300;
 
       &[active],
       &:hover {
-        color: var(--atum-text-light);
-        background-color: var(--atum-link-color);
+        color: var(--template-text-light);
+        background-color: var(--template-link-color);
 
         &::after {
-          background-color: var(--atum-bg-dark);
+          background-color: var(--template-bg-dark);
         }
       }
     }
@@ -82,7 +82,7 @@ joomla-tab {
 
   &[view=accordion] {
     > ul {
-      background-color: var(--atum-link-color);
+      background-color: var(--template-link-color);
       box-shadow: 0 1px $white inset, 0 0 3px rgba(0, 0, 0, .04);
     }
 
@@ -97,19 +97,19 @@ joomla-tab {
     }
 
     a[role=tab] {
-      color: var(--atum-text-light);
-      background-color: var(--atum-link-color);
-      border-color: var(--atum-text-light);
+      color: var(--template-text-light);
+      background-color: var(--template-link-color);
+      border-color: var(--template-text-light);
 
       &[active],
       &:hover,
       &:focus {
-        color: var(--atum-text-light);
-        background-color: var(--atum-bg-dark);
+        color: var(--template-text-light);
+        background-color: var(--template-bg-dark);
       }
 
       .text-muted {
-        color: var(--atum-text-light) !important;
+        color: var(--template-text-light) !important;
       }
     }
 
@@ -119,12 +119,12 @@ joomla-tab {
       }
 
       a[role=tab] {
-        color: var(--atum-text-light);
+        color: var(--template-text-light);
         border-bottom-color: $gray-300;
 
         &[active]::after,
         &:hover::after {
-          background-color: var(--atum-bg-dark);
+          background-color: var(--template-bg-dark);
         }
       }
     }

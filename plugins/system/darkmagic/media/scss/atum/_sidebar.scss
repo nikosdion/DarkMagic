@@ -13,8 +13,8 @@ a.mm-active {
   box-shadow: none;
 
   .sidebar-toggle {
-    background-color: darken($light-blue, 30%);
-    // $gray-800
+    //background-color: darken($light-blue, 30%);
+    background-color: hsl(var(--hue),60%,13%) !important;
 
     a {
       color: $gray-200;

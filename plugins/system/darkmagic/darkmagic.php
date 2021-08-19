@@ -441,12 +441,12 @@ class plgSystemDarkMagic extends CMSPlugin
 
 		$overrideCss = <<< CSS
 :root {
-		--atum-bg-light: $bgLight;
-		--atum-text-dark: $textDark;
-		--atum-text-light: $textLight;
-		--atum-link-color: $linkColor;
-		--atum-link-hover-color: $linkHoverColor;
-		--atum-special-color: $specialColor;
+		--template-bg-light: $bgLight !important;
+		--template-text-dark: $textDark !important;
+		--template-text-light: $textLight !important;
+		--template-link-color: $linkColor !important;
+		--template-link-hover-color: $linkHoverColor !important;
+		--template-special-color: $specialColor !important;
 	}
 CSS;
 

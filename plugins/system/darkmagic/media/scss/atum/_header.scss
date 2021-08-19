@@ -44,6 +44,14 @@
 
   .header-item {
     .header-item-content {
+      &:not(.no-link):not(.joomlaversion)
+      {
+        &:hover,
+        &[aria-expanded="true"] {
+          background-color: hsl(var(--hue), 30%, 40%);
+        }
+      }
+
       > *:first-child {
         color: $white;
       }
@@ -57,8 +65,8 @@
       button {
         &:hover,
         &[aria-expanded="true"] {
-          color: var(--atum-link-hover-color);
-          background-color: var(--atum-bg-dark);
+          //color: var(--template-link-hover-color);
+          //background-color: var(--template-bg-dark);
         }
 
         &.disabled,
@@ -88,7 +96,7 @@
 
   #header-more-items {
     .header-more-menu {
-      background-color: var(--atum-bg-dark-70);
+      background-color: var(--template-bg-dark-70);
       border: 1px solid $gray-500;
     }
 
@@ -97,17 +105,17 @@
         color: var(--white);
 
         &[aria-expanded=true] {
-          color: var(--atum-text-light);
+          color: var(--template-text-light);
         }
       }
     }
 
     .header-more-btn {
       color: var(--white-offset);
-      background-color: var(--atum-bg-dark);
+      background-color: var(--template-bg-dark);
 
       &:hover {
-        background-color: var(--atum-bg-dark-80);
+        background-color: var(--template-bg-dark-80);
       }
     }
   }

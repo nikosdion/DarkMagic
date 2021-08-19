@@ -16,7 +16,8 @@
     box-shadow: none;
 
     a {
-      color: lighten($primary, 30%);
+      //color: lighten($primary, 30%);
+      filter: brightness(130%);
 
       &#sorted {
         color: $gray-200;

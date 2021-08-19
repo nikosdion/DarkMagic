@@ -9,8 +9,8 @@
 .alert {
   &.alert-info {
     color: $gray-500;
-    background-color: var(--atum-bg-dark-20);
-    border-color: var(--atum-bg-dark-30);
+    background-color: var(--template-bg-dark-20);
+    border-color: var(--template-bg-dark-30);
   }
 
   &.alert-warning {

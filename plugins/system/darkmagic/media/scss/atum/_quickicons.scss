@@ -14,7 +14,7 @@
 
     .fas,
     .fab {
-      color: var(--atum-link-color);
+      color: var(--template-link-color);
     }
 
     &:hover, &:focus, &:active {
@@ -26,6 +26,11 @@
       .fab {
         color: $gray-800;
       }
+    }
+
+    .quickicon-amount {
+      color: hsl(var(--hue),10%,95%) !important;
+      background: hsl(var(--hue),80%,30%) !important;
     }
   }
 
