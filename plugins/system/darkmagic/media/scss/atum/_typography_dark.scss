@@ -9,6 +9,10 @@ html, body {
   background: darken($gray-800, 15%);
   color: $gray-200;
 
+  &.admin {
+    background-color: var(--template-bg-light);
+  }
+
   .wrapper {
     .container {
       background: $gray-800;
