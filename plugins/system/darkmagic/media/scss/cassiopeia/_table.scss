@@ -13,6 +13,16 @@
   thead th {
     border-color: lighten($gray-800, 10%);
     background-color: transparent;
+    box-shadow: none;
+
+    a {
+      //color: lighten($primary, 30%);
+      filter: brightness(130%);
+
+      &#sorted {
+        color: $gray-200;
+      }
+    }
   }
 
   &.table-bordered {
@@ -26,7 +36,8 @@
 
     tbody {
       tr:nth-of-type(#{$table-striped-order}) {
-        background-color: lighten($gray-800, 10%);
+        background-color: lighten($gray-800, 5%);
+        color: $gray-200;
 
         h1, h2, h3, h4, h5, h6 {
           color: $gray-800;
@@ -40,10 +51,38 @@
       &:hover {
         //color: $table-dark-hover-color;
         //background-color: $table-dark-hover-bg;
-        color: $table-hover-color;
+        color: $gray-500;
         background-color: $table-hover-bg;
       }
     }
+  }
+
+  .text-primary, .link-primary {
+    color: lighten($standard-color-primary, 41%) !important;
+  }
+
+  .text-secondary, .link-secondary {
+    color: lighten($secondary, 20%) !important;
+  }
+
+  .text-info, .link-info {
+    color: lighten($info, 20%) !important;
+  }
+
+  .text-success, .link-success {
+    color: lighten($success, 20%) !important;
+  }
+
+  .text-danger, .link-danger {
+    color: lighten($danger, 25%) !important;
+  }
+
+  .text-warning, .link-warning {
+    color: lighten($warning, 20%) !important;
+  }
+
+  .text-muted {
+    color: $gray-500 !important;
   }
 }
 
@@ -54,6 +93,7 @@
   th,
   td,
   thead th {
+    color: $dark;
     border-top-color: $table-border-color;
   }
 
