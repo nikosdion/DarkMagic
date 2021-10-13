@@ -20,4 +20,8 @@
   &.bg-info {
     background-color: $blue !important;
   }
+
+  &.bg-light.text-dark {
+    color: $gray-200 !important;
+  }
 }
