@@ -7,8 +7,13 @@ It can optionally be applied in the frontend if you are using the Cassiopeia tem
 ### Requirements
 
 * Joomla 4.0.
-* PHP 7.2, 7.3, 7.4, or 8.0.
+* PHP 7.2, 7.3, 7.4, 8.0 or 8.1.
 * Atum (backend) or Cassiopeia (frontend) template.
 * A web browser with Dark Mode support.
 
 **IMPORTANT!** This version of the plugin will NOT work with Joomla 3.
+
+### Changelog
+
+* Updated for Joomla 4 stable
+* Fully native Joomla 4 plugin

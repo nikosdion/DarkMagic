@@ -7,20 +7,19 @@
 
 <extension version="4.0.0" type="plugin" group="system" method="upgrade">
 	<name>PLG_SYSTEM_DARKMAGIC</name>
-	<version>2.0.0</version>
-	<creationDate>2021-08-12</creationDate>
-
+	<version>2.0.1</version>
+	<creationDate>2021-12-21</creationDate>
 	<author>Nicholas K. Dionysopoulos</author>
 	<authorEmail>no-reply@akeebabackup.com</authorEmail>
 	<authorUrl>https://www.dionysopoulos.me</authorUrl>
-
 	<copyright>Copyright (c)2019-2021 Nicholas K. Dionysopoulos</copyright>
 	<license>GNU GPL v3 or later</license>
-
 	<description>PLG_SYSTEM_DARKMAGIC_DESCRIPTION</description>
+	<namespace path="src">Joomla\Plugin\System\DarkMagic</namespace>
 
 	<files>
-		<filename plugin="darkmagic">darkmagic.php</filename>
+		<folder>services</folder>
+		<folder plugin="darkmagic">src</folder>
 
 		<filename>.htaccess</filename>
 		<filename>web.config</filename>
@@ -34,8 +33,8 @@
 	</media>
 
 	<languages folder="language">
-		<language tag="en-GB">en-GB/en-GB.plg_system_darkmagic.ini</language>
-		<language tag="en-GB">en-GB/en-GB.plg_system_darkmagic.sys.ini</language>
+		<language tag="en-GB">en-GB/plg_system_darkmagic.ini</language>
+		<language tag="en-GB">en-GB/plg_system_darkmagic.sys.ini</language>
 	</languages>
 
 	<config>
@@ -192,9 +191,6 @@
 
 		</fields>
 	</config>
-
-	<!-- Installation script -->
-	<scriptfile>script.plg_system_darkmagic.php</scriptfile>
 
 	<!-- Update servers -->
 	<updateservers>

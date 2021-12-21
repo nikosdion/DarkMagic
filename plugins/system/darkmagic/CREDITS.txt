@@ -1,6 +1,0 @@
-This software would have not been possible without the original work of other people it builds upon.
-
-TinyMCE Dark Skin
-=================
-
-Made with an on-line TinyMCE skin generator and tweaked by hand.
