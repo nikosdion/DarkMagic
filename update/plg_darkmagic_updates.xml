@@ -1,6 +1,36 @@
 <!-- Dark Magic update provisioning XML stream -->
 <updates>
     <update>
+        <version>2.0.1</version>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/nikosdion/darkmagic/releases/download/2.0.1/plg_system_darkmagic-2.0.1.zip</downloadurl>
+        </downloads>
+        <infourl title="Dark Magic Release Notes">https://github.com/nikosdion/darkmagic/releases/download/2.0.1</infourl>
+
+        <targetplatform name="joomla" version="4.[01]"/>
+
+        <php_minimum>7.1.0</php_minimum>
+
+        <ars-phpcompat version="7.2"/>
+        <ars-phpcompat version="7.3"/>
+        <ars-phpcompat version="7.4"/>
+        <ars-phpcompat version="8.0"/>
+        <ars-phpcompat version="8.1"/>
+
+        <name>DarkMagic plugin</name>
+        <description>DarkMagic - Turn off the lights in your Joomla! 4 administrator</description>
+        <element>plg_system_darkmagic</element>
+        <type>plugin</type>
+        <maintainer>Nicholas K. Dionysopoulos</maintainer>
+        <maintainerurl>https://www.dionysopoulos.me</maintainerurl>
+        <section>Updates</section>
+        <client>0</client>
+    </update>
+    <update>
         <version>2.0.0</version>
         <tags>
             <tag>stable</tag>
@@ -11,7 +41,7 @@
         </downloads>
         <infourl title="Dark Magic Release Notes">https://github.com/nikosdion/darkmagic/releases/download/2.0.0</infourl>
 
-        <targetplatform name="joomla" version="4.0"/>
+        <targetplatform name="joomla" version="4.[01]"/>
 
         <php_minimum>7.1.0</php_minimum>
 

@@ -11,13 +11,15 @@
         </downloads>
         <infourl title="Dark Magic Release Notes">https://github.com/nikosdion/darkmagic/releases/download/2.0.1</infourl>
 
-        <targetplatform name="joomla" version="4.0"/>
+        <targetplatform name="joomla" version="4.[01]"/>
 
         <php_minimum>7.1.0</php_minimum>
 
         <ars-phpcompat version="7.2"/>
         <ars-phpcompat version="7.3"/>
         <ars-phpcompat version="7.4"/>
+        <ars-phpcompat version="8.0"/>
+        <ars-phpcompat version="8.1"/>
 
         <name>DarkMagic plugin</name>
         <description>DarkMagic - Turn off the lights in your Joomla! 4 administrator</description>
