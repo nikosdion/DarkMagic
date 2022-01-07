@@ -227,7 +227,12 @@ CSS;
 				]);
 
 				// Apply the TinyMCE skin
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
+				$this->postponeCSSLoad(Uri::base(true) . '/../media/plg_system_darkmagic/css/skin.css');
+
+				if ($this->params->get('tinyMceContent_backend', 1) == 1)
+				{
+					$this->forceTinyMceDarkContent(Uri::base(true) . '/../media/plg_system_darkmagic/css/cassiopeia.css');
+				}
 
 				// Apply the inline CSS overrides
 				$wa->addInlineStyle($overrideCss);
@@ -249,7 +254,12 @@ CSS;
 				]);
 
 				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+				$this->postponeCSSLoad(Uri::base(true) . '/../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+
+				if ($this->params->get('tinyMceContent_backend', 1) == 1)
+				{
+					$this->forceTinyMceDarkContent(Uri::base(true) . '/../media/plg_system_darkmagic/css/cassiopeia.css', true);
+				}
 
 				// Apply the inline CSS overrides
 				$overrideCss = <<< CSS
@@ -314,7 +324,12 @@ CSS;
 				]);
 
 				// Apply the TinyMCE skin
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css');
+				$this->postponeCSSLoad(Uri::base(true) . '/media/plg_system_darkmagic/css/skin.css');
+
+				if ($this->params->get('tinyMceContent_frontend', 1) == 1)
+				{
+					$this->forceTinyMceDarkContent(Uri::base(true) . '/media/plg_system_darkmagic/css/cassiopeia.css');
+				}
 				break;
 
 			case 'browser':
@@ -330,8 +345,12 @@ CSS;
 				]);
 
 				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad('../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+				$this->postponeCSSLoad(Uri::base(true) . '/media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
 
+				if ($this->params->get('tinyMceContent_frontend', 1) == 1)
+				{
+					$this->forceTinyMceDarkContent(Uri::base(true) . '/media/plg_system_darkmagic/css/cassiopeia.css', true);
+				}
 				break;
 		}
 	}
@@ -618,6 +637,33 @@ CSS;
 
 		$doc->addScriptOptions('plg_system_darkmagic.postponedCSS', [
 			$url => $media,
+		], true);
+	}
+
+	private function forceTinyMceDarkContent(string $url, bool $conditional)
+	{
+		/** @var HtmlDocument $doc */
+		$doc = $this->app->getDocument();
+
+		if (!$doc instanceof HtmlDocument)
+		{
+			return;
+		}
+
+		$wa = $doc->getWebAssetManager();
+
+		if (!$wa->assetExists('script', 'plg_system_darkmagic.tinydark'))
+		{
+			$wa->registerAndUseScript('plg_system_darkmagic.tinydark', Uri::base() . '../media/plg_system_darkmagic/js/tinydark.js', [
+				'version' => $this->getMediaVersion(),
+			], [
+				'defer' => true,
+			]);
+		}
+
+		$doc->addScriptOptions('plg_system_darkmagic.tiny_dark', [
+			'css'         => $url,
+			'conditional' => $conditional,
 		], true);
 	}
 
