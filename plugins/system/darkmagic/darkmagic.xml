@@ -70,6 +70,7 @@
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_ZENITH_LABEL"
 						description="PLG_SYSTEM_DARKMAGIC_CONFIG_ZENITH_DESC"
 						default="96"
+						showon="applywhen:dusk"
 				>
 					<option value="90.1389">PLG_SYSTEM_DARKMAGIC_CONFIG_ZENITH_SUNRISE</option>
 					<option value="96">PLG_SYSTEM_DARKMAGIC_CONFIG_ZENITH_CIVIL</option>
@@ -86,6 +87,7 @@
 						max="180"
 						step="0.01"
 						default="35.185566"
+						showon="applywhen:dusk"
 				/>
 
 				<field
@@ -97,6 +99,7 @@
 						max="180"
 						step="0.01"
 						default="33.382275"
+						showon="applywhen:dusk"
 				/>
 
 				<field
@@ -108,6 +111,7 @@
 						max="90"
 						step="1"
 						default="0"
+						showon="applywhen:dusk"
 				/>
 
 				<field
@@ -119,6 +123,7 @@
 						max="90"
 						step="1"
 						default="0"
+						showon="applywhen:dusk"
 				/>
 
 			</fieldset>
@@ -146,6 +151,7 @@
 						description="PLG_SYSTEM_DARKMAGIC_CONFIG_TINYMCECONTENT_DESC"
 						layout="joomla.form.field.radio.switcher"
 						default="1"
+						showon="enable_backend:1"
 				>
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
@@ -157,6 +163,7 @@
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_BG_LIGHT_LABEL"
 						default="#343a40"
 						filter="color"
+						showon="enable_backend:1"
 				/>
 				<field
 						name="text-dark"
@@ -164,6 +171,7 @@
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_TEXT_DARK_LABEL"
 						default="#dee2e6"
 						filter="color"
+						showon="enable_backend:1"
 				/>
 				<field
 						name="text-light"
@@ -171,6 +179,7 @@
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_TEXT_LIGHT_LABEL"
 						default="#212529"
 						filter="color"
+						showon="enable_backend:1"
 				/>
 				<field
 						name="link-color"
@@ -178,6 +187,7 @@
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_LINK_COLOR_LABEL"
 						default="#80abe2"
 						filter="color"
+						showon="enable_backend:1"
 				/>
 				<field
 						name="special-color"
@@ -185,6 +195,7 @@
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_SPECIAL_COLOR_LABEL"
 						default="#b2bfcd"
 						filter="color"
+						showon="enable_backend:1"
 				/>
 			</fieldset>
 
@@ -211,6 +222,7 @@
 						description="PLG_SYSTEM_DARKMAGIC_CONFIG_TINYMCECONTENT_DESC"
 						layout="joomla.form.field.radio.switcher"
 						default="1"
+						showon="enable_frontend:1"
 				>
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
