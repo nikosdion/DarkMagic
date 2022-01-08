@@ -3,6 +3,7 @@ DarkMagic 2.0.2
 + Support for Joomla 4.1
 + About box in the plugin's configuration page
 + Style the TinyMCE chrome, optionally also the content area.
++ Styling for new module and new task pages
 
 DarkMagic 2.0.1
 ================================================================================

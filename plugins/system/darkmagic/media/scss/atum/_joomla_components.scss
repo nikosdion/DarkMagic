@@ -54,3 +54,12 @@
     background: $gray-800;
   }
 }
+
+.new-module, .new-task {
+  background-color: hsl(var(--hue), 60%, 27%);
+  color: hsl(var(--hue), 30%, 80%);
+
+  &:hover {
+    color: hsl(var(--hue), 0%, 100%);
+  }
+}
