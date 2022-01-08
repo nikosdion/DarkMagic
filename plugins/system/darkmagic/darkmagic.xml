@@ -38,13 +38,17 @@
 	</languages>
 
 	<config>
-		<fields name="params">
+		<fields name="params" addfieldprefix="Joomla\Plugin\System\DarkMagic\Field">
 			<fieldset name="basic">
+				<field
+					name="about"
+					type="about"
+					/>
 
 				<field
 					name="note1"
 					type="note"
-					class="alert alert-info"
+					class="alert alert-info w-100"
 					label="PLG_SYSTEM_DARKMAGIC_GROUP_BASIC_DESCRIPTION"
 					/>
 
