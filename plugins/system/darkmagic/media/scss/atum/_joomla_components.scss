@@ -55,6 +55,12 @@
   }
 }
 
+.com_media {
+  .media-sidebar {
+    background-color: $gray-900;
+  }
+}
+
 .new-module, .new-task {
   background-color: hsl(var(--hue), 60%, 27%);
   color: hsl(var(--hue), 30%, 80%);
