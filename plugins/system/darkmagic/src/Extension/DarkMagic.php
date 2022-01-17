@@ -220,18 +220,18 @@ CSS;
 				$document->setMetaData('color-scheme', 'dark');
 
 				// Load the dark mode CSS
-				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/atum.css', [
+				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::root() . '../media/plg_system_darkmagic/css/atum.css', [
 					'version' => $this->getMediaVersion(),
 				], [
 					'type' => 'text/css',
 				]);
 
 				// Apply the TinyMCE skin
-				$this->postponeCSSLoad(Uri::base(true) . '/../media/plg_system_darkmagic/css/skin.css');
+				$this->postponeCSSLoad(Uri::root(true) . '/../media/plg_system_darkmagic/css/skin.css');
 
 				if ($this->params->get('tinyMceContent_backend', 1) == 1)
 				{
-					$this->forceTinyMceDarkContent(Uri::base(true) . '/../media/plg_system_darkmagic/css/cassiopeia.css');
+					$this->forceTinyMceDarkContent(Uri::root(true) . '/../media/plg_system_darkmagic/css/cassiopeia.css');
 				}
 
 				// Apply the inline CSS overrides
@@ -246,7 +246,7 @@ CSS;
 				$document->setMetaData('color-scheme', 'light dark');
 
 				// Load the dark mode CSS conditionally
-				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/atum.css', [
+				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::root() . '../media/plg_system_darkmagic/css/atum.css', [
 					'version' => $this->getMediaVersion(),
 				], [
 					'type'  => 'text/css',
@@ -254,11 +254,11 @@ CSS;
 				]);
 
 				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad(Uri::base(true) . '/../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+				$this->postponeCSSLoad(Uri::root(true) . '/../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
 
 				if ($this->params->get('tinyMceContent_backend', 1) == 1)
 				{
-					$this->forceTinyMceDarkContent(Uri::base(true) . '/../media/plg_system_darkmagic/css/cassiopeia.css', true);
+					$this->forceTinyMceDarkContent(Uri::root(true) . '/../media/plg_system_darkmagic/css/cassiopeia.css', true);
 				}
 
 				// Apply the inline CSS overrides
@@ -317,18 +317,18 @@ CSS;
 				$document->setMetaData('color-scheme', 'dark');
 
 				// Load the dark mode CSS
-				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/cassiopeia.css', [
+				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::root() . '../media/plg_system_darkmagic/css/cassiopeia.css', [
 					'version' => $this->getMediaVersion(),
 				], [
 					'type' => 'text/css',
 				]);
 
 				// Apply the TinyMCE skin
-				$this->postponeCSSLoad(Uri::base(true) . '/media/plg_system_darkmagic/css/skin.css');
+				$this->postponeCSSLoad(Uri::root(true) . '/media/plg_system_darkmagic/css/skin.css');
 
 				if ($this->params->get('tinyMceContent_frontend', 1) == 1)
 				{
-					$this->forceTinyMceDarkContent(Uri::base(true) . '/media/plg_system_darkmagic/css/cassiopeia.css');
+					$this->forceTinyMceDarkContent(Uri::root(true) . '/media/plg_system_darkmagic/css/cassiopeia.css');
 				}
 				break;
 
@@ -337,7 +337,7 @@ CSS;
 				$document->setMetaData('color-scheme', 'light dark');
 
 				// Load the dark mode CSS conditionally
-				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::base() . '../media/plg_system_darkmagic/css/cassiopeia.css', [
+				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::root() . '../media/plg_system_darkmagic/css/cassiopeia.css', [
 					'version' => $this->getMediaVersion(),
 				], [
 					'type'  => 'text/css',
@@ -345,11 +345,11 @@ CSS;
 				]);
 
 				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad(Uri::base(true) . '/media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
+				$this->postponeCSSLoad(Uri::root(true) . '/media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
 
 				if ($this->params->get('tinyMceContent_frontend', 1) == 1)
 				{
-					$this->forceTinyMceDarkContent(Uri::base(true) . '/media/plg_system_darkmagic/css/cassiopeia.css', true);
+					$this->forceTinyMceDarkContent(Uri::root(true) . '/media/plg_system_darkmagic/css/cassiopeia.css', true);
 				}
 				break;
 		}
@@ -628,7 +628,7 @@ CSS;
 
 		if (!$wa->assetExists('script', 'plg_system_darkmagic.postponed'))
 		{
-			$wa->registerAndUseScript('plg_system_darkmagic.postponed', Uri::base() . '../media/plg_system_darkmagic/js/postponed.js', [
+			$wa->registerAndUseScript('plg_system_darkmagic.postponed', Uri::root() . '../media/plg_system_darkmagic/js/postponed.js', [
 				'version' => $this->getMediaVersion(),
 			], [
 				'defer' => true,
@@ -654,7 +654,7 @@ CSS;
 
 		if (!$wa->assetExists('script', 'plg_system_darkmagic.tinydark'))
 		{
-			$wa->registerAndUseScript('plg_system_darkmagic.tinydark', Uri::base() . '../media/plg_system_darkmagic/js/tinydark.js', [
+			$wa->registerAndUseScript('plg_system_darkmagic.tinydark', Uri::root() . '../media/plg_system_darkmagic/js/tinydark.js', [
 				'version' => $this->getMediaVersion(),
 			], [
 				'defer' => true,
