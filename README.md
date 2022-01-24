@@ -1,6 +1,6 @@
 # DarkMagic
 
-DarkMagic - Turn off the lights in your Joomla! 4 administrator template
+DarkMagic - Dark Mode for Joomla 4's default templates
 
 Copyright (C) 2020-2021  Nicholas K. Dionysopoulos
 
@@ -27,9 +27,9 @@ I primarily wrote this for my own, personal use. I do publish occasional pre-bui
 
 ## Caveats
 
-Dark Mode themes are only applied when you are using the Atum template in the backend. If you have customized the template you may need to override the Dark Mode CSS files provided by this plugin to take into account your modifications.
+Dark Mode themes are only applied when you are using the Atum template in the backend or Cassiopeia in the frontend. It does not apply to child templates or templates forked from Atum and Cassiopeia. If you have customized the template you may need to override the Dark Mode CSS files provided by this plugin to take into account your modifications.
 
-This plugin does not make Dark Mode possible, it only makes it easier. You can always recompile Joomla's CSS to support dark mode or have a permanently dark mode template. After all, that's what I do here. This plugin is easier in the sense that you don't have to “hack core” to let Joomla use the dark CSS, therefore your changes won't be overwritten the next time you update Joomla. Moreover, if yuo change your mind you can just disable thi s plugin instead of trying to restore Joomla's original CSS. That's signifficantly easier!
+This plugin does not make Dark Mode possible, it only makes it easier. You can always recompile Joomla's CSS to support dark mode or have a permanently dark mode template. After all, that's what I do here. This plugin is easier in the sense that you don't have to do media overrides. Moreover, if you change your mind you can disable the plugin instead of undoing media overrides.
 
 Dark Mode has a lower contrast than the normal, light mode. If you're using Dark Mode you'll need to keep your screen brightness / backlight at a higher setting than if you're using light mode at night. This is deliberate, not a bug. If you are looking for something with a black background and white foreground what you're looking for is called "high contrast" or "inverse color" mode, not dark mode. This plugin _does not_ do high contrast / inverse color mode.
 
@@ -61,8 +61,10 @@ If you want to go through the build process I use you will need to have the foll
 
 * A command line environment. Using Bash under Linux / Mac OS X works best.
 * A PHP CLI binary in your path
-* Phing installed account-wide on your machine
-* Command line Git executables
+* The sass (Sass / SCSS compiler) executable in your path
+* The Composer executable in your path
+* Phing installed account-wide on your machine and its executable in your path
+* Command line Git executables in your path
 
 You will also need the following path structure inside a folder on your system
 

@@ -1,15 +1,12 @@
-DarkMagic 2.0.3
-================================================================================
-+ Media Manager sidebar background color adjustment.
-# [HIGH] Sometimes the CSS might not load at all
-
 DarkMagic 2.0.2
 ================================================================================
 + Support for Joomla 4.1
 + About box in the plugin's configuration page
 + Style the TinyMCE chrome, optionally also the content area.
 + Styling for new module and new task pages
++ Media Manager sidebar background color adjustment.
 ~ Improved display of plugin options
+# [HIGH] Sometimes the CSS might not load at all
 
 DarkMagic 2.0.1
 ================================================================================
