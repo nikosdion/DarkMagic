@@ -640,7 +640,7 @@ CSS;
 		], true);
 	}
 
-	private function forceTinyMceDarkContent(string $url, bool $conditional)
+	private function forceTinyMceDarkContent(string $url, bool $conditional = false)
 	{
 		/** @var HtmlDocument $doc */
 		$doc = $this->app->getDocument();

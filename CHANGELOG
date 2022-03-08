@@ -1,5 +1,6 @@
 DarkMagic 2.0.3
 ================================================================================
+# [HIGH] Fatal error if TinyMCE dark mode is enabled when “Apply dark theme“ is set to anything but Browser (gh-2)
 # [LOW] PHP 8.1 deprecated notice from the color handling code
 
 DarkMagic 2.0.2
