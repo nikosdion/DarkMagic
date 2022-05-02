@@ -4,7 +4,7 @@ This plugin implements Dark Mode for Joomla 4's default administrator (Atum) and
 
 ### Requirements
 
-* Joomla 4.0 or 4.1.
+* Joomla 4.0 or 4.1. Tentative support for 4.2.
 * PHP 7.2, 7.3, 7.4, 8.0 or 8.1.
 * Atum (backend) or Cassiopeia (frontend) template.
 * A web browser with Dark Mode support.
@@ -13,10 +13,7 @@ This plugin implements Dark Mode for Joomla 4's default administrator (Atum) and
 
 ### Changelog
 
-* `+` Support for Joomla 4.1
-* `+` About box in the plugin's configuration page
-* `+` Style the TinyMCE chrome, optionally also the content area.
-* `+` Styling for new module and new task pages
-* `+` Media Manager sidebar background color adjustment.
-* `~` Improved display of plugin options
-* `# [HIGH]` Sometimes the CSS might not load at all
+**Bug fixes**
+
+* [HIGH] Fatal error if TinyMCE dark mode is enabled when “Apply dark theme“ is set to anything but Browser (gh-2)
+* [LOW] PHP 8.1 deprecated notice from the color handling code
