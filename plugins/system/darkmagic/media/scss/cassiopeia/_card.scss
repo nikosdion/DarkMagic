@@ -30,6 +30,14 @@ $dark-card-cap-bg: rgba($white, .15);
   color: $dark-card-cap-color;
   background-color: $dark-card-cap-bg;
   border-top-color: $dark-card-border-color;
+
+  a {
+    color: lighten($link-color, 25%);
+  }
+
+  .text-muted {
+    color: lighten($text-muted, 20%) !important;
+  }
 }
 
 // endregion
