@@ -11,7 +11,7 @@
         </downloads>
         <infourl title="Dark Magic Release Notes">https://github.com/nikosdion/darkmagic/releases/download/2.0.3</infourl>
 
-        <targetplatform name="joomla" version="4.[01]"/>
+        <targetplatform name="joomla" version="4.[012]"/>
 
         <php_minimum>7.2.0</php_minimum>
 
