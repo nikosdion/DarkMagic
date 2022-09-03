@@ -595,12 +595,19 @@ CSS;
 		}
 
 		// Is the template in use Isis (the only one supported)?
-		if ($this->app->getTemplate() != 'cassiopeia')
+		$templateInfo = $this->app->getTemplate(true);
+
+		if ($templateInfo->template === 'cassiopeia')
 		{
-			return false;
+			return true;
 		}
 
-		return true;
+		if (isset($templateInfo->parent) && $templateInfo->parent === 'cassiopeia')
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

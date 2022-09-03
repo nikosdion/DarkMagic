@@ -1,3 +1,7 @@
+DarkMagic 2.0.4
+================================================================================
++ Support Cassiopeia child templates (at long last!)
+
 DarkMagic 2.0.3
 ================================================================================
 # [HIGH] Fatal error if TinyMCE dark mode is enabled when “Apply dark theme“ is set to anything but Browser (gh-2)
