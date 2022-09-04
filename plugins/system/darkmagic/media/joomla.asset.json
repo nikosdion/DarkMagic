@@ -38,7 +38,7 @@
       "dependencies": [
         "template.active",
         "template.active.language"
-      ],
+      ]
     },
 
     {

@@ -1,8 +1,8 @@
 <?php
 /**
- *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
- *  @license   GNU General Public License version 3, or later
+ * @package   DarkMagic
+ * @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ * @license   GNU General Public License version 3, or later
  */
 
 /** @noinspection PhpMultipleClassDeclarationsInspection */
@@ -39,41 +39,18 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 	/**
 	 * Should I try to detect and register legacy event listeners?
 	 *
-	 * @var    boolean
 	 * @since  2.0.0
+	 * @var    boolean
 	 */
 	protected $allowLegacyListeners = true;
 
 	/**
 	 * The Joomla! application object
 	 *
-	 * @var   CMSApplication|SiteApplication|AdministratorApplication
 	 * @since 1.0.0
+	 * @var   CMSApplication|SiteApplication|AdministratorApplication
 	 */
 	protected $app;
-
-	/**
-	 * Should I apply the dark theme?
-	 *
-	 * @var   bool
-	 * @since 1.0.0.b1
-	 */
-	private $enabled;
-
-	/**
-	 * Constructor
-	 *
-	 * @param   DispatcherInterface  &$subject  The object to observe
-	 * @param   array                $config    An optional associative array of configuration settings.
-	 *
-	 * @since   1.0.0.b1
-	 */
-	public function __construct(&$subject, $config = [])
-	{
-		parent::__construct($subject, $config);
-
-		$this->enabled = $this->evaluateDarkModeConditions();
-	}
 
 	/**
 	 * Returns an array of events this subscriber will listen to.
@@ -93,14 +70,14 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 	 * Hooks on Joomla onBeforeRender event, manipulating the document header to activate Dark Mode
 	 *
 	 * @throws  Exception
-	 * @since   1.0.0.b1
+	 * @since        1.0.0.b1
 	 *
 	 * @noinspection PhpUnusedParameterInspection
 	 */
 	public function onBeforeRender(Event $event): void
 	{
 		// Is this Light Mode?
-		if (!$this->enabled)
+		if (!$this->evaluateDarkModeConditions())
 		{
 			return;
 		}
@@ -108,7 +85,7 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		// Make sure I can get basic Joomla objects before proceeding
 		try
 		{
-			$document = $this->app->getDocument();
+			$document = ($this->app instanceof CMSApplication) ? $this->app->getDocument() : null;
 		}
 		catch (Exception $e)
 		{
@@ -121,59 +98,34 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 			return;
 		}
 
-		// Get the plugin configuration
-		$applyWhen = $this->params->get('applywhen', 'always');
-
-		// Administrator dark mode
-		try
+		if ($this->app->isClient('administrator'))
 		{
-			$this->darkModeAdministrator($applyWhen, $document);
+			$this->darkMode('backend', 'atum');
 		}
-		catch (Exception $e)
+		elseif ($this->app->isClient('site'))
 		{
-			// It's OK. It's not the end of the world.
-		}
-
-		// Site dark mode
-		try
-		{
-			$this->darkModeSite($applyWhen, $document);
-		}
-		catch (Exception $e)
-		{
-			// It's OK. It's not the end of the world.
+			$this->darkMode('frontend', 'cassiopeia');
 		}
 	}
 
-	/**
-	 * Enables Dark Mode for the administrator application
-	 *
-	 * @param   string        $applyWhen
-	 * @param   HtmlDocument  $document
-	 *
-	 * @throws Exception
-	 * @since  1.0.0.b2
-	 */
-	private function darkModeAdministrator(string $applyWhen, HtmlDocument $document): void
+	private function darkMode(string $siteSection, string $templateName)
 	{
-		// Am I allowed to apply Dark Mode to the administrator?
-		if ($this->params->get('enable_backend', 1) != 1)
+		// Make sure that the site is using the right template
+		if (!$this->isThisTemplate($templateName))
 		{
 			return;
 		}
 
-		// Are we in the administrator application, using the Atum template?
-		if (!$this->isAdminAtum())
-		{
-			return;
-		}
+		// Get some basic information
+		$document  = $this->app->getDocument();
+		$applyWhen = $this->params->get('applywhen', 'always');
 
 		// Get inline CSS override
-		$bgLight      = $this->params->get('bg-light', '#343a40') ?: '#343a40l';
-		$textDark     = $this->params->get('text-dark', '#dee2e6') ?: '#dee2e6';
-		$textLight    = $this->params->get('text-light', '#212529') ?: '#212529';
-		$linkColor    = $this->params->get('link-color', '#80abe2') ?: '#80abe2';
-		$specialColor = $this->params->get('special-color', '#b2bfcd') ?: '#b2bfcd';
+		$bgLight      = $this->getConfigKey('bg-light', $siteSection, '#343a40') ?: '#343a40l';
+		$textDark     = $this->getConfigKey('text-dark', $siteSection, '#dee2e6') ?: '#dee2e6';
+		$textLight    = $this->getConfigKey('text-light', $siteSection, '#212529') ?: '#212529';
+		$linkColor    = $this->getConfigKey('link-color', $siteSection, '#80abe2') ?: '#80abe2';
+		$specialColor = $this->getConfigKey('special-color', $siteSection, '#b2bfcd') ?: '#b2bfcd';
 
 		/** @var Registry $tParams */
 		$tParams           = $this->app->getTemplate(true)->params;
@@ -206,10 +158,11 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		--template-link-color: $linkColor !important;
 		--template-link-hover-color: $linkHoverColor !important;
 		--template-special-color: $specialColor !important;
-	}
+}
 CSS;
 
 		$wa = $document->getWebAssetManager();
+		$wa->getRegistry()->addExtensionRegistryFile('plg_system_darkmagic');
 
 		switch ($applyWhen)
 		{
@@ -220,12 +173,12 @@ CSS;
 				$document->setMetaData('color-scheme', 'dark');
 
 				// Load the dark mode CSS
-				$wa->useStyle('darkmagic.backend_template');
+				$wa->useStyle('darkmagic.' . $siteSection . '_template');
 
 				// Apply the TinyMCE skin
 				$this->postponeCSSLoad(Uri::root(true) . '/../media/plg_system_darkmagic/css/skin.css');
 
-				if ($this->params->get('tinyMceContent_backend', 1) == 1)
+				if ($this->params->get('tinyMceContent_' . $siteSection, 1) == 1)
 				{
 					$this->forceTinyMceDarkContent(Uri::root(true) . '/../media/plg_system_darkmagic/css/cassiopeia.css');
 				}
@@ -242,12 +195,12 @@ CSS;
 				$document->setMetaData('color-scheme', 'light dark');
 
 				// Load the dark mode CSS conditionally
-				$wa->useStyle('darkmagic.backend_template_conditional');
+				$wa->useStyle('darkmagic.' . $siteSection . '_template_conditional');
 
 				// Apply the TinyMCE skin conditionally
 				$this->postponeCSSLoad(Uri::root(true) . '/../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
 
-				if ($this->params->get('tinyMceContent_backend', 1) == 1)
+				if ($this->params->get('tinyMceContent_' . $siteSection, 1) == 1)
 				{
 					$this->forceTinyMceDarkContent(Uri::root(true) . '/../media/plg_system_darkmagic/css/cassiopeia.css', true);
 				}
@@ -271,70 +224,7 @@ CSS;
 
 				break;
 		}
-	}
 
-	/**
-	 * Enables Dark Mode for the site application
-	 *
-	 * @param   string        $applyWhen
-	 * @param   HtmlDocument  $document
-	 *
-	 * @throws Exception
-	 * @since  1.0.0.b2
-	 */
-	private function darkModeSite(string $applyWhen, HtmlDocument $document): void
-	{
-		// Am I allowed to apply Dark Mode to the administrator?
-		if ($this->params->get('enable_frontend', 1) != 1)
-		{
-			return;
-		}
-
-		// Are we in the administrator application, using the Isis template?
-		if (!$this->isSiteCassiopeia())
-		{
-			return;
-		}
-
-		/** @var CMSApplication $app */
-		$wa = $document->getWebAssetManager();
-
-		switch ($applyWhen)
-		{
-			case 'always':
-			case 'dusk':
-			default:
-				// Tell the browser what kind of color scheme we support
-				$document->setMetaData('color-scheme', 'dark');
-
-				// Load the dark mode CSS
-				$wa->useStyle('darkmagic.frontend_template');
-
-				// Apply the TinyMCE skin
-				$this->postponeCSSLoad(Uri::root(true) . '/media/plg_system_darkmagic/css/skin.css');
-
-				if ($this->params->get('tinyMceContent_frontend', 1) == 1)
-				{
-					$this->forceTinyMceDarkContent(Uri::root(true) . '/media/plg_system_darkmagic/css/cassiopeia.css');
-				}
-				break;
-
-			case 'browser':
-				// Tell the browser what kind of color scheme we support
-				$document->setMetaData('color-scheme', 'light dark');
-
-				// Load the dark mode CSS conditionally
-				$wa->useStyle('darkmagic.frontend_template_conditional');
-
-				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad(Uri::root(true) . '/media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
-
-				if ($this->params->get('tinyMceContent_frontend', 1) == 1)
-				{
-					$this->forceTinyMceDarkContent(Uri::root(true) . '/media/plg_system_darkmagic/css/cassiopeia.css', true);
-				}
-				break;
-		}
 	}
 
 	/**
@@ -368,6 +258,37 @@ CSS;
 				/** @noinspection PhpUnreachableStatementInspection */
 				break;
 		}
+	}
+
+	private function forceTinyMceDarkContent(string $url, bool $conditional = false)
+	{
+		/** @var HtmlDocument $doc */
+		$doc = $this->app->getDocument();
+
+		if (!$doc instanceof HtmlDocument)
+		{
+			return;
+		}
+
+		$wa = $doc->getWebAssetManager();
+
+		if (!$wa->assetExists('script', 'plg_system_darkmagic.tinydark'))
+		{
+			$wa->useScript('darkmagic.tinymce_dark');
+		}
+
+		$doc->addScriptOptions('plg_system_darkmagic.tiny_dark', [
+			'css'         => $url,
+			'conditional' => $conditional,
+		], true);
+	}
+
+	private function getConfigKey(string $key, string $siteSection, string $defaultValue): string
+	{
+		return $this->params->get(
+			$key . '_' . $siteSection,
+			$this->params->get($key, $defaultValue)
+		);
 	}
 
 	/**
@@ -468,33 +389,9 @@ CSS;
 		$b = 255 * $b;
 
 		return '#' .
-			str_pad(dechex((int)$r), 2, '0', STR_PAD_LEFT) .
-			str_pad(dechex((int)$g), 2, '0', STR_PAD_LEFT) .
-			str_pad(dechex((int)$b), 2, '0', STR_PAD_LEFT);
-	}
-
-	/**
-	 * Is this the administrator application using the Atum template?
-	 *
-	 * @return  bool
-	 *
-	 * @since   2.0.0
-	 */
-	private function isAdminAtum(): bool
-	{
-		// Is this the site administrator?
-		if (!$this->app->isClient('administrator'))
-		{
-			return false;
-		}
-
-		// Is the template in use Atum (the only one supported)?
-		if ($this->app->getTemplate() != 'atum')
-		{
-			return false;
-		}
-
-		return true;
+			str_pad(dechex((int) $r), 2, '0', STR_PAD_LEFT) .
+			str_pad(dechex((int) $g), 2, '0', STR_PAD_LEFT) .
+			str_pad(dechex((int) $b), 2, '0', STR_PAD_LEFT);
 	}
 
 	/**
@@ -561,30 +458,17 @@ CSS;
 		return true;
 	}
 
-	/**
-	 * Is this the site application using the Cassiopeia template?
-	 *
-	 * @return  bool
-	 *
-	 * @since   2.0.0
-	 */
-	private function isSiteCassiopeia(): bool
+	private function isThisTemplate(string $templateName): bool
 	{
-		// Is this the site administrator?
-		if (!$this->app->isClient('site'))
-		{
-			return false;
-		}
-
 		// Is the template in use Isis (the only one supported)?
 		$templateInfo = $this->app->getTemplate(true);
 
-		if ($templateInfo->template === 'cassiopeia')
+		if ($templateInfo->template === $templateName)
 		{
 			return true;
 		}
 
-		if (isset($templateInfo->parent) && $templateInfo->parent === 'cassiopeia')
+		if (isset($templateInfo->parent) && $templateInfo->parent === $templateName)
 		{
 			return true;
 		}
@@ -620,29 +504,6 @@ CSS;
 
 		$doc->addScriptOptions('plg_system_darkmagic.postponedCSS', [
 			$url => $media,
-		], true);
-	}
-
-	private function forceTinyMceDarkContent(string $url, bool $conditional = false)
-	{
-		/** @var HtmlDocument $doc */
-		$doc = $this->app->getDocument();
-
-		if (!$doc instanceof HtmlDocument)
-		{
-			return;
-		}
-
-		$wa = $doc->getWebAssetManager();
-
-		if (!$wa->assetExists('script', 'plg_system_darkmagic.tinydark'))
-		{
-			$wa->useScript('darkmagic.tinymce_dark');
-		}
-
-		$doc->addScriptOptions('plg_system_darkmagic.tiny_dark', [
-			'css'         => $url,
-			'conditional' => $conditional,
 		], true);
 	}
 

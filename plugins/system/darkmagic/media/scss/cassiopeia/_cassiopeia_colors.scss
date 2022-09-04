@@ -55,11 +55,12 @@ $popover-arrow-outer-color:         fade-in($popover-border-color, .05);
 // endregion
 
 // region CSS variables override
-:root {
-  --cassiopeia-color-primary: #{$standard-color-primary};
-  --cassiopeia-color-gradient-start: #{$standard-color-gradient-start};
-  --cassiopeia-color-gradient-end: #{$standard-color-gradient-end};
-  --cassiopeia-color-link: #{$standard-color-link};
-  --cassiopeia-color-hover: #{$standard-color-hover};
-}
+// NO LONGER NEEDED — Joomla now uses CSS variables set in child templates
+//:root {
+//  --cassiopeia-color-primary: #{$standard-color-primary};
+//  --cassiopeia-color-gradient-start: #{$standard-color-gradient-start};
+//  --cassiopeia-color-gradient-end: #{$standard-color-gradient-end};
+//  --cassiopeia-color-link: #{$standard-color-link};
+//  --cassiopeia-color-hover: #{$standard-color-hover};
+//}
 // endregion

@@ -2,6 +2,7 @@ DarkMagic 2.1.0
 ================================================================================
 + Support Cassiopeia child templates (at long last!)
 + Using a joomla.asset.json file with the WebAssetManager
+~ Update color definitions to allow child Cassiopeia templates to define their own colors
 
 DarkMagic 2.0.3
 ================================================================================
