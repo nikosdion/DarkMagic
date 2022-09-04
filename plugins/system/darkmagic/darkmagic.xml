@@ -30,6 +30,8 @@
 		<folder>img</folder>
 		<folder>js</folder>
 		<folder>scss</folder>
+
+		<filename>joomla.asset.json</filename>
 	</media>
 
 	<languages folder="language">

@@ -1,6 +1,7 @@
-DarkMagic 2.0.4
+DarkMagic 2.1.0
 ================================================================================
 + Support Cassiopeia child templates (at long last!)
++ Using a joomla.asset.json file with the WebAssetManager
 
 DarkMagic 2.0.3
 ================================================================================

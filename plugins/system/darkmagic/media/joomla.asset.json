@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "darkmagic",
+  "version": "4.0.0",
+  "description": "DarkMagic system plugin",
+  "license": "GPL-2.0-or-later",
+  "assets": [
+    {
+      "name": "darkmagic.frontend_template",
+      "description": "Forced Dark Mode for the frontend",
+      "type": "style",
+      "uri": "plg_system_darkmagic/cassiopeia.css",
+      "dependencies": [
+        "template.active",
+        "template.active.language"
+      ]
+    },
+
+    {
+      "name": "darkmagic.frontend_template_conditional",
+      "description": "Conditional (browser controller) Dark Mode for the frontend",
+      "type": "style",
+      "uri": "plg_system_darkmagic/cassiopeia.css",
+      "dependencies": [
+        "template.active",
+        "template.active.language"
+      ],
+      "attributes": {
+        "media": "(prefers-color-scheme: dark)"
+      }
+    },
+
+    {
+      "name": "darkmagic.backend_template",
+      "description": "Forced Dark Mode for the backend",
+      "type": "style",
+      "uri": "plg_system_darkmagic/atum.css",
+      "dependencies": [
+        "template.active",
+        "template.active.language"
+      ],
+    },
+
+    {
+      "name": "darkmagic.backend_template_conditional",
+      "description": "Conditional (browser controller) Dark Mode for the backend",
+      "type": "style",
+      "uri": "plg_system_darkmagic/atum.css",
+      "dependencies": [
+        "template.active",
+        "template.active.language"
+      ],
+      "attributes": {
+        "media": "(prefers-color-scheme: dark)"
+      }
+    },
+
+    {
+      "name": "darkmagic.postponed",
+      "description": "",
+      "type": "script",
+      "uri": "plg_system_darkmagic/jpostponed.js",
+      "attributes": {
+        "defer": true
+      }
+    },
+
+    {
+      "name": "darkmagic.tinymce_dark",
+      "description": "",
+      "type": "script",
+      "uri": "plg_system_darkmagic/tinydark.js",
+      "attributes": {
+        "defer": true
+      }
+    }
+  ]
+}

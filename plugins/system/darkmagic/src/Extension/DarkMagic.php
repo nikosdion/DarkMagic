@@ -220,11 +220,7 @@ CSS;
 				$document->setMetaData('color-scheme', 'dark');
 
 				// Load the dark mode CSS
-				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::root() . '../media/plg_system_darkmagic/css/atum.css', [
-					'version' => $this->getMediaVersion(),
-				], [
-					'type' => 'text/css',
-				]);
+				$wa->useStyle('darkmagic.backend_template');
 
 				// Apply the TinyMCE skin
 				$this->postponeCSSLoad(Uri::root(true) . '/../media/plg_system_darkmagic/css/skin.css');
@@ -246,12 +242,7 @@ CSS;
 				$document->setMetaData('color-scheme', 'light dark');
 
 				// Load the dark mode CSS conditionally
-				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::root() . '../media/plg_system_darkmagic/css/atum.css', [
-					'version' => $this->getMediaVersion(),
-				], [
-					'type'  => 'text/css',
-					'media' => '(prefers-color-scheme: dark)',
-				]);
+				$wa->useStyle('darkmagic.backend_template_conditional');
 
 				// Apply the TinyMCE skin conditionally
 				$this->postponeCSSLoad(Uri::root(true) . '/../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
@@ -317,11 +308,7 @@ CSS;
 				$document->setMetaData('color-scheme', 'dark');
 
 				// Load the dark mode CSS
-				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::root() . '../media/plg_system_darkmagic/css/cassiopeia.css', [
-					'version' => $this->getMediaVersion(),
-				], [
-					'type' => 'text/css',
-				]);
+				$wa->useStyle('darkmagic.frontend_template');
 
 				// Apply the TinyMCE skin
 				$this->postponeCSSLoad(Uri::root(true) . '/media/plg_system_darkmagic/css/skin.css');
@@ -337,12 +324,7 @@ CSS;
 				$document->setMetaData('color-scheme', 'light dark');
 
 				// Load the dark mode CSS conditionally
-				$wa->registerAndUseStyle('plg_system_darkmagic', Joomla\CMS\Uri\Uri::root() . '../media/plg_system_darkmagic/css/cassiopeia.css', [
-					'version' => $this->getMediaVersion(),
-				], [
-					'type'  => 'text/css',
-					'media' => '(prefers-color-scheme: dark)',
-				]);
+				$wa->useStyle('darkmagic.frontend_template_conditional');
 
 				// Apply the TinyMCE skin conditionally
 				$this->postponeCSSLoad(Uri::root(true) . '/media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
@@ -618,8 +600,6 @@ CSS;
 	 *
 	 * @throws  Exception
 	 * @since        1.0.0.b1
-	 *
-	 * @noinspection PhpSameParameterValueInspection
 	 */
 	private function postponeCSSLoad(string $url, string $media = 'screen')
 	{
@@ -635,11 +615,7 @@ CSS;
 
 		if (!$wa->assetExists('script', 'plg_system_darkmagic.postponed'))
 		{
-			$wa->registerAndUseScript('plg_system_darkmagic.postponed', Uri::root() . '../media/plg_system_darkmagic/js/postponed.js', [
-				'version' => $this->getMediaVersion(),
-			], [
-				'defer' => true,
-			]);
+			$wa->useScript('darkmagic.postponed');
 		}
 
 		$doc->addScriptOptions('plg_system_darkmagic.postponedCSS', [
@@ -661,11 +637,7 @@ CSS;
 
 		if (!$wa->assetExists('script', 'plg_system_darkmagic.tinydark'))
 		{
-			$wa->registerAndUseScript('plg_system_darkmagic.tinydark', Uri::root() . '../media/plg_system_darkmagic/js/tinydark.js', [
-				'version' => $this->getMediaVersion(),
-			], [
-				'defer' => true,
-			]);
+			$wa->useScript('darkmagic.tinymce_dark');
 		}
 
 		$doc->addScriptOptions('plg_system_darkmagic.tiny_dark', [
