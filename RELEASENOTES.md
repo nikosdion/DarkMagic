@@ -13,7 +13,11 @@ This plugin implements Dark Mode for Joomla 4's default administrator (Atum) and
 
 ### Changelog
 
-**Bug fixes**
+**New features**
 
-* [HIGH] Fatal error if TinyMCE dark mode is enabled when “Apply dark theme“ is set to anything but Browser (gh-2)
-* [LOW] PHP 8.1 deprecated notice from the color handling code
+* Support Cassiopeia child templates (at long last!)
+* Using a joomla.asset.json file with the WebAssetManager
+
+**Minor changes**
+
+* Update color definitions to allow child Cassiopeia templates to define their own colors
