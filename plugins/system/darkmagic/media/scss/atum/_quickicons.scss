@@ -77,22 +77,22 @@
 
       &.warning,
       &.danger {
-        color: $danger;
-        background: var(--danger);
-        border: 1px solid lighten($danger, 30%);
+        color: lighten($red, 30%);
+        background: none;
+        border: 1px solid $white;
 
         .fas,
         .fab {
-          color: $danger;
+          color: lighten($red, 30%);
         }
 
         &:hover, &:focus, &:active {
-          color: var(--white);
+          color: $white;
           background: var(--danger);
 
           .fas::before,
           .fab::before {
-            color: var(--white);
+            color: $white;
           }
 
           [class*="fa-"], [class*="icon-"], [class^=fa-], [class^=icon-] {
@@ -104,7 +104,7 @@
 
       &.success {
         color: lighten($green, 30%);
-        border: 1px solid lighten($success, 20%);
+        border: 1px solid $white;
 
         .fas,
         .fab {
