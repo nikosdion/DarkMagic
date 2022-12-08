@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Theme SCSS" pattern="file:plugins/system/darkmagic/media/scss/atum.scss||file:plugins/system/darkmagic/media/scss/cassiopeia.scss||file:plugins/system/darkmagic/media/scss/atum//*||file:plugins/system/darkmagic/media/scss/cassiopeia//*||file:plugins/system/darkmagic/media/scss/content-dark.scss" />
+</component>

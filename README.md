@@ -2,7 +2,7 @@
 
 DarkMagic - Dark Mode for Joomla 4's default templates
 
-Copyright (C) 2020-2021  Nicholas K. Dionysopoulos
+Copyright (C) 2020-2022  Nicholas K. Dionysopoulos
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,6 +32,8 @@ Dark Mode themes are only applied when you are using the Atum template in the ba
 This plugin does not make Dark Mode possible, it only makes it easier. You can always recompile Joomla's CSS to support dark mode or have a permanently dark mode template. After all, that's what I do here. This plugin is easier in the sense that you don't have to do media overrides. Moreover, if you change your mind you can disable the plugin instead of undoing media overrides.
 
 Dark Mode has a lower contrast than the normal, light mode. If you're using Dark Mode you'll need to keep your screen brightness / backlight at a higher setting than if you're using light mode at night. This is deliberate, not a bug. If you are looking for something with a black background and white foreground what you're looking for is called "high contrast" or "inverse color" mode, not dark mode. This plugin _does not_ do high contrast / inverse color mode.
+
+Dark Mode is unlikely to be included in Joomla itself — even though [I did put the (very hard) work into it](https://github.com/joomla/joomla-cms/pull/39366). Maybe when Joomla merges Bootstrap 5.3 or later and maybe if someone comes to redo the hard work I did then maybe, just maybe, you might have Dark Mode in Joomla itself. Spontaneous porcine flight sounds more plausible than Joomla implementing Dark Mode the right way 🤷🏽‍♂️
 
 ## Support and contributions
 

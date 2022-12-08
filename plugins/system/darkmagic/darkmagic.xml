@@ -12,7 +12,7 @@
 	<author>Nicholas K. Dionysopoulos</author>
 	<authorEmail>no-reply@akeebabackup.com</authorEmail>
 	<authorUrl>https://www.dionysopoulos.me</authorUrl>
-	<copyright>Copyright (c)2019-2021 Nicholas K. Dionysopoulos</copyright>
+	<copyright>Copyright (c)2019-2022 Nicholas K. Dionysopoulos</copyright>
 	<license>GNU GPL v3 or later</license>
 	<description>PLG_SYSTEM_DARKMAGIC_DESCRIPTION</description>
 	<namespace path="src">Joomla\Plugin\System\DarkMagic</namespace>
@@ -28,7 +28,6 @@
 	<media folder="media" destination="plg_system_darkmagic">
 		<folder>css</folder>
 		<folder>img</folder>
-		<folder>js</folder>
 		<folder>scss</folder>
 
 		<filename>joomla.asset.json</filename>
@@ -233,6 +232,9 @@
 
 		</fields>
 	</config>
+
+	<!-- Installation script -->
+	<scriptfile>script.php</scriptfile>
 
 	<!-- Update servers -->
 	<updateservers>

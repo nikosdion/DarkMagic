@@ -1,9 +1,9 @@
 /**
-* Copyright (c) Tiny Technologies, Inc. All rights reserved.
-* Licensed under the LGPL or a commercial license.
-* For LGPL see License.txt in the project root for license information.
-* For commercial licenses see https://www.tiny.cloud/
-*/
+ * Copyright (c) Tiny Technologies, Inc. All rights reserved.
+ * Licensed under the LGPL or a commercial license.
+ * For LGPL see License.txt in the project root for license information.
+ * For commercial licenses see https://www.tiny.cloud/
+ */
 .mce-content-body .mce-item-anchor {
   background: transparent url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D'8'%20height%3D'12'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M0%200L8%200%208%2012%204.09117821%209%200%2012z'%2F%3E%3C%2Fsvg%3E%0A") no-repeat center;
   cursor: default;
@@ -13,6 +13,7 @@
   -webkit-user-modify: read-only;
   -moz-user-modify: read-only;
   -webkit-user-select: all;
+  -moz-user-select: all;
   -ms-user-select: all;
       user-select: all;
   width: 8px !important;
@@ -71,6 +72,13 @@ pre[class*="language-"] {
   -webkit-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
+}
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
+  text-shadow: none;
+  background: #b3d4fc;
 }
 pre[class*="language-"]::selection,
 pre[class*="language-"] ::selection,
@@ -296,7 +304,7 @@ pre[class*="language-"] {
   position: relative;
 }
 .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(34, 47, 62, 0.7);
   content: attr(data-mce-placeholder);
   position: absolute;
 }
@@ -439,6 +447,10 @@ pre[class*="language-"] {
   background: #39f;
   color: #fff;
 }
+.mce-match-marker-selected::-moz-selection {
+  background: #39f;
+  color: #fff;
+}
 .mce-match-marker-selected::selection {
   background: #39f;
   color: #fff;
@@ -479,6 +491,10 @@ pre[class*="language-"] {
 .mce-content-body th[data-mce-selected] {
   position: relative;
 }
+.mce-content-body td[data-mce-selected]::-moz-selection,
+.mce-content-body th[data-mce-selected]::-moz-selection {
+  background: none;
+}
 .mce-content-body td[data-mce-selected]::selection,
 .mce-content-body th[data-mce-selected]::selection {
   background: none;
@@ -488,6 +504,7 @@ pre[class*="language-"] {
   outline: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
+     -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
 }
@@ -509,6 +526,9 @@ pre[class*="language-"] {
     border-color: rgba(0, 84, 180, 0.7);
   }
 }
+.mce-content-body img::-moz-selection {
+  background: none;
+}
 .mce-content-body img::selection {
   background: none;
 }
@@ -516,6 +536,7 @@ pre[class*="language-"] {
   background-color: #b4d7ff;
   opacity: 0;
   -webkit-user-select: none;
+  -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
@@ -702,4 +723,14 @@ table[style*="border-width: 0px"] caption,
 }
 .mce-shy::after {
   content: '-';
+}
+body {
+  font-family: sans-serif;
+}
+table {
+  border-collapse: collapse;
+}
+
+@media (screen and prefers-color-scheme: dark) {
+  @import 'dark/content';
 }

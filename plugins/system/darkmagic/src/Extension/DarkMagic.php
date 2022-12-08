@@ -19,10 +19,9 @@ use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Application\SiteApplication;
 use Joomla\CMS\Document\HtmlDocument;
 use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
-use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\User\User;
-use Joomla\Event\DispatcherInterface;
 use Joomla\Event\Event;
 use Joomla\Event\SubscriberInterface;
 use Joomla\Registry\Registry;
@@ -70,9 +69,7 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 	 * Hooks on Joomla onBeforeRender event, manipulating the document header to activate Dark Mode
 	 *
 	 * @throws  Exception
-	 * @since        1.0.0.b1
-	 *
-	 * @noinspection PhpUnusedParameterInspection
+	 * @since   1.0.0.b1
 	 */
 	public function onBeforeRender(Event $event): void
 	{
@@ -108,6 +105,14 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		}
 	}
 
+	/**
+	 * Applies the Dark Mode for a specific site section
+	 *
+	 * @param   string  $siteSection   The site section, admin or site
+	 * @param   string  $templateName  The template name for which we will apply the Dark Mode
+	 *
+	 * @since   2.0.0
+	 */
 	private function darkMode(string $siteSection, string $templateName)
 	{
 		// Make sure that the site is using the right template
@@ -176,12 +181,8 @@ CSS;
 				$wa->useStyle('darkmagic.' . $siteSection . '_template');
 
 				// Apply the TinyMCE skin
-				$this->postponeCSSLoad(Uri::root(true) . '/../media/plg_system_darkmagic/css/skin.css');
-
-				if ($this->params->get('tinyMceContent_' . $siteSection, 1) == 1)
-				{
-					$this->forceTinyMceDarkContent(Uri::root(true) . '/../media/plg_system_darkmagic/css/cassiopeia.css');
-				}
+				$contentDark = $this->getConfigKey('tinyMceContent', $siteSection, 1) == 1;
+				$this->applyTinyMCEDark(false, $contentDark);
 
 				// Apply the inline CSS overrides
 				$wa->addInlineStyle($overrideCss);
@@ -197,13 +198,9 @@ CSS;
 				// Load the dark mode CSS conditionally
 				$wa->useStyle('darkmagic.' . $siteSection . '_template_conditional');
 
-				// Apply the TinyMCE skin conditionally
-				$this->postponeCSSLoad(Uri::root(true) . '/../media/plg_system_darkmagic/css/skin.css', '(prefers-color-scheme: dark)');
-
-				if ($this->params->get('tinyMceContent_' . $siteSection, 1) == 1)
-				{
-					$this->forceTinyMceDarkContent(Uri::root(true) . '/../media/plg_system_darkmagic/css/cassiopeia.css', true);
-				}
+				// Apply the TinyMCE skin
+				$contentDark = $this->getConfigKey('tinyMceContent', $siteSection, 1) == 1;
+				$this->applyTinyMCEDark(true, $contentDark);
 
 				// Apply the inline CSS overrides
 				$overrideCss = <<< CSS
@@ -260,29 +257,111 @@ CSS;
 		}
 	}
 
-	private function forceTinyMceDarkContent(string $url, bool $conditional = false)
+	/**
+	 * Apply the TinyMCE dark mode theme.
+	 *
+	 * When $auto is false it loads the oxide-dark theme. Then it's true it loads a custom theme which automatically
+	 * switches between oxide and oxide-dark based on the browser's preferences.
+	 *
+	 * The $contentDark flag controls whether to load a content-dark.css file from the backend template (with a fall
+	 * back to the one we provide with the plugin). This is a magic little piece of CSS which makes the editor have a
+	 * dark theme in the content editing area. It's best to disable this and have the frontend template provide the
+	 * correct color theme.
+	 *
+	 * @param   bool  $auto         Should the skin change automatically between light and dark?
+	 * @param   bool  $contentDark  Should the content be forced to be dark?
+	 *
+	 * @since   2.2.0
+	 */
+	private function applyTinyMCEDark(bool $auto = true, bool $contentDark = false)
 	{
-		/** @var HtmlDocument $doc */
-		$doc = $this->app->getDocument();
+		$document = $this->app->getDocument();
+		$opts     = $document->getScriptOptions('plg_editor_tinymce');
 
-		if (!$doc instanceof HtmlDocument)
+		if (empty($opts) || !is_array($opts))
 		{
 			return;
 		}
 
-		$wa = $doc->getWebAssetManager();
+		$opts['tinyMCE'] = (!isset($opts['tinyMCE']) || !is_array($opts['tinyMCE'])) ? [] : $opts['tinyMCE'];
 
-		if (!$wa->assetExists('script', 'plg_system_darkmagic.tinydark'))
+		$opts['tinyMCE']['default']         = $opts['tinyMCE']['default'] ?? [];
+		$opts['tinyMCE']['default']['skin'] = $opts['tinyMCE']['default']['skin'] ?? 'oxide';
+
+		$hasDefaultSkin = $opts['tinyMCE']['default']['skin'] === 'oxide';
+
+		if (!$auto)
 		{
-			$wa->useScript('darkmagic.tinymce_dark');
+			// Forced dark mode: use oxide-dark and set the body class to `joomla-forced-dark`
+			if ($hasDefaultSkin)
+			{
+				$opts['tinyMCE']['default']['skin'] = 'oxide-dark';
+			}
+
+			$opts['tinyMCE']['default']['body_class'] = 'joomla-forced-dark';
+		}
+		else
+		{
+			// Auto dark mode: use the custom theme and set the body class to `joomla-suto-dark`
+			if ($hasDefaultSkin)
+			{
+				$opts['tinyMCE']['default']['skin_url'] = '/media/plg_system_darkmagic/css/tinymce';
+			}
+
+			$opts['tinyMCE']['default']['body_class'] = 'joomla-auto-dark';
 		}
 
-		$doc->addScriptOptions('plg_system_darkmagic.tiny_dark', [
-			'css'         => $url,
-			'conditional' => $conditional,
-		], true);
+		// Optional: force Dark Mode compatibility in TinyMCE content
+		if ($contentDark)
+		{
+			// Find the content-dark.css file of the current (frontend or backend) template.
+			$autoDark = HTMLHelper::_(
+				'stylesheet',
+				'content-dark.css',
+				[
+					'pathOnly'    => true,
+					'relative'    => true,
+					'detectDebug' => true,
+				]
+			);
+
+			if (empty($autoDark))
+			{
+				$autoDark = HTMLHelper::_(
+					'stylesheet',
+					'plg_system_darkmagic/content-dark.css',
+					[
+						'pathOnly'    => true,
+						'relative'    => true,
+						'detectDebug' => true,
+					]
+				);
+			}
+
+			// If the file exists, load it as the last CSS file
+			if (!empty($autoDark))
+			{
+				$opts['tinyMCE']['default']['content_css'] =
+					$opts['tinyMCE']['default']['content_css'] .
+					',' . $autoDark;
+			}
+		}
+
+		// Apply the new TinyMCE default options
+		$document->addScriptOptions('plg_editor_tinymce', $opts);
 	}
 
+	/**
+	 * Get a config key for a specific section of the site
+	 *
+	 * @param   string  $key           The base name of the config key
+	 * @param   string  $siteSection   The site section, admin or site.
+	 * @param   string  $defaultValue  The default value to provide if none is specified.
+	 *
+	 * @return  string  The resulting value.
+	 *
+	 * @since   2.1.0
+	 */
 	private function getConfigKey(string $key, string $siteSection, string $defaultValue): string
 	{
 		return $this->params->get(
@@ -458,6 +537,15 @@ CSS;
 		return true;
 	}
 
+	/**
+	 * Checks if the current template is the specified template or a child template of it.
+	 *
+	 * @param   string  $templateName  The template we wish to test for.
+	 *
+	 * @return  bool
+	 *
+	 * @since   2.1.0
+	 */
 	private function isThisTemplate(string $templateName): bool
 	{
 		// Is the template in use Isis (the only one supported)?
@@ -474,37 +562,6 @@ CSS;
 		}
 
 		return false;
-	}
-
-	/**
-	 * Postpone loading of the specified CSS file until after the DOM is ready
-	 *
-	 * @param   string  $url    The URL to the CSS file to load
-	 * @param   string  $media  Media query for the CSS file, default "screen"
-	 *
-	 * @throws  Exception
-	 * @since        1.0.0.b1
-	 */
-	private function postponeCSSLoad(string $url, string $media = 'screen')
-	{
-		/** @var HtmlDocument $doc */
-		$doc = $this->app->getDocument();
-
-		if (!$doc instanceof HtmlDocument)
-		{
-			return;
-		}
-
-		$wa = $doc->getWebAssetManager();
-
-		if (!$wa->assetExists('script', 'plg_system_darkmagic.postponed'))
-		{
-			$wa->useScript('darkmagic.postponed');
-		}
-
-		$doc->addScriptOptions('plg_system_darkmagic.postponedCSS', [
-			$url => $media,
-		], true);
 	}
 
 	/**

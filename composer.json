@@ -6,6 +6,11 @@
 		"php": "^7.2.0||^8.0.0",
 		"ext-simplexml": "*"
 	},
+	"config": {
+		"platform": {
+			"php": "7.2.999"
+		}
+	},
 	"keywords": [
 		"dark",
 		"joomla",

@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="TinyMCE SCSS" pattern="file[DarkMagic for Joomla 4]:plugins/system/darkmagic/media/scss/tinymce//*" />
+</component>

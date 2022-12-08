@@ -63,16 +63,6 @@
       "attributes": {
         "defer": true
       }
-    },
-
-    {
-      "name": "darkmagic.tinymce_dark",
-      "description": "",
-      "type": "script",
-      "uri": "plg_system_darkmagic/tinydark.js",
-      "attributes": {
-        "defer": true
-      }
     }
   ]
 }

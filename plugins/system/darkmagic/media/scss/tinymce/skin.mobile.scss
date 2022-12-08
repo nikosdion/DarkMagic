@@ -1,9 +1,9 @@
 /**
-* Copyright (c) Tiny Technologies, Inc. All rights reserved.
-* Licensed under the LGPL or a commercial license.
-* For LGPL see License.txt in the project root for license information.
-* For commercial licenses see https://www.tiny.cloud/
-*/
+ * Copyright (c) Tiny Technologies, Inc. All rights reserved.
+ * Licensed under the LGPL or a commercial license.
+ * For LGPL see License.txt in the project root for license information.
+ * For commercial licenses see https://www.tiny.cloud/
+ */
 /* RESET all the things! */
 .tinymce-mobile-outer-container {
   all: initial;
@@ -264,7 +264,7 @@
   margin-right: 2px;
 }
 .tinymce-mobile-toolstrip .tinymce-mobile-toolbar:not(.tinymce-mobile-context-toolbar) .tinymce-mobile-toolbar-group .tinymce-mobile-toolbar-group-item.tinymce-mobile-toolbar-button.tinymce-mobile-toolbar-button-selected {
-  background: #cccecf;
+  background: #c8cbcf;
   color: #cccccc;
 }
 .tinymce-mobile-toolstrip .tinymce-mobile-toolbar:not(.tinymce-mobile-context-toolbar) .tinymce-mobile-toolbar-group:first-of-type,
@@ -357,7 +357,7 @@
   padding-top: 3px;
 }
 .tinymce-mobile-toolstrip .tinymce-mobile-toolbar.tinymce-mobile-context-toolbar .tinymce-mobile-toolbar-group .tinymce-mobile-dot-item.tinymce-mobile-dot-active {
-  color: #cccecf;
+  color: #c8cbcf;
 }
 .tinymce-mobile-toolstrip .tinymce-mobile-toolbar.tinymce-mobile-context-toolbar .tinymce-mobile-toolbar-group .tinymce-mobile-icon-large-font::before,
 .tinymce-mobile-toolstrip .tinymce-mobile-toolbar.tinymce-mobile-context-toolbar .tinymce-mobile-toolbar-group .tinymce-mobile-icon-large-heading::before {
@@ -484,10 +484,6 @@
   padding-top: 0.1em;
 }
 .tinymce-mobile-toolstrip .tinymce-mobile-toolbar.tinymce-mobile-context-toolbar .tinymce-mobile-toolbar-group input::-webkit-input-placeholder {
-  /* WebKit, Blink, Edge */
-  color: #888;
-}
-.tinymce-mobile-toolstrip .tinymce-mobile-toolbar.tinymce-mobile-context-toolbar .tinymce-mobile-toolbar-group input:-ms-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #888;
 }
@@ -674,4 +670,8 @@ input[type="file"]::-webkit-file-upload-button {
   .tinymce-mobile-ios-container .tinymce-mobile-editor-socket .tinymce-mobile-mask-edit-icon {
     bottom: 50%;
   }
+}
+
+@media (screen and prefers-color-scheme: dark) {
+  @import 'dark/skin.mobile';
 }
