@@ -34,7 +34,7 @@ class AboutField extends FormField
 	protected function getInput()
 	{
 		$xml      = simplexml_load_file(JPATH_PLUGINS . '/system/darkmagic/darkmagic.xml');
-		$logo     = file_get_contents(JPATH_ROOT . '/media/plg_system_darkmagic/img/logo.svg');
+		$logo     = file_get_contents(JPATH_ROOT . '/media/plg_system_darkmagic/images/logo.svg');
 		$title    = Text::_('PLG_SYSTEM_DARKMAGIC_CONFIG_ABOUT_TITLE');
 		$subtitle = Text::_('PLG_SYSTEM_DARKMAGIC_CONFIG_ABOUT_SUBTITLE');
 		$version  = Text::sprintf('PLG_SYSTEM_DARKMAGIC_CONFIG_ABOUT_VERSION', $xml->version);

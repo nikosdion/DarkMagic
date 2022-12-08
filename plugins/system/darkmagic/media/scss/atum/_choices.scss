@@ -15,11 +15,11 @@
 .choices[data-type*="select-one"],
 .choices[data-type*="select-multiple"] {
   .choices__inner {
-    background-image: url("../img/select-bg.svg");
+    background-image: url("../images/select-bg-dark.svg");
     background-color: $gray-800;
 
     [dir="rtl"] & {
-      background-image: url("../img/select-bg-rtl.svg");
+      background-image: url("../images/select-bg-dark-rtl.svg");
       background-color: $gray-800;
     }
   }
