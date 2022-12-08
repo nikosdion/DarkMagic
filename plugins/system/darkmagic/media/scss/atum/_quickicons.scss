@@ -77,13 +77,13 @@
 
       &.warning,
       &.danger {
-        color: $danger-txt;
+        color: $danger;
         background: var(--danger);
-        border: 1px solid lighten($danger-txt, 30%);
+        border: 1px solid lighten($danger, 30%);
 
         .fas,
         .fab {
-          color: $danger-txt;
+          color: $danger;
         }
 
         &:hover, &:focus, &:active {
@@ -104,7 +104,7 @@
 
       &.success {
         color: lighten($green, 30%);
-        border: 1px solid lighten($success-txt, 20%);
+        border: 1px solid lighten($success, 20%);
 
         .fas,
         .fab {
