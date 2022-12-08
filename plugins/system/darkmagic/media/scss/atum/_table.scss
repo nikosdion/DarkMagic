@@ -5,6 +5,8 @@
  */
 
 .table {
+  --table-striped-color: #{$gray-400};
+
   color: $gray-200;
   background-color: $gray-800;
 
