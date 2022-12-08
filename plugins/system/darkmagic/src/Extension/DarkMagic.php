@@ -63,7 +63,67 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 	{
 		return [
 			'onBeforeRender' => 'onBeforeRender',
+			'onAfterRender'  => 'onAfterRender',
 		];
+	}
+
+	/**
+	 * Runs after Joomla has rendered the document. Adds the CSS class to the body tag.
+	 *
+	 * @param   Event  $event  The event we are handling
+	 *
+	 * @since   2.2.0
+	 */
+	public function onAfterRender(Event $event): void
+	{
+		// Make sure I can get basic Joomla objects before proceeding
+		try
+		{
+			$document = ($this->app instanceof CMSApplication) ? $this->app->getDocument() : null;
+		}
+		catch (Exception $e)
+		{
+			return;
+		}
+
+		// Are we REALLY sure this is an HTML document?
+		if (!($document instanceof HtmlDocument) || $document->getMimeEncoding() !== 'text/html')
+		{
+			return;
+		}
+
+		// Make sure we have the `<BODY` opening tag
+		$body = $this->app->getBody();
+
+		if (stripos($body, '<body') === false)
+		{
+			return;
+		}
+
+		// Add a class to the document indicating the dark mode setting
+		$class    = 'joomla-dark-never';
+
+		if ($this->evaluateDarkModeConditions())
+		{
+			$class = $this->params->get('applywhen', 'always') === 'browser'
+				? 'joomla-dark-auto' : 'joomla-dark-always';
+		}
+
+		$body = preg_replace_callback(
+			'#<body(.*)class\s*=\s*"(.*)"(.*)>#',
+			function ($matches) use ($class) {
+				return sprintf(
+					'<body%sclass="%s %s"%s>',
+					$matches[1],
+					$matches[2],
+					$class,
+					$matches[3]
+				);
+			},
+			$body
+		);
+
+		$this->app->setBody($body);
 	}
 
 	/**
@@ -74,12 +134,6 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 	 */
 	public function onBeforeRender(Event $event): void
 	{
-		// Is this Light Mode?
-		if (!$this->evaluateDarkModeConditions())
-		{
-			return;
-		}
-
 		// Make sure I can get basic Joomla objects before proceeding
 		try
 		{
@@ -93,6 +147,14 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		// Are we REALLY sure this is an HTML document?
 		if (!($document instanceof HtmlDocument))
 		{
+			return;
+		}
+
+		// Is this Light Mode?
+		if (!$this->evaluateDarkModeConditions())
+		{
+			$document->setMetaData('color-scheme', 'light');
+
 			return;
 		}
 
@@ -119,6 +181,7 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		// Make sure that the site is using the right template
 		if (!$this->isThisTemplate($templateName))
 		{
+			// Tell the browser what kind of color scheme we support
 			return;
 		}
 
