@@ -179,7 +179,7 @@
 						name="bg-light"
 						type="color"
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_BG_LIGHT_LABEL"
-						default="#343a40"
+						default="#f0f4fb"
 						filter="color"
 						showon="enable_backend:1"
 				/>
@@ -187,7 +187,7 @@
 						name="text-dark"
 						type="color"
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_TEXT_DARK_LABEL"
-						default="#dee2e6"
+						default="#212529"
 						filter="color"
 						showon="enable_backend:1"
 				/>
@@ -195,7 +195,7 @@
 						name="text-light"
 						type="color"
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_TEXT_LIGHT_LABEL"
-						default="#212529"
+						default="#f8f9fa"
 						filter="color"
 						showon="enable_backend:1"
 				/>
@@ -203,7 +203,7 @@
 						name="link-color"
 						type="color"
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_LINK_COLOR_LABEL"
-						default="#80abe2"
+						default="#6b9edd"
 						filter="color"
 						showon="enable_backend:1"
 				/>
@@ -211,7 +211,7 @@
 						name="special-color"
 						type="color"
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_SPECIAL_COLOR_LABEL"
-						default="#b2bfcd"
+						default="#001b4c"
 						filter="color"
 						showon="enable_backend:1"
 				/>

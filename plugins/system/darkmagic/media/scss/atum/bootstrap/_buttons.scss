@@ -1,13 +1,16 @@
-/**
+/*!*
  *  @package   DarkMagic
  *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 
-.list-group-item {
-  background-color: $gray-900;
-
-  a {
-    //color: $gray-200;
-  }
+// region Bootstrap buttons
+.btn {
+  color: var(--gray-100);
 }
+
+.btn-light {
+  color: var(--gray-300);
+}
+
+// endregion

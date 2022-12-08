@@ -1,0 +1,72 @@
+/*!*
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+.form-control {
+  color: var(--input-color, var(--body-color));
+  background-color: var(--gray-900);
+  //color: $white;
+  border: $input-border;
+
+  &:disabled, &[readonly] {
+    background-color: lighten($gray-800, 15%);
+    color: $gray-200;
+  }
+
+  &:focus {
+    color: var(--input-color, var(--body-color));
+    background-color: var(--input-bg, var(--body-bg));
+    border-color: var(--focuscolor);
+    box-shadow: var(--focusshadow);
+
+    &::placeholder {
+      color: var(--gray-400);
+    }
+  }
+}
+
+.control-group {
+  .control-label {
+    label {
+      color: $form-label-color;
+    }
+  }
+}
+
+// Validation
+.invalid {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.valid {
+  border-color: var(--success);
+}
+
+[aria-grabbed="true"] {
+  box-shadow: $input-box-shadow;
+}
+
+// set up hidden tooltip
+[role="tooltip"]:not(.show) {
+  color: var(--white);
+  background: var(--black);
+}
+
+// Subform - non table layout
+div.subform-repeatable-group {
+  border: $input-border;
+}
+
+// Highlight draggable section
+.subform-repeatable-group[draggable="true"] {
+  // For non table layout
+  background-color: var(--teal);
+
+  // For table layout
+  > td {
+    background-color: var(--teal);
+  }
+}

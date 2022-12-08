@@ -1,0 +1,91 @@
+/**
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Quickicons
+.quick-icons {
+  background-color: var(--quickicons-bg, var(--white));
+
+  .quickicon {
+    --text-color: hsl(var(--hue), 30%, 76%);
+    --bg-color: hsl(var(--hue), 60%, 21%);
+    --icon-color: hsl(var(--hue), 30%, 76%);
+    --bg-color-hvr: hsl(var(--hue), 30%, 12%);
+    --text-active-color: var(--white);
+    --border-color: hsl(var(--hue), 50%, 93%);
+
+    a {
+      color: var(--text-color);
+      background-color: var(--bg-color);
+
+      .quickicon-icon {
+        > * {
+          color: var(--icon-color);
+        }
+      }
+
+      .quickicon-amount {
+        background: hsl(var(--hue),50%,93%);
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--text-active-color);
+        text-decoration: none;
+        background: var(--bg-color-hvr);
+
+        .quickicon-amount {
+          background: var(--icon-color);
+        }
+      }
+
+      &.warning,
+      &.danger {
+        --text-color: #{lighten($danger, 50%)};
+        --bg-color: #{darken($danger, 10%)};
+        --icon-color: #{lighten($danger, 50%)};
+        --bg-color-hvr: #{darken($danger, 25%)};
+      }
+
+      &.success {
+        --text-color: #{lighten($success, 50%)};
+        --bg-color: var(--success);
+        --icon-color: #{lighten($success, 50%)};
+        --bg-color-hvr: #{darken($success, 20%)};
+      }
+    }
+  }
+
+  .quickicon-linkadd {
+    --linkadd-bg: hsl(var(--hue), 30%, 83%);
+    --linkadd-active-color: var(--gray-900);
+    --linkadd-active-bg: hsl(var(--hue), 30%, 33%);
+
+    background: var(--linkadd-bg);
+
+    a {
+      > * {
+        color: hsl(var(--hue), 30%, 40%);
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: var(--linkadd-active-bg);
+
+        * {
+          color: var(--linkadd-active-color);
+        }
+      }
+    }
+  }
+
+  .quickicon-single,
+  .quickicon-group {
+    border: 1px solid hsl(var(--hue),50%,93%);
+  }
+}
+// endregion

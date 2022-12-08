@@ -1,0 +1,108 @@
+/*!*
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+.table {
+  --table-bg: var(--template-alt-bg-dark-85);
+  --table-striped-bg: rgba(var(--black-rgb), 0.2);
+  --table-striped-color: var(--gray-400);
+  --table-hover-bg: rgba(var(--black-rgb), 0.1);
+
+  color: var(--body-color);
+  background-color: var(--table-bg);
+
+  th,
+  td,
+  thead th {
+    border-color: var(--template-alt-bg-dark-60);
+    background-color: transparent;
+    box-shadow: none;
+
+    a {
+      &#sorted {
+        color: var(--template-bg-dark-20);
+      }
+    }
+  }
+
+  &.table-bordered {
+    border: 0;
+  }
+
+  &.table-striped {
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--gray-200);
+    }
+
+    tbody {
+      tr:nth-of-type(#{$table-striped-order}) {
+        background-color: var(--template-alt-bg-dark-70);
+
+        h1, h2, h3, h4, h5, h6, td {
+          color: var(--table-striped-color);
+        }
+      }
+    }
+  }
+
+  &.table-hover {
+    tbody tr {
+      &:hover {
+        color: var(--body-color);
+        background-color: var(--template-alt-bg-dark-50);
+      }
+    }
+  }
+
+  .text-info {
+    color: lighten($info, 20%) !important;
+  }
+
+  .text-success {
+    color: lighten($success, 20%) !important;
+  }
+
+  .text-danger {
+    color: lighten($danger, 25%) !important;
+  }
+
+  .text-warning {
+    color: lighten($warning, 20%) !important;
+  }
+}
+
+.table-dark {
+  --table-bg: var(--template-alt-bg-dark-95);
+  --table-hover-bg: rgba(var(--black-rgb), 0.1);
+
+  color: var(--body-color);
+  background-color: var(--table-bg);
+
+  th,
+  td,
+  thead th {
+    color: var(--body-color);
+    border-top-color: var(--template-alt-bg-dark-60);
+  }
+
+  &.table-bordered {
+    border-color: var(--template-alt-bg-dark-60);
+  }
+
+  &.table-striped {
+    tbody tr:nth-of-type(#{$table-striped-order}) {
+      background-color: var(--template-alt-bg-dark-85);
+    }
+  }
+
+  &.table-hover {
+    tbody tr {
+      &:hover {
+        color: var(--body-color);
+        background-color: var(--template-alt-bg-dark-70);
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@ DarkMagic 2.2.0
 + Improved TinyMCE theme loading
 + Dark theme for CodeMirror
 + Add a CSS class to the BODY tag indicating the applicable dark mode
++ Improved Atum dark mode, also introducing CSS variables
 # [LOW] Striped tables need alternate color for stripe rows
 
 DarkMagic 2.1.0

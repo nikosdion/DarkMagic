@@ -1,0 +1,31 @@
+/*!*
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+.page-link {
+  color: var(--gray-200);
+  background-color: var(--gray-900);
+  border-color: var(--gray-600);
+
+  &:hover {
+    color: var(--gray-200);
+    background-color: var(--template-bg-dark-70);
+    border-color: var(--gray-500);
+  }
+}
+
+.page-item {
+  &.active .page-link {
+    color: var(--gray-200);
+    background-color: var(--template-bg-dark-60);
+    border-color: var(--gray-400);
+  }
+
+  &.disabled .page-link {
+    color: var(--gray-400);
+    background-color: var(--gray-700);
+    border-color: var(--gray-700);
+  }
+}

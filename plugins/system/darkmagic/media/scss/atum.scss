@@ -4,107 +4,119 @@
  *  @license   GNU General Public License version 3, or later
  */
 
+// Include parts of Bootstrap 5
+@import '../../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../../node_modules/bootstrap/scss/variables';
+@import '../../../../../node_modules/bootstrap/scss/mixins/breakpoints';
+
 // Include the Atum variables provided with Joomla
-@import '../../../../../../../master/joomla4/build/media_source/templates/administrator/atum/scss/variables';
-// Include the Bootstrap 4 variables provided with Joomla
-@import '../../../../../../../master/joomla4/media/vendor/bootstrap/scss/functions';
-@import '../../../../../../../master/joomla4/media/vendor/bootstrap/scss/variables';
+@import 'atum/variables';
 
 // region General
-// Main Atum colors
-@import "atum/atum_colors";
+// Main colors
+@import "atum/root";
 
 // Typography
-@import "atum/typography_dark";
+@import "atum/global/typography_dark";
 // endregion
 
 // region Bootstrap 5 overrides
 // Buttons
-@import "atum/buttons";
+@import "atum/bootstrap/buttons";
 
 // Cards
-@import "atum/card";
+@import "atum/bootstrap/card";
 
 // Tables
-@import "atum/table";
+@import "atum/bootstrap/table";
 
 // Custom selects
-@import "atum/custom_select";
-
-// Modals
-@import "atum/modal";
+@import "atum/bootstrap/custom_select";
 
 // Alerts
-@import "atum/alerts";
+@import "atum/bootstrap/alerts";
+
+// Modals
+@import "atum/bootstrap/modal";
 
 // Pagination
-@import "atum/pagination";
+@import "atum/bootstrap/pagination";
 
 // Forms
-@import "atum/form";
+@import "atum/bootstrap/form";
 
 // Lists
-@import "atum/lists";
+@import "atum/bootstrap/lists";
 
 // Dropdowns
-@import "atum/dropdowns";
+@import "atum/bootstrap/dropdowns";
 
 // Badges
-@import "atum/badge";
+@import "atum/bootstrap/badge";
 
 // Popovers
-@import "atum/popover";
+@import "atum/bootstrap/popover";
 
 // Accordions
-@import "atum/accordion";
+@import "atum/bootstrap/accordion";
 // endregion
 
-// Akeeba FEF
-@import "atum/fef";
+// Akeeba FEF (legacy, will be removed)
+@import "atum/misc/fef";
 
 // region Joomla
-// Top header
-@import "atum/login";
+// Login page
+@import "atum/common/login";
 
 // Top header
-@import "atum/header";
+@import "atum/common/header";
 
 // Joomla sidebar (main menu)
-@import "atum/sidebar";
+@import "atum/common/sidebar";
 
 // Joomla toolbar
-@import "atum/toolbar";
+@import "atum/common/toolbar";
 
 // Joomla messages
-@import "atum/joomla_messages";
-
-// Joomla Control Panel: Quick Icons
-@import "atum/quickicons";
-
-// Joomla Control Panel: miscellanea
-@import "atum/cpanel";
+@import "atum/common/joomla_messages";
 
 // Chosen – for J3 compatibility
-@import "atum/chosen";
+@import "atum/global/chosen";
 
 // Choices – the J4 way
-@import "atum/choices";
+@import "atum/global/choices";
 
 // Joomla tabs
-@import "atum/joomla_tabs";
+@import "atum/global/joomla_tabs";
 
-// Core Joomla Components
-@import "atum/joomla_components";
+// Joomla Control Panel: Quick Icons
+@import "atum/pages/quickicons";
 
-// Media Manager
-@import "atum/joomla_mediamanager";
+// Core extensions
+@import "atum/pages/cpanel";
 
-// Core Joomla fields
-@import "atum/joomla_fields";
+// TODO _com_config.scss
+// TODO _com_content.scss
+// TODO _com_joomlaupdate.scss
+// TODO _com_modules.scss
+// TODO _com_privacy.scss
+// TODO _com_tags.scss
+// TODO _com_templates.scss
+// TODO _com_users.scss
+// TODO _debugbar.scss
+
+// TODO Core Joomla Components, clean up
+@import "atum/pages/joomla_components";
+
+// TODO Media Manager, import work from my branch
+@import "atum/pages/joomla_mediamanager";
+
+// TODO Core Joomla fields, review
+@import "atum/global/joomla_fields";
 
 // Calendar
-@import "atum/calendar";
+@import "atum/global/calendar";
 // endregion
 
-// Various combos I ended up using in Akeeba Backup for Joomla 4
-@import "atum/combos";
+// TODO Various combos I ended up using in Akeeba Backup for Joomla 4
+@import "atum/misc/combos";

@@ -1,0 +1,97 @@
+/*!*
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Header
+
+.header {
+  color: var(--header-text, var(--white));
+  background: var(--header-bg, var(--template-bg-dark));
+
+  a {
+    color: var(--header-link, var(--white));
+
+    &:before {
+      display: none;
+    }
+  }
+
+  .logo {
+    background-color: var(--header-logo-bg, var(--template-bg-dark-70));
+
+    svg {
+      path {
+        fill: $gray-200;
+      }
+    }
+  }
+
+  .page-title {
+    color: var(--header-page-title, var(--white));
+  }
+
+  .dropdown-header,
+  .dropdown-item {
+    color: var(--header-dropdown-text, var(--white));
+    background-color: var(--header-dropdown-bg, var(--template-bg-dark-70));
+
+    &:hover {
+      background-color: var(--header-dropdown-hover-bg, var(--template-bg-dark));
+    }
+  }
+
+  .dropdown-header {
+    background-color: var(--header-dropdown-head-bg, var(--template-bg-dark));
+  }
+}
+
+.header-items {
+  .dropdown-toggle {
+    background-color: transparent;
+  }
+}
+
+.header-item-content {
+  color: var(--header-module-text, var(--white));
+  background-color: var(--header-module-bg, var(--template-bg-dark-60));
+
+  a,
+  button {
+    color: var(--header-module-text, var(--white));
+  }
+
+  &:not(.no-link):not(.joomlaversion):hover {
+    background-color: var(--header-module-hover-bg, var(--template-bg-dark-50));
+  }
+
+  &.joomlaversion {
+    color: var(--joomla-version);
+    background-color: transparent;
+  }
+}
+
+.header-item-icon {
+  > * {
+    color: var(--header-module-icon, var(--white));
+    background-color: var(--header-module-icon-bg, var(--template-bg-dark));
+  }
+
+  span {
+    margin: 4px;
+  }
+}
+
+.header-dd-items {
+  .header-item-content {
+    background: transparent;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .header-items {
+    background: var(--header-mobile-menu-bg, var(--template-bg-dark));
+  }
+}
+// endregion

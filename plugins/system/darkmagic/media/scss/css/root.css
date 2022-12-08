@@ -1,0 +1,17 @@
+/* Error: Undefined variable.
+ *    ,
+ * 14 |   @each $color, $value in $colors-dark {
+ *    |                           ^^^^^^^^^^^^
+ *    '
+ *   root.scss 14:27  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a    \2577 \a 14 \2502    @each $color, $value in $colors-dark {\a    \2502                            ^^^^^^^^^^^^\a    \2575 \a   root.scss 14:27  root stylesheet";
+}

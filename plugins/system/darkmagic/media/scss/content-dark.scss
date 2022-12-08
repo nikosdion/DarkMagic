@@ -13,20 +13,18 @@
 
 @use "sass:map";
 
-// Include the Atum variables provided with Joomla
-@import '../../../../../../../master/joomla4/build/media_source/templates/administrator/atum/scss/variables';
-// Include the Bootstrap 4 variables provided with Joomla
-@import '../../../../../../../master/joomla4/media/vendor/bootstrap/scss/functions';
-@import '../../../../../../../master/joomla4/media/vendor/bootstrap/scss/variables';
+// Include parts of Bootstrap 5
+@import '../../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../../node_modules/bootstrap/scss/variables';
 
 // Atum Variables
-@import "atum/atum_colors";
+@import "atum/variables";
 
 @media (screen and prefers-color-scheme: dark) {
   // Atum Dark Variables
-  :root {
-    --body-bg: #{$body-color};
-    --body-color: #{$body-bg};
+  body.joomla-auto-dark {
+    --body-bg: #{$body-bg};
+    --body-color: #{$body-color};
   }
 }
 
@@ -61,4 +59,3 @@ body {
     color: var(--body-color);
   }
 }
-

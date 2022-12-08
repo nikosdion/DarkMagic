@@ -720,7 +720,7 @@ CSS;
 	private function themeToDarkModeOverride(string $theme): ?string
 	{
 		$rawTheme = @file_get_contents(
-			JPATH_ROOT . '/' . $this->basePath . '/theme/' . $theme . '.css'
+			JPATH_ROOT . '/media/vendor/codemirror/theme/' . $theme . '.css'
 		);
 
 		if ($rawTheme === false)

@@ -1,0 +1,146 @@
+/**
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Joomla tabs
+joomla-tab {
+  > div[role=tablist] {
+    border-bottom: 1px solid var(--template-bg-dark-10);
+    background-color: var(--joomla-tab-tablist-bg, transparent);
+
+    > button[role=tab] {
+      color: var(--joomla-tab-tablist-button, var(--primary));
+      background-color: var(--joomla-tab-tablist-button-bg, var(--white));
+
+      &[aria-expanded=true],
+      &:focus,
+      &:hover {
+        &::after {
+          background-color: var(--joomla-tab-tablist-active-indicator, var(--template-link-color));
+        }
+
+        .text-muted {
+          color: var(--template-text-light) !important;
+        }
+      }
+
+      &[aria-expanded=true] {
+        background: var(--joomla-tab-tablist-active-bg, var(--template-bg-dark-3));
+        color: var(--joomla-tab-tablist-active, inherit);
+      }
+
+      .text-muted {
+        color: var(--template-text-dark) !important;
+      }
+    }
+  }
+
+  > button[role=region] {
+    color: var(--template-text-light);
+    background-color: var(--template-link-color);
+    border: 1px solid var(--template-text-light);
+
+    &[aria-expanded=true],
+    &:hover,
+    &:focus {
+      color: var(--template-text-light);
+      background-color: var(--template-bg-dark);
+    }
+
+    .text-muted {
+      color: var(--template-text-light) !important;
+    }
+  }
+
+  > joomla-tab-element {
+    background-color: var(--joomla-tab-element-bg, var(--white));
+  }
+
+  .main-card-columns > * > & {
+    border-left: 1px solid var(--template-bg-dark-10);
+  }
+}
+
+joomla-tab[orientation=vertical] {
+  > div[role=tablist] {
+    border: 1px solid var(--gray-300);
+
+    > button[role=tab] {
+      &[aria-expanded=true] {
+        color: var(--template-text-light);
+        background-color: var(--template-bg-dark-60);
+      }
+    }
+
+    > button[role=tab] {
+      color: var(--template-special-color);
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid var(--gray-300);
+
+      &[aria-expanded=true],
+      &:focus,
+      &:hover {
+        color: var(--template-text-light);
+        background-color: var(--template-bg-dark-60);
+        background-image: none;
+
+        &::after {
+          background-color: var(--template-bg-dark);
+        }
+
+        .text-muted {
+          color: var(--template-text-light) !important;
+        }
+      }
+
+      .text-muted {
+        color: var(--template-text-dark) !important;
+      }
+    }
+  }
+}
+
+joomla-tab[view=accordion] {
+  box-shadow: 0 1px var(--white) inset, 0 0 3px rgba(0, 0, 0, .04);
+
+  > div[role=tablist] {
+    background-color: var(--white);
+
+    > button[role=tab] {
+      color: var(--template-text-light);
+      border-bottom: 1px solid var(--gray-300);
+
+      &[aria-expanded=true]::after,
+      &:hover::after {
+        background-color: var(--template-bg-dark);
+      }
+    }
+  }
+
+  > joomla-tab-element {
+    &[active] {
+      border-bottom: 1px solid var(--gray-300);
+    }
+  }
+
+  [active],
+  [aria-expanded=true] {
+    background-color: var(--white);
+  }
+
+  #permissions-sliders > joomla-tab-element[active] {
+    @include media-breakpoint-down(lg) {
+      .respTable td:last-child {
+        border-bottom: 1em var(--template-bg-dark-80) solid;
+      }
+
+      .oddCol {
+        background: var(--template-bg-light);
+      }
+    }
+  }
+}
+
+// endregion

@@ -1,0 +1,70 @@
+/*!*
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+
+.custom-select, .form-select {
+  color: var(--body-color);
+  background-image: url("../images/select-bg-dark.svg");
+  background-color: var(--template-alt-bg-dark-40);
+
+  [dir="rtl"] & {
+    background-image: url("../images/select-bg-dark-rtl.svg");
+  }
+
+  &[multiple] {
+    background-color: $form-select-bg;
+
+    option {
+      background-color: $form-select-bg;
+
+      &:checked, &[selected] {
+        color: var(--form-select-checked, var(--template-text-light));
+        background-color: var(--form-select-checked-bg, var(--template-bg-dark)) !important;
+      }
+    }
+  }
+
+  &:disabled {
+    background: var(--gray-800);
+    color: var(--gray-500);
+  }
+
+  // Remove outline from select box in FF
+  &:-moz-focusring {
+    text-shadow: 0 0 0 var(--white);
+  }
+
+  optgroup,
+  option {
+    color: var(--form-select, var(--template-text-dark));
+    background-color: var(--form-select-bg, var(--white));
+  }
+
+  &.form-select-success,
+  &.custom-select-success {
+    color: var(--success);
+    background-color: var(--success);
+    border-color: var(--success);
+
+    option {
+      color: var(--form-select, $form-select-color);
+      background-color: var(--form-select-bg, var(--white-offset));
+    }
+  }
+
+  &.form-select-danger,
+  &.custom-select-danger {
+    color: var(--danger);
+    background-color: var(--danger);
+    border-color: var(--danger);
+
+    option {
+      color: var(--form-select, $form-select-color);
+      background-color: var(--form-select-bg, var(--white-offset));
+    }
+  }
+
+}

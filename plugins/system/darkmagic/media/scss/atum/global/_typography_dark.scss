@@ -1,0 +1,105 @@
+/*!*
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Typography
+html, body {
+  background: var(--body-bg);
+  color: var(--body-color);
+
+  &.admin {
+    background-color: var(--admin-page-bg, var(--template-bg-dark-5));
+  }
+
+  .wrapper {
+    .container {
+      background: var(--admin-page-bg, var(--template-bg-dark-5));
+
+      &-main:after {
+        background-image: none;
+      }
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: var(--body-color);
+  }
+
+  .alert {
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      color: inherit;
+    }
+  }
+
+  .module {
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      color: var(--body-color);
+    }
+  }
+
+  input, select, textarea {
+    color: var(--input-color, var(--body-color));
+    background-color: var(--input-bg, var(--body-bg));
+  }
+}
+
+fieldset, .options-form {
+  background-color: var(--options-form-bg);
+  color: var(--options-form);
+  border-color: var(--gray-500);
+
+  legend {
+    background-color: var(--options-form-legend-bg);
+    color: var(--options-form-legend-text);
+  }
+}
+
+.headline {
+  h4 {
+    color: var(--gray-200);
+  }
+}
+
+label {
+  color: $form-label-color;
+}
+
+.bg-light {
+  background-color: var(--gray-800) !important;
+  color: var(--gray-200);
+
+  &.text-black, &.text-dark {
+    color: var(--gray-200) !important;
+  }
+}
+
+.bg-dark {
+  .text-white, &.text-white {
+    color: var(--gray-800) !important;
+  }
+}
+
+code {
+  color: lighten($red, 13%);
+}
+
+.text-muted {
+  color: $text-muted !important;
+}
+
+details {
+  background: var(--details-bg, var(--template-bg-dark-3));
+  border: 1px solid var(--details-border, var(--template-bg-dark-10));
+  color: var(--details-text, inherit);
+
+  summary {
+    color: var(--details-summary-text, var(--template-link-color));
+  }
+}
+
+// endregion

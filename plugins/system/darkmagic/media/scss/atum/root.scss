@@ -1,0 +1,309 @@
+/**
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+// region Main Atum colors
+
+:root {
+
+  // Colors
+  //
+  // Generate palettes for full colors, grays, and theme colors.
+
+  @each $color, $value in $colors-dark {
+    --#{$color}: #{$value};
+  }
+
+  @each $color, $value in $grays {
+    --gray-#{$color}: #{$value};
+    --gray-#{$color}-rgb: to-rgb(#{$value});
+  }
+
+  @each $color, $value in $theme-colors-dark {
+    --#{$color}: #{$value};
+  }
+
+  @each $color, $value in $theme-colors-rgb-dark {
+    --#{$color}-rgb: #{$value};
+  }
+
+  @each $color, $value in $atum-colors {
+    --#{$color}: #{$value};
+  }
+
+  --white-rgb: #{to-rgb($white)};
+  --black-rgb: #{to-rgb($black)};
+  --body-color: #{$body-color};
+  --body-color-rgb: #{to-rgb($body-color)};
+  --body-bg: #{$body-bg};
+  --bg-color: var(--body-bg);
+  --body-bg-rgb: #{to-rgb($body-bg)};
+
+  // region Global
+  --admin-page-bg: var(--template-bg-dark-85);
+  --color-text-muted: var(--gray-500);
+  --details-bg: var(--template-bg-dark-97);
+  --details-color: var(--gray-400);
+  --details-border: var(--template-bg-dark-90);
+  --details-text: var(--template-bg-dark-20);
+  --details-summary-text: var(--template-bg-dark-15);
+  --headings-color: var(--template-alt-bg-dark-30);
+  --main-card-bg: var(--template-alt-bg-dark-80);
+  --border-color: var(--gray-700);
+  // endregion
+
+  // region Dropdown
+  --dropdown-menu-bg: var(--template-alt-bg-dark-75);
+  --dropdown-menu-text: var(--gray-100);
+  // endregion
+
+  // region Layout
+  --options-form-bg: var(--gray-900);
+  --options-form: var(--gray-100);
+  --options-form-legend-text: var(--template-text-light);
+  --options-form-legend-bg: var(--bg-color);
+  // endregion
+
+  //region Header
+  --header-text: var(--gray-100);
+  --header-bg: var(--template-bg-dark-97);
+  --header-logo-bg: var(--template-bg-dark-90);
+  --header-page-title: var(--gray-300);
+  --header-dropdown-head-bg: var(--template-bg-dark-70);
+  --header-dropdown-hover-bg: var(--template-bg-dark-60);
+  --header-dropdown-text: var(--gray-200);
+  --header-dropdown-bg: var(--template-bg-dark-80);
+  --header-module-bg: hsl(var(--hue), 30%, 40%);
+  --header-module-hover-bg: hsl(var(--hue), 60%, 25%);
+  --header-mobile-menu-bg: var(--template-bg-dark-70);
+  //endregion
+
+  // region Toolbar
+  --toolbar-button: var(--body-color);
+  --toolbar-button-bg: var(--gray-800);
+  --toolbar-button-primary-icon: #{lighten($base-color, 40%)};
+  --toolbar-button-secondary-icon: var(--gray-200);
+  --toolbar-button-info-icon: #{lighten($info, 40%)};
+  --toolbar-button-action: #{lighten($base-color, 20%)};
+  --toolbar-button-action-icon: var(--gray-100);
+  // endregion
+
+  // region Sidebar Nav
+  --sidebar-nav-link: var(--gray-400);
+  // endregion
+
+  // region Alerts
+  --alert-default-text: var(--body-color);
+  --alert-default-bg: var(bg-color);
+  --joomla-alert-accent-opacity: 0.6;
+
+  --state-success-text: #{lighten($success, 50%)};
+  --state-success-bg: #{darken($success, 15%)};
+  --state-success-border: #{lighten($success, 20%)};
+
+  --state-info-text: var(--state-success-text); // Only system message
+  --state-info-bg: var(--state-success-bg); // Only system message
+  --state-info-border: var(--state-success-border); // Only system message
+
+  --alert-info-text: var(--template-bg-dark-10); // Only Bootstrap alerts
+  --alert-info-bg: var(--template-bg-dark); // Only Bootstrap alerts
+  --alert-info-border: var(--template-bg-dark-70); // Only Bootstrap alerts
+
+  --state-warning-text: #{lighten($warning, 44%)};
+  --state-warning-bg: #{darken($warning, 24%)};
+  --state-warning-border: var(--warning);
+  --state-warning-accent: var(--warning);
+
+  --state-danger-text: #{lighten($danger, 52%)};
+  --state-danger-bg: #{$danger};
+  --state-danger-border: #{$danger};
+
+  --state-error-text: var(--state-danger-text);
+  --state-error-bg: var(--state-danger-bg);
+  --state-error-border: var(--state-danger-border);
+  // endregion
+
+  // region Forms
+  --form-select: var(--input-color);
+  --form-select-bg: var(--input-bg);
+  --form-select-checked: var(--gray-100);
+  --form-select-checked-bg: var(--template-bg-dark-80);
+  --form-select-indicator: url("../images/select-bg-dark.svg");
+  --form-select-indicator-rtl: url("../images/select-bg-dark-rtl.svg");
+  --form-label-color: var(--gray-100);
+  --form-invalid-color: #{lighten($danger, 20%)};
+  --form-invalid-border: #{lighten($danger, 20%)};
+  --form-valid-border: #{lighten($success, 20%)};
+  --input-bg: var(--gray-700);
+  --input-color: var(--gray-200);
+  --input-border-color: var(--gray-900);
+  --input-placeholder-color: var(--gray-600);
+  // endregion
+
+  // region Modals
+  --modal-content-bg: var(--gray-300);
+
+  --modal-header: var(--template-bg-dark-20);
+  --modal-header-bg: rgba(0,0,0,0.1);
+  --modal-header-btn-close-bg: var(--gray-400);
+  --modal-footer-bg: rgba(0,0,0,0.1);
+
+  --modal-btn: var(--gray-100);
+  --modal-btn-bg: var(--gray-900);
+  --modal-btn-border: var(--gray-800);
+  --modal-btn-default: var(--gray-200);
+  --modal-btn-default-bg: var(--gray-800);
+  --modal-btn-default-border: var(--gray-900);
+  --modal-btn-secondary-border: var(--gray-900);
+  // region
+
+  // region Lists
+  --list-group-bg: var(--template-alt-bg-dark-80);
+  // endregion
+
+  // region Accordions
+  --accordion-bg: var(--template-alt-bg-dark-85);
+  --accordion-button-color: var(--template-alt-bg-dark-20);
+  --accordion-border-color: var(--template-alt-bg-dark-70);
+  --accordion-button-bg: var(--template-alt-bg-dark-85);
+  --accordion-button-active-color: var(--template-alt-bg-dark-10);
+  --accordion-button-active-bg: var(--template-alt-bg-dark-70);
+  --accordion-icon-color: var(--template-alt-bg-dark-85);
+  --accordion-icon-active-color: var(--template-alt-bg-dark-10);
+  // endregion
+
+  // region Tree Select
+  --treeselect-tree-color: var(--gray-400);
+  --treeselect-arrow: var(--primary);
+  // endregion
+
+  // region Icons
+  --icon-default: var(--gray-500);
+  --icon-default-border: var(--gray-500);
+  --icon-checked-out: var(--gray-500);
+  --icon-success: #{lighten($success, 10%)};
+  --icon-success-border: #{lighten($success, 10%)};
+  // endregion
+
+  // region Login
+  --login-site-name: var(--gray-100);
+  --login-admin-login-text: var(--gray-500);
+  --login-label: var(--template-bg-dark-10);
+  --login-text: var(--gray-100);
+  --login-bg: var(--template-bg-dark-70);
+  --login-input-focus-bg: var(--gray-700);
+  --login-help-bg: var(--template-bg-dark-85);
+  --login-mobile-header-bg: var(--template-bg-dark-90);
+  --login-invalid-text: #{lighten($danger, 20%)};
+  // endregion
+
+  // region Quick Icons
+  // Note: all other variables are defined in blocks/_quickicons.scss
+  --quickicons-bg: transparent;
+  // endregion
+
+  // region Joomla Tab
+  --joomla-tab-element-bg: var(--template-bg-dark-90);
+  --joomla-tab-tablist-bg: var(--gray-700);
+  --joomla-tab-tablist-button-bg: var(--gray-400);
+  --joomla-tab-tablist-active-bg: var(--gray-600);
+  --joomla-tab-tablist-active: var(--gray-100);
+  // endregion
+
+  // region Choices.js
+  --choices-bg-color: var(--gray-700);
+  --choices-bg-color-dropdown: var(--choices-bg-color);
+  --choices-input-placeholder: var(--gray-400);
+  --choices-multiple-item-bg: var(--choices-bg-color);
+  --choices-selector-bg-image: url("../../../images/select-bg-dark.svg");
+  --choices-selector-bg-rtl-image: url("../../../images/select-bg-dark-rtl.svg");
+  // endregion
+
+  // region com_cpanel
+  --com_cpanel-card-header-text: var(--gray-100);
+  --com_cpanel-module-actions-text: var(--gray-500);
+  --com_cpanel-sample-data-header: var(--template-alt-bg-dark-20);
+  --com_cpanel-add-module-text: hsl(var(--hue),30%, 70%);
+  --com_cpanel-add-module-bg: hsl(var(--hue), 35%, 10%);
+  --com_cpanel-add-module-icon: hsl(var(--hue),40%,60%);
+  // endregion
+
+  // region com_modules
+  --com_modules-new-module-bg: hsl(var(--hue),30%,20%);
+  --com_modules-new-module-text: hsl(var(--hue),60%,90%);
+  --com_modules-new-module-hover-text: hsl(var(--hue),70%,85%);
+  --com_modules-new-module-border: hsl(var(--hue), 30%, 40%);
+  --com_modules-new-module-link-bg: hsl(var(--hue),30%,40%);
+  --com_modules-new-module-link-icon: var(--gray-300);
+  --com_modules-new-module-link-hover-bg: hsl(var(--hue),40%,60%);
+  --com_modules-new-module-link-hover-icon: var(--gray-100);
+  // endregion
+
+  // region com_media
+  --com_media-bg: var(--template-alt-bg-dark-90);
+  --com_media-highlight: var(--template-alt-bg-dark-40);
+  --com_media-border-color: var(--template-alt-bg-dark-75);
+  --com_media-col-box-shadow: var(--template-alt-bg-dark-70);
+  --com_media-disk-name-color: var(--template-alt-bg-dark-20);
+  --com_media-drive-bg: var(--template-alt-bg-dark-80);
+  --com_media-sidebar-tree-item-hover-bg: var(--template-alt-bg-dark-70);
+  --com_media-sidebar-active-icon-color: var(--template-bg-dark-30);
+  --com_media-toolbar-bg: var(--template-alt-bg-dark-80);
+  --com_media-toolbar-icon-color: var(--gray-200);
+  --com_media-toolbar-icon-bg-hover: var(--template-alt-bg-dark-40);
+  --com_media-toolbar-loader-color: linear-gradient(to right, var(--template-alt-bg-dark-40) 0, var(--template-alt-bg-dark-20) 100%);
+  --com_media-breadcrumbs-bg: var(--template-alt-bg-dark-85);
+  --com_media-breadcrumbs-current-bg: var(--template-alt-bg-dark-90);
+  --com_media-actions-active-bg: var(--template-alt-bg-dark-60);
+  --com_media-actions-active-border: var(--template-alt-bg-dark-70);
+  --com_media-actions-active-box-shadow: var(--template-alt-bg-dark-85);
+  --com_media-grid-item-bg-color: hsl(var(--hue), 20%, 20%);
+  --com_media-grid-item-border-color: hsl(var(--hue), 35%, 20%);
+  --com_media-image-background-bg: hsl(var(--hue), 20%, 20%);
+  --com_media-image-background-checkers: linear-gradient(45deg, hsl(var(--hue), 20%, 10%) 25%, transparent 25%, transparent 75%, var(--template-alt-bg-dark-90) 75%, hsl(var(--hue), 20%, 10%) 100%), linear-gradient(45deg, var(--template-alt-bg-dark-90) 25%, transparent 25%, transparent 75%, hsl(var(--hue), 20%, 10%) 75%, hsl(var(--hue), 20%, 10%) 100%);
+  --com_media-grid-item-icon-color: var(--template-alt-bg-dark-97);
+  --com-media-grid-item-icon-bg-color: var(--template-alt-bg-dark-20);
+  --com-media-grid-item-icon-color-hover: var(--template-alt-bg-dark-20);
+  --com_media-grid-item-icon-bg-color-hover: var(--template-alt-bg-dark-97);
+  --com-media-info-bg: var(--template-alt-bg-dark-80);
+  --com-media-info-title-bg: var(--template-alt-bg-dark-90);
+  --com-media-info-close-color: var(--template-alt-bg-dark-40);
+  --com-media-info-close-color-hover: var(--template-alt-bg-dark-60);
+  --com_media-info-dd-color: var(--gray-100);
+  --com_media-info-dt-color: var(--template-alt-bg-dark-10);
+  // endregion
+
+  // region com_users
+  --com_users-mfa-method-list-head-bg: var(--template-bg-dark-75);
+  --com_users-mfa-method-list-head-image-bg: var(--dark);
+  --com_users-mfa-method-list-body-bg: var(--template-alt-bg-dark-70);
+  --com_users-mfa-method-list-body-color: var(--gray-100);
+  --com_users-mfa-method-add-color: var(--template-bg-dark-20);
+  // endregion
+
+  // region Debug Bar
+  --debugbar-header-bg: var(--template-bg-dark);
+  --debugbar-header-color: var(--gray-100);
+  --debugbar-sql-duplicate-bg: rgba(var(--warning-rgb), .5);
+  --debugbar-sql-duplicate-hover-bg: rgba(var(--warning-rgb), .3);
+  --debugbar-timeline-label-color: var(--gray-100);
+  --debugbar-timeline-value-bg: var(--template-alt-bg-dark-40);
+  --debugbar-timeline-hover-bg: rgba(var(--info-rgb), .75);
+  // endregion
+}
+
+// endregion
+
+// Popovers
+
+$popover-bg:                        $gray-800;
+
+$popover-header-bg:                 $gray-900;
+$popover-header-color:              $gray-200;
+
+$popover-body-color:                $gray-200;
+
+$popover-arrow-color:               $popover-bg;
+
+$popover-arrow-outer-color:         fade-in($popover-border-color, .05) !default;

@@ -1,0 +1,96 @@
+/*!*
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+// region Sidebar
+.sidebar-wrapper {
+  background-color: var(--template-sidebar-bg);
+  box-shadow: 0 0 20px -10px var(--template-bg-dark-50);
+
+  .item {
+    a,
+    .menu-dashboard,
+    .menu-quicktask {
+      color: var(--white);
+
+      &:hover {
+        color: var(--template-text-light);
+        background-color: var(--template-bg-dark-65);
+      }
+    }
+  }
+
+  .sidebar-toggle {
+    background: var(--template-bg-dark-60);
+
+    a {
+      color: var(--white);
+    }
+  }
+}
+
+// Sidebar navigation
+.main-nav {
+  // 2nd level items
+  ul {
+    background-color: var(--template-bg-dark-75);
+
+    // 3rd level items
+    ul {
+      background-color: var(--template-bg-dark-80);
+
+      // 4th level items
+      ul {
+        background-color: var(--template-bg-dark-85);
+      }
+
+    }
+  }
+
+  .divider {
+    background-color: var(--template-bg-dark-60);
+  }
+
+  .menuitem-group {
+    .sidebar-item-title {
+      color: var(--template-bg-dark-30);
+    }
+  }
+
+  // Dropdown indicator
+  a.mm-active {
+    background-color: var(--template-bg-dark-60);
+  }
+
+  a.mm-active + .menu-quicktask {
+    background-color: var(--template-bg-dark-50);
+  }
+
+  .badge {
+    background-color: var(--template-bg-dark-60);
+  }
+}
+
+// Sidebar Closed
+.closed {
+  .main-nav a:hover .sidebar-item-title {
+    background-color: var(--template-bg-dark-60);
+  }
+}
+
+// Mobile
+@include media-breakpoint-down(sm) {
+  #menu-collapse {
+    background: var(--template-bg-dark-50);
+  }
+
+  .toggler-burger {
+    .navbar-toggler-icon::before {
+      color: var(--toggle-color);
+    }
+  }
+}
+
+// endregion

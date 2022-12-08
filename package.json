@@ -1,0 +1,16 @@
+{
+	"name": "DarkMagic",
+	"description": "DarkMagic – Dark Mode for Joomla 4's default templates",
+	"license": "GPL-3.0-or-later",
+	"engines": {
+		"node": ">=16",
+		"npm": ">=8.5.5"
+	},
+	"browserslist": [
+		"last 2 major version",
+		"not ie < 11"
+	],
+	"dependencies": {
+		"bootstrap": "~5.1.3"
+	}
+}

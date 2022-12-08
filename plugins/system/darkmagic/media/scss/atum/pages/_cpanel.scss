@@ -1,0 +1,100 @@
+/**
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+.cpanel-add-module-icon,
+.com-cpanel {
+  &-help {
+    &__header {
+      color: var(--template-special-color);
+    }
+
+    a {
+      color: var(--template-link-color);
+    }
+  }
+
+  &-system {
+    &__header {
+      color: var(--template-special-color);
+    }
+
+    a {
+      color: var(--template-link-color);
+    }
+  }
+}
+
+.com_cpanel {
+  .card-header {
+    padding: var(--com_cpanel-card-header-padding, 1rem 1rem .75rem);
+    color: var(--com_cpanel-card-header-text, var(--template-bg-dark));
+    background: var(--com_cpanel-card-header-bg, var(--card-bg));
+  }
+
+  .module-actions {
+    > * {
+      color: var(--com_cpanel-module-actions-text, var(--template-bg-dark-70));
+    }
+  }
+
+  .cpanel-add-module {
+    color: var(--com_cpanel-add-module-text, hsl(var(--hue),30%,40%));
+    background-color: var(--com_cpanel-add-module-bg, hsl(var(--hue),35%,98%));
+    border: 1px solid var(--com_cpanel-add-module-border, hsl(var(--hue),35%,88%));
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--com_cpanel-add-module-active-text, var(--white));
+      background: var(--com_cpanel-add-module-active-bg, var(--template-bg-dark));
+    }
+
+    .cpanel-add-module-icon {
+      color: var(--com_cpanel-add-module-icon, hsl(var(--hue),30%,40%));
+    }
+  }
+}
+
+.cpanel-modules {
+  .list-group {
+    border-top: 1px solid $list-group-border-color;
+  }
+
+  .list-group-item {
+    &:hover {
+      background: var(--toolbar-bg);
+    }
+
+    .list-group-item a > span {
+      &[class^="#{$jicon-css-prefix}-"],
+      &[class*=" #{$jicon-css-prefix}-"],
+      &[class^="#{$fa-css-prefix}-"],
+      &[class*=" #{$fa-css-prefix}-"] {
+        color: var(--com_cpanel-modules-list-group-item-link-text, rgba(var(--white), .9));
+        background: var(--template-link-color);
+        box-shadow: $atum-box-shadow;
+
+        &:hover {
+          background: var(--template-link-hover-color);
+        }
+      }
+    }
+  }
+
+  .list-group-item span.home-image {
+    &[class^="#{$jicon-css-prefix}-"],
+    &[class*=" #{$jicon-css-prefix}-"],
+    &[class^="#{$fa-css-prefix}-"],
+    &[class*=" #{$fa-css-prefix}-"] {
+      color: rgba(var(--black), 1);
+      background: var(--white-offset);
+    }
+  }
+}
+
+.sample-data__title {
+  color: var(--com_cpanel-sample-data-header, var(--primary));
+}

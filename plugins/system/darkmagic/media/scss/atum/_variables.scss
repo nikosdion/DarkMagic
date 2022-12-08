@@ -1,0 +1,447 @@
+// region Variables
+$white: #fff;
+$whiteoffset: #fefefe;
+$gray-100: #f8f9fa;
+$gray-200: #e8e8e8;
+$gray-300: #dee2e6; //used for toolbar and badges
+$gray-400: #cdcdcd; //used for border-bottom sidebar-nav and toolbar normal border
+$gray-500: #adb5bd; //used in toolbar and buttons for border
+$gray-600: #666e76; //used for atum-text-dark and $secondary
+$gray-700: #495057; //used for atum-text-dark, secondary
+$gray-800: #343a40;
+$gray-900: #212529; //used for tree header
+$bluegray: #b2bfcd; // used for borders
+$black: #000; //used for shadows
+$focuscolor: #39f; //used for focus color
+$dark-blue: #001b4c; //is the atum-special-color
+$light-blue: #2a69b8; //is the template-link-color
+$focusshadow: 0 0 0 .2rem #eaeaea;
+// endregion
+
+// region Bootstrap Colours
+$blue: hsl(213, 63%, 44%); // base color for calculation, Primary-color
+$indigo: #0377be; //used in bootstrap
+$purple: #6f42c1; //used in bootstrap
+$pink: #971250; //used in bootstrap
+$red: #c52827; //used in bootstrap
+$red-dark: #3b0d0c; //used for alerts error
+$yellow: #ffb514; //used in bootstrap
+$green: #457d54; //used in bootstrap
+$green-dark: #0f2f21; //used for alert success
+$teal: #20c997; //used in bootstrap
+$cyan: #107d8e; //used in bootstrap
+$darkblue: #132f53;
+$base-color: $darkblue;
+
+// Auxiliary colors
+$text-muted: var(--gray-400);
+
+// Borders
+$border-color: var(--border-color, var(--gray-300));
+
+// Cards
+$card-bg: var(--card-bg);
+
+// Forms
+$form-label-color: var(--form-label-color, var(--primary));
+$input-bg: var(--input-bg, var(--body-bg));
+$input-disabled-bg: var(--input-disabled-bg, var(--gray-200));
+$input-disabled-border-color: var(--input-disabled-border-colo, null);
+$input-color: var(--input-color, var(--body-color));
+$input-border-color: var(--input-border-color, var(--gray-400));
+$input-placeholder-color: var(--input-placeholder-color, var(--gray-600));
+$input-plaintext-color: var(--input-plaintext-color, var(--body-color));
+
+// Modals
+$modal-content-color: var(--model-content, inherit);
+$modal-content-bg: var(--modal-content-bg, $white);
+$modal-content-border-color: var(--modal-content-border, rgba($black, .2));
+
+$modal-backdrop-bg: var(--modal-backgrop-bg, $black);
+$modal-backdrop-opacity: var(--modal-backdrop-opacity, .5);
+$modal-header-border-color: var(--modal-header-border, $border-color);
+$modal-footer-border-color: var(--modal-footer-border, $modal-header-border-color);
+
+//endregion
+
+// region Atum colours defined as scss variables for use in scss functions
+$atum-text-dark: $gray-700;
+$success: $green;
+$danger: $red;
+$info: $light-blue;
+$warning: $yellow;
+// endregion
+
+// region Theme colours, for use in CSS variables
+$theme-colors-dark: () !default;
+$theme-colors-dark: map-merge((
+        primary:                         $base-color, //used only in bootstrap, please use $atum-bg-dark
+        secondary:                       $gray-700, //used for btn-secondary
+        success:                         $success,
+        success-dark:                    darken($success, 8%),
+        info:                            $light-blue,
+        warning:                         $yellow,
+        danger:                          $danger,
+        danger-dark:                     darken($danger, 8%),
+        light:                           $gray-800, //used in bootstrap
+        dark:                            $gray-200,  //used in bootstrap and for table-border
+        action:                          $base-color,
+        error:                           $red-dark,
+        alert-success:                   $green-dark
+), $theme-colors-dark);
+
+$theme-colors-rgb-dark: map-loop($theme-colors-dark, to-rgb, "$value") !default;
+// endregion
+
+// region Atum colors, for use in CSS variables
+$atum-colors: (
+        template-bg-saturation: 40%,
+        template-bg-dark: hsl(var(--hue), var(--template-bg-saturation), 20%),
+        template-bg-dark-3: hsl(var(--hue), var(--template-bg-saturation), 97%),
+        template-bg-dark-5: hsl(var(--hue), var(--template-bg-saturation), 95%),
+        template-bg-dark-7: hsl(var(--hue), var(--template-bg-saturation), 93%),
+        template-bg-dark-10: hsl(var(--hue), var(--template-bg-saturation), 90%),
+        template-bg-dark-15: hsl(var(--hue), var(--template-bg-saturation), 85%),
+        template-bg-dark-20: hsl(var(--hue), var(--template-bg-saturation), 80%),
+        template-bg-dark-30: hsl(var(--hue), var(--template-bg-saturation), 70%),
+        template-bg-dark-40: hsl(var(--hue), var(--template-bg-saturation), 60%),
+        template-bg-dark-50: hsl(var(--hue), var(--template-bg-saturation), 50%),
+        template-bg-dark-60: hsl(var(--hue), var(--template-bg-saturation), 40%),
+        template-bg-dark-65: hsl(var(--hue), var(--template-bg-saturation), 35%),
+        template-bg-dark-70: hsl(var(--hue), var(--template-bg-saturation), 30%),
+        template-bg-dark-75: hsl(var(--hue), var(--template-bg-saturation), 25%),
+        template-bg-dark-80: hsl(var(--hue), var(--template-bg-saturation), 20%),
+        template-bg-dark-85: hsl(var(--hue), var(--template-bg-saturation), 15%),
+        template-bg-dark-90: hsl(var(--hue), var(--template-bg-saturation), 10%),
+        template-bg-dark-93: hsl(var(--hue), var(--template-bg-saturation), 7%),
+        template-bg-dark-95: hsl(var(--hue), var(--template-bg-saturation), 5%),
+        template-bg-dark-97: hsl(var(--hue), var(--template-bg-saturation), 3%),
+        template-alt-bg-saturation: 25%,
+        template-alt-bg-dark: hsl(var(--hue), var(--template-alt-bg-saturation), 20%),
+        template-alt-bg-dark-3: hsl(var(--hue), var(--template-alt-bg-saturation), 97%),
+        template-alt-bg-dark-5: hsl(var(--hue), var(--template-alt-bg-saturation), 95%),
+        template-alt-bg-dark-7: hsl(var(--hue), var(--template-alt-bg-saturation), 93%),
+        template-alt-bg-dark-10: hsl(var(--hue), var(--template-alt-bg-saturation), 90%),
+        template-alt-bg-dark-15: hsl(var(--hue), var(--template-alt-bg-saturation), 85%),
+        template-alt-bg-dark-20: hsl(var(--hue), var(--template-alt-bg-saturation), 80%),
+        template-alt-bg-dark-30: hsl(var(--hue), var(--template-alt-bg-saturation), 70%),
+        template-alt-bg-dark-40: hsl(var(--hue), var(--template-alt-bg-saturation), 60%),
+        template-alt-bg-dark-50: hsl(var(--hue), var(--template-alt-bg-saturation), 50%),
+        template-alt-bg-dark-60: hsl(var(--hue), var(--template-alt-bg-saturation), 40%),
+        template-alt-bg-dark-65: hsl(var(--hue), var(--template-alt-bg-saturation), 35%),
+        template-alt-bg-dark-70: hsl(var(--hue), var(--template-alt-bg-saturation), 30%),
+        template-alt-bg-dark-75: hsl(var(--hue), var(--template-alt-bg-saturation), 25%),
+        template-alt-bg-dark-80: hsl(var(--hue), var(--template-alt-bg-saturation), 20%),
+        template-alt-bg-dark-85: hsl(var(--hue), var(--template-alt-bg-saturation), 15%),
+        template-alt-bg-dark-90: hsl(var(--hue), var(--template-alt-bg-saturation), 10%),
+        template-alt-bg-dark-93: hsl(var(--hue), var(--template-alt-bg-saturation), 7%),
+        template-alt-bg-dark-95: hsl(var(--hue), var(--template-alt-bg-saturation), 5%),
+        template-alt-bg-dark-97: hsl(var(--hue), var(--template-alt-bg-saturation), 3%),
+
+        template-sidebar-bg: var(--template-bg-dark-90),
+        template-sidebar-font-color: $white,
+        template-sidebar-link-color: $white,
+        template-bg-light: #f0f4fb, //light background color, frontend dashboard background
+        template-text-light: $gray-100,
+        template-text-dark: $gray-900,
+        template-special-color: $dark-blue,
+        template-link-color: lighten($light-blue, 20%),
+        template-link-hover-color: $light-blue,
+        template-contrast: var(--primary),
+);
+// endregion
+
+// endregion
+
+// region Colours, for use in CSS variables
+$colors: (
+        card-bg: rgba(255, 255, 255, .7),
+        bluegray: $bluegray,
+        lightbluegray: #f6f9fc,
+        toolbar-bg: $white,
+        success-border: var(--success),
+        info-border: var(--info),
+        warning-border: var(--warning),
+        danger-border: var(--danger),
+        login-main-bg: darken($base-color, 8%), //used on login
+        border: $gray-400,
+        "white": $white, // the key here must be in quotes to avoid scss compilation warnings.
+        "black": $black, // the key here must be in quotes to avoid scss compilation warnings.
+        "teal": $teal, // the key here must be in quotes to avoid scss compilation warnings.
+        "darkblue": $darkblue, // the key here must be in quotes to avoid scss compilation warnings.
+        white-offset: $whiteoffset,
+        focus: $focuscolor,
+        focus-shadow: $focusshadow,
+        toggle-color: $white, //used in sidebar
+        a11y-highlight-border: #ff0000, // used to highlight headers and links with the .a11y_highlight class
+        joomla-version: var(--bluegray), // Joomla version in the top header
+);
+// endregion
+
+// region Colours, for use in CSS variables
+$colors-dark: (
+        card-bg: var(--template-alt-bg-dark),
+        bluegray: $bluegray,
+        lightbluegray: #f6f9fc,
+        toolbar-bg: var(--gray-900),
+        success-border: var(--success),
+        info-border: var(--info),
+        warning-border: var(--warning),
+        danger-border: var(--danger),
+        login-main-bg: darken($base-color, 8%), //used on login
+        border: $gray-400,
+        "white": $white, // the key here must be in quotes to avoid scss compilation warnings.
+        "black": $black, // the key here must be in quotes to avoid scss compilation warnings.
+        "teal": $teal, // the key here must be in quotes to avoid scss compilation warnings.
+        "darkblue": $darkblue, // the key here must be in quotes to avoid scss compilation warnings.
+        white-offset: $whiteoffset,
+        focus: $focuscolor,
+        focus-shadow: $focusshadow,
+        toggle-color: $white, //used in sidebar
+        a11y-highlight-border: #ff0000, // used to highlight headers and links with the .a11y_highlight class
+        joomla-version: var(--gray-600), // Joomla version in the top header
+);
+// endregion
+
+// region Greys, for use in CSS variables
+$grays: (
+        "097": darken($gray-100, 2.5%),
+        "100": $gray-100,
+        "200": $gray-200,
+        "300": $gray-300,
+        "400": $gray-400,
+        "500": $gray-500,
+        "600": $gray-600,
+        "700": $gray-700,
+        "800": $gray-800,
+        "900": $gray-900
+);
+// endregion
+
+// region Bootstrap defaults
+// Do not remove; we reference them in context where Bootstrap is not imported (e.g. Choices.js)
+$body-bg: $gray-900;
+$body-color: $gray-100;
+$component-active-color: $white !default;
+$component-active-bg: $base-color !default;
+// endregion
+
+// region Alerts
+$alert-border-level: 0;
+$alert-color-level: 0;
+// endregion
+
+// region Global
+$atum-box-shadow: 0 2px 10px -8px var(--template-bg-dark-50);
+$enable-rounded: true;
+$input-box-shadow: inset 0 0 0 .1rem var(--input-box-shadow, #e9e9e9);
+$input-btn-padding-y: .5rem;
+$input-btn-padding-x: 1rem;
+$input-max-width: 100%;
+$btn-disabled-opacity: .4;
+// endregion
+
+// region Variable prefix
+// Removes the prefix added in BS5 for compat with Joomla beta's shipped with Betas
+$variable-prefix: "";
+// endregion
+
+// region Toolbar
+$atum-toolbar-line-height: 2.45rem;
+// endregion
+
+// region Sidebar
+$sidebar-width: 18rem;
+$sidebar-width-login: 28.75rem;
+$sidebar-width-closed: 3rem;
+$main-brand-height: 3rem;
+// endregion
+
+// region Fonts
+$font-family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$h1-font-size: 1.65rem;
+$h2-font-size: 1.5rem;
+$h3-font-size: 1.25rem;
+$h4-font-size: 1rem;
+$h5-font-size: .9286rem;
+$h6-font-size: .8571rem;
+$headings-color: var(--headings-color, var(--template-bg-dark));
+$font-size-sm: .8rem;
+$font-size-vsm: .6rem;
+$display1-size: 1rem;
+$display2-size: .875rem;
+$content-font-size: .875rem;
+$label-font-size: 1rem;
+$badge-font-size: .75rem;
+$jicon-css-prefix: icon !default;
+$fa-css-prefix: fa !default;
+$fa-font-path: "../../../../media/vendor/fontawesome-free/webfonts";
+$roboto-font-path: "../../../../../media/vendor/roboto-fontface/fonts";
+// endregion
+
+// region Font weights
+$thin-weight: 100;
+$extralight-weight: 200;
+$light-weight: 300;
+$normal-weight: 400;
+$medium-weight: 500;
+$semibold-weight: 600;
+$bold-weight: 700;
+$extrabold-weight: 800;
+$black-weight: 900;
+// endregion
+
+// region Tables
+$table-color: var(--body-text);
+$table-bg: var(--white);
+$table-cell-padding-y: .75rem;
+$table-cell-padding-x: 1rem;
+$table-cell-padding-y-sm: .3rem;
+$table-cell-padding-x-sm: .3rem;
+$table-group-separator-color: var(--gray-300);
+// endregion
+
+// region Dropdowns
+$dropdown-padding-y: 0;
+$dropdown-box-shadow: 0 1px 1px rgba(var(--black), .15);
+$dropdown-link-hover-color: var(--template-text-dark);
+$dropdown-border-width: 1px;
+$dropdown-item-padding-y: .5rem;
+$dropdown-item-padding-x: .75rem;
+$dropdown-spacer: 0;
+// endregion
+
+// region Cards
+$card-border-width: 0;
+$card-border-color: transparent;
+// endregion
+
+// region Alerts
+$state-success-text: var(--state-success-text, var(--success));
+$state-success-bg: var(--state-success-bg, lighten($success, 58%));
+$state-success-border: var(--state-success-border, hsl(var(--hue), 50%, 93%));
+
+$state-info-text: var(--state-info-text, var(--template-bg-dark-70));
+$state-info-bg: var(--state-info-bg, var(--white));
+$state-info-border: var(--state-info-border, var(--template-bg-dark-70));
+
+$state-warning-text: var(--state-warning-text, darken($warning, 24%));
+$state-warning-bg: var(--state-warning-bg, lighten($warning, 44%));
+$state-warning-border: var(--state-warning-border, var(--warning));
+$state-warning-accent: var(--state-warning-accent, var(--warning));
+
+$state-danger-text: var(--state-danger-text, $danger);
+$state-danger-bg: var(--state-danger-bg, lighten($danger, 52%));
+$state-danger-border: var(--state-danger-border, $danger);
+
+$state-error-text: var(--state-error-text, $danger);
+$state-error-bg: var(--state-error-bg, lighten($danger, 52%));
+$state-error-border: var(--state-error-border, $danger);
+// endregion
+
+// region Badges
+$badge-padding-x: .2rem;
+$badge-padding-y: .3rem;
+$badge-border-radius: .2rem;
+// endregion
+
+// region Input Group
+$input-group-addon-color: var(--white);
+$input-group-addon-bg: var(--primary);
+$form-file-button-hover-bg: shade-color($base-color, 5%) !default;
+$input-group-addon-border-color: var(--template-bg-dark);
+// endregion
+
+// region Treeselect
+$treeselect-line-height: 2.2rem;
+$treeselect-indent: 40px;
+// endregion
+
+// region List
+$list-group-bg: var(--list-group-bg, var(--white-offset));
+$list-group-border-color: hsl(var(--hue), 40%, 85%);
+$list-group-item-padding-y: .75rem;
+// endregion
+
+// region Buttons
+$input-btn-padding-y-sm-submenu: 0;
+$input-btn-padding-x-sm-submenu: 1.625rem;
+$input-btn-submenu-icon-distance: 1rem;
+// endregion
+
+// region Accordions
+$accordion-color: var(--accordion-color, var(--body-color));
+$accordion-bg: var(--accordion-bg, var(--body-bg));
+$accordion-border-color: var(--accordion-border-color, rgba($black, .125));
+$accordion-button-color: var(--accordion-button-color, var(--accordion-color));
+$accordion-button-bg: var(--accordion-button-bg, var(--accordion-bg));
+$accordion-button-active-bg: var(--accordion-button-active-bg, var(--gray-300));
+$accordion-button-active-color: var(--accordion-button-active-color, var(--primary));
+$accordion-icon-color: var(--accordion-icon-color, var(--accordion-button-color));
+$accordion-icon-active-color: var(--accordion-icon-active-color, var(--accordion-button-active-color));
+// endregion
+
+// region Custom form
+$form-select-indicator-padding: 3rem;
+$form-select-bg: var(--form-select-bg, var(--template-bg-light));
+$form-select-bg-size: 116rem;
+$form-select-indicator: var(--form-select-indicator, url("../images/select-bg.svg"));
+$form-select-indicator-rtl: var(--form-select-indicator-rtl, url("../images/select-bg-rtl.svg"));
+$form-select-indicator-active: var(--form-select-indicator-active, url("../../../images/select-bg-active.svg"));
+$form-select-indicator-active-rtl: var(--form-select-indicator-active-rtl, url("../../../images/select-bg-active-rtl.svg"));
+$form-select-background: $form-select-indicator no-repeat right center / $form-select-bg-size; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
+$form-select-background-rtl: $form-select-indicator-rtl no-repeat left center / $form-select-bg-size; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
+$form-select-box-shadow: $atum-box-shadow;
+$form-select-bg-size-sm: 75rem;
+$form-select-multiple-padding-y: .3rem;
+$form-file-button-color: var(--white);
+// endregion
+
+// region Input
+$input-padding: .5rem 1rem;
+$input-border: solid 1px var(--template-bg-dark-20);
+// endregion
+
+// region Modals
+$modal-header-height: 2.875rem;
+// endregion
+
+// region Quickicons
+$quickicon-bg: var(--white);
+$quickicon-box-shadow-success: 0 0 3px 0 var(--success);
+$quickicon-box-shadow-danger: 0 0 3px 0 var(--danger);
+$quickicon-box-shadow-warning: 0 0 3px 0 var(--warning);
+$quickicon-icon-size: 2rem;
+$quickicon-icon-size-sm: 1.3rem;
+// endregion
+
+// region Gutter
+$grid-gutter-width: 2rem;
+$grid-gutter-width-s: 15px;
+// endregion
+
+// region Breadcrumbs
+$breadcrumb-bg: var(--white);
+// endregion
+
+// region Links
+$link-color: var(--template-link-color);
+$link-hover-color: var(--template-link-hover-color);
+$link-decoration: none;
+// endregion
+
+// region Z-Index list
+$zindex-negative: -1;
+$zindex-actions: auto;
+$zindex-toolbar: 1000;
+$zindex-sidebar: 1010;
+$zindex-header: 1020;
+$zindex-alerts: 1030;
+$zindex-modal-backdrop: 1040;
+$zindex-modal: 1050;
+$zindex-popover: 1060;
+$zindex-tooltip: 1070;
+$zindex-mobile-bottom: 8000;
+$zindex-mobile-toggle: 9999;
+$zindex-mobile-menu: 9000;
+// endregion
