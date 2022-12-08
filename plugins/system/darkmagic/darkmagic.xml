@@ -145,6 +145,8 @@
 					<option value="1">JYES</option>
 				</field>
 
+				<!-- codeMirrorDark -->
+
 				<field
 						name="tinyMceContent_backend"
 						type="radio"
@@ -157,6 +159,21 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+
+				<field
+						name="codeMirrorDark_backend"
+						type="filelist"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_CODEMIRRORDARK_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_CODEMIRRORDARK_DESC"
+						default=""
+						fileFilter="\.css$"
+						stripext="true"
+						hide_none="true"
+						hide_default="false"
+						directory="media/vendor/codemirror/theme"
+						validate="options"
+						showon="darkmode:1"
+				/>
 
 				<field
 						name="bg-light"
@@ -228,6 +245,22 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+
+				<field
+						name="codeMirrorDark_frontend"
+						type="filelist"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_CODEMIRRORDARK_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_CODEMIRRORDARK_DESC"
+						default=""
+						fileFilter="\.css$"
+						stripext="true"
+						hide_none="true"
+						hide_default="false"
+						directory="media/vendor/codemirror/theme"
+						validate="options"
+						showon="darkmode:1"
+				/>
+
 			</fieldset>
 
 		</fields>

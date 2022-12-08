@@ -21,6 +21,7 @@ use Joomla\CMS\Document\HtmlDocument;
 use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\User\User;
 use Joomla\Event\Event;
 use Joomla\Event\SubscriberInterface;
@@ -108,7 +109,7 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 	/**
 	 * Applies the Dark Mode for a specific site section
 	 *
-	 * @param   string  $siteSection   The site section, admin or site
+	 * @param   string  $siteSection   The site section, frontend or backend
 	 * @param   string  $templateName  The template name for which we will apply the Dark Mode
 	 *
 	 * @since   2.0.0
@@ -184,6 +185,10 @@ CSS;
 				$contentDark = $this->getConfigKey('tinyMceContent', $siteSection, 1) == 1;
 				$this->applyTinyMCEDark(false, $contentDark);
 
+				// Apply the CodeMirror theme
+				$codeMirrorDark = $this->getConfigKey('codeMirrorDark', $siteSection, '');
+				$this->applyCodeMirrorDark($codeMirrorDark, true);
+
 				// Apply the inline CSS overrides
 				$wa->addInlineStyle($overrideCss);
 
@@ -202,11 +207,14 @@ CSS;
 				$contentDark = $this->getConfigKey('tinyMceContent', $siteSection, 1) == 1;
 				$this->applyTinyMCEDark(true, $contentDark);
 
+				// Apply the CodeMirror theme
+				$codeMirrorDark = $this->getConfigKey('codeMirrorDark', $siteSection, '');
+				$this->applyCodeMirrorDark($codeMirrorDark, false);
+
 				// Apply the inline CSS overrides
 				$overrideCss = <<< CSS
 
-@media screen and (prefers-color-scheme: dark)
-{
+@media screen and (prefers-color-scheme: dark) {
 $overrideCss
 }
 
@@ -355,7 +363,7 @@ CSS;
 	 * Get a config key for a specific section of the site
 	 *
 	 * @param   string  $key           The base name of the config key
-	 * @param   string  $siteSection   The site section, admin or site.
+	 * @param   string  $siteSection   The site section, frontend or backend.
 	 * @param   string  $defaultValue  The default value to provide if none is specified.
 	 *
 	 * @return  string  The resulting value.
@@ -635,5 +643,90 @@ CSS;
 		}
 
 		return [(int) $hue, (int) $saturation, (int) $brightness];
+	}
+
+	/**
+	 * Convert the raw CSS of a CodeMirror theme to something suitable for a Dark Mode override.
+	 *
+	 * @param   string  $theme  The name of the theme to convert
+	 *
+	 * @return  string|null  The converted CSS; NULL if the theme could not be loaded.
+	 *
+	 * @since   2.2.0
+	 */
+	private function themeToDarkModeOverride(string $theme): ?string
+	{
+		$rawTheme = @file_get_contents(
+			JPATH_ROOT . '/' . $this->basePath . '/theme/' . $theme . '.css'
+		);
+
+		if ($rawTheme === false)
+		{
+			return null;
+		}
+
+		// Remove the theme prefix.
+		$rawTheme = str_replace('.cm-s-' . $theme, '', $rawTheme);
+
+		/**
+		 * Make all rules !important so they can override whichever theme is already loaded.
+		 *
+		 * DO NOT CHANGE THE FOLLOWING LINES! THERE IS A REASON FOR EVERY ONE OF THEM!
+		 *
+		 * They may look redundant but they are not. If you do not understand why they are not
+		 * redundant, start with the dracula.css CodeMirror theme file to understand the concept.
+		 *
+		 * The first line normalises existing !important annotations, removing a possible space
+		 * between the annotation and the following semicolon. It allows the next line to work.
+		 * The second line removes all !important annotations adjacent to a semicolon. This will let
+		 * the next line to work without duplicating existing !important annotations.
+		 * The third line replaces semicolons with !important; which makes all CSS rules have the
+		 * !important annotation, ensuring they will override an already loaded theme.
+		 */
+		$rawTheme = str_replace('!important ', '!important', $rawTheme);
+		$rawTheme = str_replace('!important;', ';', $rawTheme);
+		$rawTheme = str_replace(';', '!important;', $rawTheme);
+
+		return $rawTheme;
+	}
+
+	/**
+	 * Apply a dark theme to CodeMirror
+	 *
+	 * @param   string  $theme   The name of the CodeMirror to apply
+	 * @param   bool    $forced  Should the theme be forcibly applied?
+	 *
+	 * @since   2.2.0
+	 */
+	private function applyCodeMirrorDark(string $theme, bool $forced = false)
+	{
+		$input     = $this->app->getInput();
+		$extension = PluginHelper::getPlugin('editors', 'codemirror');
+
+		if (
+			$input->getCmd('option') === 'com_plugins'
+			&& $input->getCmd('view') === 'plugin'
+			&& $input->getCmd('layout') === 'edit'
+			&& $input->getCmd('extension_id') == (is_object($extension) ? $extension->id : -1)
+		)
+		{
+			return;
+		}
+
+		$theme   = $theme ?: 'dracula';
+		$media   = $forced ? 'screen' : 'screen and (prefers-color-scheme: dark)';
+		$darkCSS = $this->themeToDarkModeOverride($theme) ?? $this->themeToDarkModeOverride('dracula');
+
+		if (empty($darkCSS))
+		{
+			return;
+		}
+
+		$this->app->getDocument()->getWebAssetManager()
+			->addInlineStyle(
+				$darkCSS,
+				[],
+				['media' => $media]
+			);
 	}
 }
