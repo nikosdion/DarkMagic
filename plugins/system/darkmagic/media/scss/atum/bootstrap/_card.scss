@@ -5,22 +5,47 @@
  */
 
 // region Card (BS4)
-$dark-card-bg: $gray-900;
-$dark-card-border-color: rgba($gray-200, .125);
-
 .card {
   background-color: $card-bg;
-  border: 1px solid $card-border-color;
+  border: $card-border-width solid $card-border-color;
+}
 
-  .card-header {
-    //color: $gray-200;
-  }
+.card-body {
+  color: $card-color;
+}
 
-  .card-body {
-    color: var(--body-color);
-    //padding: 1rem .5rem;
+//
+// Optional textual caps
+//
+
+.card-header {
+  color: $card-cap-color;
+  background-color: $card-cap-bg;
+  border-bottom: $card-border-width solid $card-border-color;
+}
+
+.card-footer {
+  color: $card-cap-color;
+  background-color: $card-cap-bg;
+  border-top: $card-border-width solid $card-border-color;
+}
+
+//
+// Header navs
+//
+
+.card-header-tabs {
+  @if $nav-tabs-link-active-bg != $card-bg {
+    .nav-link.active {
+      background-color: $card-bg;
+      border-bottom-color: $card-bg;
+    }
   }
 }
+
+//
+// Card groups
+//
 
 body:not(.contentpane) .main-card
 {
@@ -29,3 +54,16 @@ body:not(.contentpane) .main-card
 }
 
 // endregion
+
+.content {
+  .card {
+    border: $card-border-width solid $card-border-color;
+    box-shadow: $atum-box-shadow;
+  }
+
+  .card-header {
+    font-weight: $font-weight-bold;
+    color: var(--card-header-text, $card-cap-color);
+    background: var(--card-header-bg, var(--card-bg));
+  }
+}

@@ -99,6 +99,10 @@
   background-color: var(--modal-body-bg, transparent);
 }
 
+.modal-content {
+  background-color: var(--body-bg);
+}
+
 .modal-title {
   background-color: var(--modal-title-bg, transparent);
 }
