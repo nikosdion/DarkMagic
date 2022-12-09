@@ -1,0 +1,25 @@
+.new-module {
+  color: var(--com_modules-new-module-text, hsl(var(--hue),30%,40%));
+  background-color: var(--com_modules-new-module-bg, hsl(var(--hue), 60%, 97%));
+  border: 1px solid var(--com_modules-new-module-border, hsl(var(--hue), 50%, 93%));
+
+  &:hover {
+    color: var(--com_modules-new-module-hover-text, var(--template-link-hover-color));
+  }
+
+  &-link {
+    background: var(--com_modules-new-module-link-bg, hsl(var(--hue), 50%, 93%));
+
+    span {
+      color: var(--com_modules-new-module-link-icon, hsl(var(--hue), 30%, 40%));
+    }
+
+    .new-module:hover & {
+      background: var(--com_modules-new-module-link-hover-bg, var(--template-bg-dark));
+
+      span {
+        color: var(--com_modules-new-module-link-hover-icon, var(--white));
+      }
+    }
+  }
+}

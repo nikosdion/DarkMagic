@@ -4,9 +4,9 @@
  *  @license   GNU General Public License version 3, or later
  */
 
-// region Joomla fields
+// region Media Field
 joomla-field-media .field-media-preview {
-  background-color: $gray-600;
+  background-color: var(--gray-600);
 }
 
 // endregion

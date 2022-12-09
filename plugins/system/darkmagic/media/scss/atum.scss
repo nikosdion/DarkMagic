@@ -73,6 +73,7 @@
 
 // Joomla sidebar (main menu)
 @import "atum/common/sidebar";
+@import "atum/common/sidebar-nav";
 
 // Joomla toolbar
 @import "atum/common/toolbar";
@@ -93,23 +94,21 @@
 @import "atum/pages/quickicons";
 
 // Core extensions
-@import "atum/pages/cpanel";
+@import "atum/pages/com_cpanel";
+@import "atum/pages/com_content";
+@import "atum/pages/com_modules";
+@import "atum/pages/com_installer";
+@import "atum/pages/com_privacy";
+@import "atum/pages/com_scheduler";
+@import "atum/pages/com_templates";
+@import "atum/pages/com_users";
+@import "atum/pages/debugbar";
 
-// TODO _com_config.scss
-// TODO _com_content.scss
-// TODO _com_joomlaupdate.scss
-// TODO _com_modules.scss
-// TODO _com_privacy.scss
-// TODO _com_tags.scss
-// TODO _com_templates.scss
-// TODO _com_users.scss
-// TODO _debugbar.scss
-
-// TODO Core Joomla Components, clean up
-@import "atum/pages/joomla_components";
+// Third party extensions
+@import "atum/3pd/com_jce";
 
 // TODO Media Manager, import work from my branch
-@import "atum/pages/joomla_mediamanager";
+@import "atum/pages/com_media";
 
 // TODO Core Joomla fields, review
 @import "atum/global/joomla_fields";

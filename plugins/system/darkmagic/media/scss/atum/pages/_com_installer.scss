@@ -1,0 +1,20 @@
+/*
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2022 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
+ */
+
+.com_installer {
+  #loading {
+    background-color: var(--gray-900);
+    opacity: 0.85;
+  }
+
+  #dragarea {
+    background-color: var(--gray-800);
+
+    .lead {
+      color: var(--gray-500);
+    }
+  }
+}

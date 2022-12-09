@@ -48,12 +48,12 @@ html, body {
   }
 }
 
-fieldset, .options-form {
+.options-form {
   background-color: var(--options-form-bg);
   color: var(--options-form);
   border-color: var(--gray-500);
 
-  legend {
+  fieldset legend {
     background-color: var(--options-form-legend-bg);
     color: var(--options-form-legend-text);
   }

@@ -1,0 +1,18 @@
+// Sidebar
+
+.sidebar-nav {
+  li {
+    a {
+      color: var(--sidebar-nav-link, var(--template-text-dark));
+      background-color: var(--sidebar-nav-link-bg, transparent);
+    }
+
+    &.item:hover, &.active {
+      background-color: var(--sidebar-nav-link-active-bg, var(--template-bg-dark-60));
+
+      a {
+        color: var(--sidebar-nav-link-active, var(--template-text-light));
+      }
+    }
+  }
+}
