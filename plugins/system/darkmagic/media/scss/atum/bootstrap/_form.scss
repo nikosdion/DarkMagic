@@ -4,6 +4,10 @@
  *  @license   GNU General Public License version 3, or later
  */
 
+.form-text {
+  color: $text-muted !important;
+}
+
 .form-control {
   color: var(--input-color, var(--body-color));
   background-color: var(--gray-900);
