@@ -110,12 +110,12 @@
 // Media Manager
 @import "atum/pages/com_media";
 
-// TODO Core Joomla fields, review
+// Core Joomla fields
 @import "atum/global/joomla_fields";
 
 // Calendar
 @import "atum/global/calendar";
 // endregion
 
-// TODO Various combos I ended up using in Akeeba Backup for Joomla 4
+// Class combinations which don't work very well in Dark Mode
 @import "atum/misc/combos";
