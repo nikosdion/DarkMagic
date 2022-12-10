@@ -101,7 +101,7 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		}
 
 		// Add a class to the document indicating the dark mode setting
-		$class    = 'joomla-dark-never';
+		$class = 'joomla-dark-never';
 
 		if ($this->evaluateDarkModeConditions())
 		{
@@ -189,38 +189,71 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		$document  = $this->app->getDocument();
 		$applyWhen = $this->params->get('applywhen', 'always');
 
-		// Get inline CSS override
-		$bgLight      = $this->getConfigKey('bg-light', $siteSection, '#343a40') ?: '#343a40l';
-		$textDark     = $this->getConfigKey('text-dark', $siteSection, '#dee2e6') ?: '#dee2e6';
-		$textLight    = $this->getConfigKey('text-light', $siteSection, '#212529') ?: '#212529';
-		$linkColor    = $this->getConfigKey('link-color', $siteSection, '#80abe2') ?: '#80abe2';
-		$specialColor = $this->getConfigKey('special-color', $siteSection, '#b2bfcd') ?: '#b2bfcd';
+		$wa = $document->getWebAssetManager();
+		$wa->getRegistry()->addExtensionRegistryFile('plg_system_darkmagic');
 
-		/** @var Registry $tParams */
-		$tParams           = $this->app->getTemplate(true)->params;
-		$lightSpecialColor = $tParams->get('special-color', '#001B4C');
+		$autoDark        = $applyWhen === 'browser';
+		$darkModeEditors = $this->getConfigKey('editors', $siteSection, 1) == 1;
+		$customColors    = $this->getConfigKey('colours', $siteSection, 1) == 1;
 
-		/**
-		 * The link hover color needs to have a fixed lightness difference to the link color. If the link color's
-		 * lightness plus that difference would get it to be brighter than 100% we will make it darker. Otherwise, we
-		 * will make it lighter. For this, we need to convert the RGB to HSL, make adjustments and convert back to RGB.
-		 */
-		[$h, $s, $v] = $this->rgbToHsv($linkColor);
-		$fixedDiff = 15;
+		// Tell the browser what kind of color scheme we support
+		$document->setMetaData('color-scheme', $autoDark ? 'light dark' : 'dark');
 
-		if ($v > (100 - $fixedDiff))
+		// Load the dark mode CSS
+		$wa->useStyle('darkmagic.' . $siteSection . '_template' . ($autoDark ? '_conditional' : ''));
+
+		// Should I apply dark mode in editors?
+		if ($darkModeEditors)
 		{
-			$v = $v - $fixedDiff;
-		}
-		else
-		{
-			$v = $v + $fixedDiff;
+			// Apply the TinyMCE skin
+			$contentDark = $this->getConfigKey('tinyMceContent', $siteSection, 1) == 1;
+			$this->applyTinyMCEDark($autoDark, $contentDark);
+
+			// Apply the CodeMirror theme
+			$codeMirrorDark = $this->getConfigKey('codeMirrorDark', $siteSection, '');
+			$this->applyCodeMirrorDark($codeMirrorDark, !$autoDark);
 		}
 
-		$linkHoverColor = $this->hsvToRgb($h, $s, $v);
+		// Should I apply custom colors?
+		if ($customColors)
+		{
+			// Get inline CSS override
+			$hueHSL       = $this->getConfigKey('hue', $siteSection, 'hsl(214, 63%, 20%)') ?: 'hsl(214, 63%, 20%)';
+			$bgLight      = $this->getConfigKey('bg-light', $siteSection, '#343a40') ?: '#343a40l';
+			$textDark     = $this->getConfigKey('text-dark', $siteSection, '#dee2e6') ?: '#dee2e6';
+			$textLight    = $this->getConfigKey('text-light', $siteSection, '#212529') ?: '#212529';
+			$linkColor    = $this->getConfigKey('link-color', $siteSection, '#80abe2') ?: '#80abe2';
+			$specialColor = $this->getConfigKey('special-color', $siteSection, '#b2bfcd') ?: '#b2bfcd';
 
-		$overrideCss = <<< CSS
+			/**
+			 * The link hover color needs to have a fixed lightness difference to the link color. If the link color's
+			 * lightness plus that difference would get it to be brighter than 100% we will make it darker. Otherwise, we
+			 * will make it lighter. For this, we need to convert the RGB to HSL, make adjustments and convert back to RGB.
+			 */
+			[$h, $s, $v] = $this->rgbToHsv($linkColor);
+			$fixedDiff = 15;
+
+			if ($v > (100 - $fixedDiff))
+			{
+				$v = $v - $fixedDiff;
+			}
+			else
+			{
+				$v = $v + $fixedDiff;
+			}
+
+			$linkHoverColor = $this->hsvToRgb($h, $s, $v);
+
+			preg_match(
+				'#^hsla?\(([0-9]+)[\D]+([0-9]+)[\D]+([0-9]+)[\D]+([0-9](?:.\d+)?)?\)$#i',
+				$hueHSL,
+				$matches
+			);
+			$hue = $matches[1] ?? 214;
+
+			$overrideCss = <<< CSS
 :root {
+		--hue: $hue !important;
 		--template-bg-light: $bgLight !important;
 		--template-text-dark: $textDark !important;
 		--template-text-light: $textLight !important;
@@ -230,69 +263,28 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 }
 CSS;
 
-		$wa = $document->getWebAssetManager();
-		$wa->getRegistry()->addExtensionRegistryFile('plg_system_darkmagic');
+			// Apply the inline CSS overrides
+			$mediaQuery = $autoDark
+				? 'screen and (prefers-color-scheme: dark)'
+				: 'screen';
+			$wa->addInlineStyle($overrideCss, [], ['media' => $mediaQuery]);
 
-		switch ($applyWhen)
-		{
-			case 'always':
-			case 'dusk':
-			default:
-				// Tell the browser what kind of color scheme we support
-				$document->setMetaData('color-scheme', 'dark');
-
-				// Load the dark mode CSS
-				$wa->useStyle('darkmagic.' . $siteSection . '_template');
-
-				// Apply the TinyMCE skin
-				$contentDark = $this->getConfigKey('tinyMceContent', $siteSection, 1) == 1;
-				$this->applyTinyMCEDark(false, $contentDark);
-
-				// Apply the CodeMirror theme
-				$codeMirrorDark = $this->getConfigKey('codeMirrorDark', $siteSection, '');
-				$this->applyCodeMirrorDark($codeMirrorDark, true);
-
-				// Apply the inline CSS overrides
-				$wa->addInlineStyle($overrideCss);
-
-				$document->setMetaData('theme-color', $specialColor);
-
-				break;
-
-			case 'browser':
-				// Tell the browser what kind of color scheme we support
-				$document->setMetaData('color-scheme', 'light dark');
-
-				// Load the dark mode CSS conditionally
-				$wa->useStyle('darkmagic.' . $siteSection . '_template_conditional');
-
-				// Apply the TinyMCE skin
-				$contentDark = $this->getConfigKey('tinyMceContent', $siteSection, 1) == 1;
-				$this->applyTinyMCEDark(true, $contentDark);
-
-				// Apply the CodeMirror theme
-				$codeMirrorDark = $this->getConfigKey('codeMirrorDark', $siteSection, '');
-				$this->applyCodeMirrorDark($codeMirrorDark, false);
-
-				// Apply the inline CSS overrides
-				$overrideCss = <<< CSS
-
-@media screen and (prefers-color-scheme: dark) {
-$overrideCss
-}
-
-CSS;
-
-				$wa->addInlineStyle($overrideCss);
+			if ($autoDark)
+			{
+				/** @var Registry $tParams */
+				$tParams           = $this->app->getTemplate(true)->params;
+				$lightSpecialColor = $tParams->get('special-color', '#001B4C');
 
 				/** @noinspection HtmlUnknownAttribute */
 				$document->addCustomTag(sprintf('<meta name="theme-color" content="%s" media="(prefers-color-scheme: light)">', $lightSpecialColor));
 				/** @noinspection HtmlUnknownAttribute */
 				$document->addCustomTag(sprintf('<meta name="theme-color" content="%s" media="(prefers-color-scheme: dark)">', $specialColor));
-
-				break;
+			}
+			else
+			{
+				$document->setMetaData('theme-color', $specialColor);
+			}
 		}
-
 	}
 
 	/**

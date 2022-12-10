@@ -145,7 +145,18 @@
 					<option value="1">JYES</option>
 				</field>
 
-				<!-- codeMirrorDark -->
+				<field
+						name="editors_backend"
+						type="radio"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_EDITORS_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_EDITORS_DESC"
+						layout="joomla.form.field.radio.switcher"
+						default="1"
+						showon="enable_backend:1"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 
 				<field
 						name="tinyMceContent_backend"
@@ -154,7 +165,7 @@
 						description="PLG_SYSTEM_DARKMAGIC_CONFIG_TINYMCECONTENT_DESC"
 						layout="joomla.form.field.radio.switcher"
 						default="1"
-						showon="enable_backend:1"
+						showon="enable_backend:1[AND]editors_backend:1"
 				>
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
@@ -172,48 +183,73 @@
 						hide_default="false"
 						directory="media/vendor/codemirror/theme"
 						validate="options"
-						showon="darkmode:1"
+						showon="enable_backend:1[AND]editors_backend:1"
 				/>
 
 				<field
-						name="bg-light"
+						name="colours_backend"
+						type="radio"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOURS_LABEL"
+						description="PLG_SYSTEM_DARKMAGIC_CONFIG_COLOURS_DESC"
+						layout="joomla.form.field.radio.switcher"
+						default="1"
+						showon="enable_backend:1"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field
+						name="hue_backend"
+						type="color"
+						label="PLG_SYSTEM_DARKMAGIC_CONFIG_HUE_LABEL"
+						format="hue"
+						control="slider"
+						preview="true"
+						saveFormat="hsl"
+						default="hsl(214,63%,20%)"
+						showon="enable_backend:1[AND]colours_backend:1"
+				/>
+
+				<field
+						name="bg-light_backend"
 						type="color"
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_BG_LIGHT_LABEL"
 						default="#f0f4fb"
 						filter="color"
-						showon="enable_backend:1"
+						showon="enable_backend:1[AND]colours_backend:1"
 				/>
 				<field
-						name="text-dark"
+						name="text-dark_backend"
 						type="color"
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_TEXT_DARK_LABEL"
 						default="#212529"
 						filter="color"
-						showon="enable_backend:1"
+						showon="enable_backend:1[AND]colours_backend:1"
 				/>
 				<field
-						name="text-light"
+						name="text-light_backend"
 						type="color"
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_TEXT_LIGHT_LABEL"
 						default="#f8f9fa"
 						filter="color"
-						showon="enable_backend:1"
+						showon="enable_backend:1[AND]colours_backend:1"
 				/>
 				<field
-						name="link-color"
+						name="link-color_backend"
 						type="color"
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_LINK_COLOR_LABEL"
 						default="#6b9edd"
 						filter="color"
-						showon="enable_backend:1"
+						showon="enable_backend:1[AND]colours_backend:1"
 				/>
 				<field
-						name="special-color"
+						name="special-color_backend"
 						type="color"
 						label="PLG_SYSTEM_DARKMAGIC_CONFIG_SPECIAL_COLOR_LABEL"
 						default="#001b4c"
 						filter="color"
-						showon="enable_backend:1"
+						showon="enable_backend:1[AND]colours_backend:1"
 				/>
 			</fieldset>
 
@@ -261,6 +297,15 @@
 						showon="darkmode:1"
 				/>
 
+				<!-- Cassiopeia does not have custom colors like Atum -->
+				<field
+						name="colours_frontend"
+						type="hidden"
+						default="0"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 			</fieldset>
 
 		</fields>
