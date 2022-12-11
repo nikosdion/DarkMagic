@@ -217,6 +217,24 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		// Should I apply custom colors?
 		if ($customColors)
 		{
+			if ($siteSection === 'frontend')
+			{
+				$cassiopeiaCustomColourCSS = <<< CSS
+:root {
+  --cassiopeia-color-primary: hsl(var(--hue, 213), 67%, 20%);
+  --cassiopeia-color-link: var(--template-link-color);
+  --cassiopeia-color-hover: var(--template-link-hover-color);
+}
+
+CSS;
+
+				// Replace Cassiopeia's custom color CSS files
+				$styleName = $wa->assetExists('style', 'theme.colors_standard')
+					? 'theme.colors_standard' : 'theme.colors_alternative';
+				$wa->disableStyle('theme.colors_standard');
+				$wa->addInlineStyle($cassiopeiaCustomColourCSS, ['name' => 'theme.colors_standard']);
+			}
+
 			// Get inline CSS override
 			$hueHSL       = $this->getConfigKey('hue', $siteSection, 'hsl(214, 63%, 20%)') ?: 'hsl(214, 63%, 20%)';
 			$bgLight      = $this->getConfigKey('bg-light', $siteSection, '#343a40') ?: '#343a40l';

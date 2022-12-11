@@ -4,6 +4,7 @@ DarkMagic 2.2.0
 + Dark theme for CodeMirror
 + Add a CSS class to the BODY tag indicating the applicable dark mode
 + Improved Atum dark mode, also introducing CSS variables
++ Custom colours for Cassiopeia
 # [LOW] Striped tables need alternate color for stripe rows
 
 DarkMagic 2.1.0

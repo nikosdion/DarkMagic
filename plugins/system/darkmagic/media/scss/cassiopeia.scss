@@ -13,65 +13,68 @@
 
 // region General
 // Main Cassiopeia colors
-@import "cassiopeia/cassiopeia_colors";
+@import "cassiopeia/variables";
 
 // Typography
-@import "cassiopeia/typography_dark";
+@import "cassiopeia/general/typography_dark";
 // endregion
 
 // region Bootstrap 5 overrides
 // Buttons
-@import "cassiopeia/buttons";
+@import "cassiopeia/bootstrap/buttons";
 
 // Cards
-@import "cassiopeia/card";
+@import "cassiopeia/bootstrap/card";
 
 // Tables
-@import "cassiopeia/table";
+@import "cassiopeia/bootstrap/table";
 
 // Custom selects
-@import "cassiopeia/custom_select";
+@import "cassiopeia/bootstrap/custom_select";
 
 // Modals
-@import "cassiopeia/modal";
+@import "cassiopeia/bootstrap/modal";
 
 // Alerts
-@import "cassiopeia/alerts";
+@import "cassiopeia/bootstrap/alerts";
 
 // Pagination
-@import "cassiopeia/pagination";
+@import "cassiopeia/bootstrap/pagination";
 
 // Forms
-@import "cassiopeia/form";
+@import "cassiopeia/bootstrap/form";
 
 // Lists
-@import "cassiopeia/lists";
+@import "cassiopeia/bootstrap/lists";
 
 // Dropdowns
-@import "cassiopeia/dropdowns";
+@import "cassiopeia/bootstrap/dropdowns";
 
 // Badges
-@import "cassiopeia/badge";
+@import "cassiopeia/bootstrap/badge";
 
 // Popovers
-@import "cassiopeia/popover";
+@import "cassiopeia/bootstrap/popover";
 
 // Accordions
-@import "cassiopeia/accordion";
+@import "cassiopeia/bootstrap/accordion";
 
 // System messages
-@import "cassiopeia/messages";
+@import "cassiopeia/bootstrap/messages";
 
 // endregion
 
 // Akeeba FEF
-@import "cassiopeia/fef";
+@import "cassiopeia/misc/fef";
+
+// Combos
+@import "cassiopeia/misc/combos";
 
 // Cassiopeia blocks
-@import "cassiopeia/blocks";
+@import "cassiopeia/blocks/blocks";
 
 // Choices – the J4 way
-@import "cassiopeia/choices";
+@import "cassiopeia/general/choices";
 
 // Joomla tabs
-@import "cassiopeia/joomla_tabs";
+@import "cassiopeia/general/joomla_tabs";
