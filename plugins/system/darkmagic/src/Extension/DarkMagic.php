@@ -231,8 +231,12 @@ CSS;
 				// Replace Cassiopeia's custom color CSS files
 				$styleName = $wa->assetExists('style', 'theme.colors_standard')
 					? 'theme.colors_standard' : 'theme.colors_alternative';
-				$wa->disableStyle('theme.colors_standard');
-				$wa->addInlineStyle($cassiopeiaCustomColourCSS, ['name' => 'theme.colors_standard']);
+
+				if ($wa->assetExists('style', $styleName))
+				{
+					$wa->disableStyle($styleName);
+					$wa->addInlineStyle($cassiopeiaCustomColourCSS, ['name' => 'theme.colors_standard']);
+				}
 			}
 
 			// Get inline CSS override
