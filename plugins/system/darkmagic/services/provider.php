@@ -1,7 +1,7 @@
 <?php
 /**
  *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2023 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */
 
@@ -22,7 +22,7 @@ return new class implements ServiceProviderInterface {
 	 *
 	 * @return  void
 	 *
-	 * @since   5.0.0
+	 * @since   2.0.0
 	 */
 	public function register(Container $container)
 	{

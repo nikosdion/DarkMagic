@@ -1,8 +1,8 @@
 <?php
 /**
- * @package   DarkMagic
- * @copyright Copyright (c)2019-2022 Nicholas K. Dionysopoulos
- * @license   GNU General Public License version 3, or later
+ *  @package   DarkMagic
+ *  @copyright Copyright (c)2019-2023 Nicholas K. Dionysopoulos
+ *  @license   GNU General Public License version 3, or later
  */
 
 namespace Joomla\Plugin\System\DarkMagic\Field;

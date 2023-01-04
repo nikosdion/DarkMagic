@@ -1,5 +1,5 @@
 /*!*
  *  @package   DarkMagic
- *  @copyright Copyright (c)2022 Nicholas K. Dionysopoulos
+ *  @copyright Copyright (c)2019-2023 Nicholas K. Dionysopoulos
  *  @license   GNU General Public License version 3, or later
  */@media(prefers-color-scheme: dark){body.joomla-auto-dark{--body-bg: #212529;--body-color: #f8f9fa}}html{background-color:var(--body-bg);color:var(--body-color)}body{background-color:var(--body-bg);color:var(--body-color)}body.joomla-forced-dark{--body-bg: #212529;--body-color: #f8f9fa}body h1,body h2,body h3,body h4,body h5,body h6{color:var(--body-color)}body a,body a:link{color:var(--template-link-color)}body a:hover,body a:link:hover{color:var(--template-link-hover-color)}body p{background-color:var(--body-bg);color:var(--body-color)}/*# sourceMappingURL=content-dark.css.map */
