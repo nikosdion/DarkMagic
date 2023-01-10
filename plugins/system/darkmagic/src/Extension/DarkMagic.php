@@ -185,6 +185,15 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 			return;
 		}
 
+		// Is Dark Mode disabled for this site section?
+		$key = 'enable_' . $siteSection;
+		$default = $siteSection === 'site' ? 0 : 1;
+
+		if ($this->params->get($key, $default) == 0)
+		{
+			return;
+		}
+
 		// Get some basic information
 		$document  = $this->app->getDocument();
 		$applyWhen = $this->params->get('applywhen', 'always');

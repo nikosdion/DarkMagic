@@ -1,3 +1,7 @@
+DarkMagic 2.2.1
+================================================================================
+# [HIGH] The enable switch isn't respected, it's always acting as if it's set to Yes (gh-6)
+
 DarkMagic 2.2.0
 ================================================================================
 + Improved TinyMCE theme loading
