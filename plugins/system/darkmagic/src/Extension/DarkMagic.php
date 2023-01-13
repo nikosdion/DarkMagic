@@ -1,8 +1,8 @@
 <?php
 /**
- *  @package   DarkMagic
- *  @copyright Copyright (c)2019-2023 Nicholas K. Dionysopoulos
- *  @license   GNU General Public License version 3, or later
+ * @package   DarkMagic
+ * @copyright Copyright (c)2019-2023 Nicholas K. Dionysopoulos
+ * @license   GNU General Public License version 3, or later
  */
 
 /** @noinspection PhpMultipleClassDeclarationsInspection */
@@ -79,7 +79,9 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		// Make sure I can get basic Joomla objects before proceeding
 		try
 		{
-			$document = ($this->app instanceof CMSApplication) ? $this->app->getDocument() : null;
+			$document = ($this->getApplication() instanceof CMSApplication)
+				? $this->getApplication()->getDocument()
+				: null;
 		}
 		catch (Exception $e)
 		{
@@ -92,8 +94,39 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 			return;
 		}
 
+		if ($this->getApplication()->isClient('administrator'))
+		{
+			$siteSection  = 'site';
+			$templateName = 'cassiopeia';
+		}
+		elseif ($this->getApplication()->isClient('administrator'))
+		{
+			$siteSection  = 'admin';
+			$templateName = 'atum';
+		}
+		else
+		{
+			return;
+		}
+
+		// Make sure that the site is using the right template
+		if (!$this->isThisTemplate($templateName))
+		{
+			// Tell the browser what kind of color scheme we support
+			return;
+		}
+
+		// Is Dark Mode disabled for this site section?
+		$key     = 'enable_' . $siteSection;
+		$default = $siteSection === 'site' ? 0 : 1;
+
+		if ($this->params->get($key, $default) == 0)
+		{
+			return;
+		}
+
 		// Make sure we have the `<BODY` opening tag
-		$body = $this->app->getBody();
+		$body = $this->getApplication()->getBody();
 
 		if (stripos($body, '<body') === false)
 		{
@@ -123,7 +156,7 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 			$body
 		);
 
-		$this->app->setBody($body);
+		$this->getApplication()->setBody($body);
 	}
 
 	/**
@@ -137,7 +170,9 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		// Make sure I can get basic Joomla objects before proceeding
 		try
 		{
-			$document = ($this->app instanceof CMSApplication) ? $this->app->getDocument() : null;
+			$document = ($this->getApplication() instanceof CMSApplication)
+				? $this->getApplication()->getDocument()
+				: null;
 		}
 		catch (Exception $e)
 		{
@@ -150,19 +185,11 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 			return;
 		}
 
-		// Is this Light Mode?
-		if (!$this->evaluateDarkModeConditions())
-		{
-			$document->setMetaData('color-scheme', 'light');
-
-			return;
-		}
-
-		if ($this->app->isClient('administrator'))
+		if ($this->getApplication()->isClient('administrator'))
 		{
 			$this->darkMode('backend', 'atum');
 		}
-		elseif ($this->app->isClient('site'))
+		elseif ($this->getApplication()->isClient('site'))
 		{
 			$this->darkMode('frontend', 'cassiopeia');
 		}
@@ -186,7 +213,7 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 		}
 
 		// Is Dark Mode disabled for this site section?
-		$key = 'enable_' . $siteSection;
+		$key     = 'enable_' . $siteSection;
 		$default = $siteSection === 'site' ? 0 : 1;
 
 		if ($this->params->get($key, $default) == 0)
@@ -194,8 +221,14 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 			return;
 		}
 
+		// Is this Light Mode?
+		if (!$this->evaluateDarkModeConditions())
+		{
+			$this->getApplication()->getDocument()->setMetaData('color-scheme', 'light');
+		}
+
 		// Get some basic information
-		$document  = $this->app->getDocument();
+		$document  = $this->getApplication()->getDocument();
 		$applyWhen = $this->params->get('applywhen', 'always');
 
 		$wa = $document->getWebAssetManager();
@@ -232,7 +265,7 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 :root {
   --cassiopeia-color-primary: hsl(var(--hue, 213), 67%, 20%);
   --cassiopeia-color-link: var(--template-link-color);
-  --cassiopeia-color-hover: var(--template-link-hover-color);
+  --cassiopeia-color-hover: var(--template-link-hover-color, hsl(var(--hue, 213), 27%, 30%));
 }
 
 CSS;
@@ -303,7 +336,7 @@ CSS;
 			if ($autoDark)
 			{
 				/** @var Registry $tParams */
-				$tParams           = $this->app->getTemplate(true)->params;
+				$tParams           = $this->getApplication()->getTemplate(true)->params;
 				$lightSpecialColor = $tParams->get('special-color', '#001B4C');
 
 				/** @noinspection HtmlUnknownAttribute */
@@ -369,7 +402,7 @@ CSS;
 	 */
 	private function applyTinyMCEDark(bool $auto = true, bool $contentDark = false)
 	{
-		$document = $this->app->getDocument();
+		$document = $this->getApplication()->getDocument();
 		$opts     = $document->getScriptOptions('plg_editor_tinymce');
 
 		if (empty($opts) || !is_array($opts))
@@ -462,24 +495,6 @@ CSS;
 			$key . '_' . $siteSection,
 			$this->params->get($key, $defaultValue)
 		);
-	}
-
-	/**
-	 * Create a media version query string for the plugin.
-	 *
-	 * The media version query string is created from the modification dates of the CSS files we are going to be
-	 * loading and the plugin file itself. This is simultaneously very accurate and does not divulge plugin version
-	 * information since each site will have a different file modification time for each file.
-	 *
-	 * @return  string
-	 * @since   1.0.0.b1
-	 */
-	private function getMediaVersion(): string
-	{
-		$files = Folder::files(JPATH_ROOT . '/media/plg_system_darkmagic/css', '.css', false, true);
-		array_unshift($files, __FILE__);
-
-		return sha1(implode(':', array_map('filemtime', $files)));
 	}
 
 	/**
@@ -580,7 +595,7 @@ CSS;
 	{
 		try
 		{
-			$user   = $this->app->getIdentity() ?? new User();
+			$user   = $this->getApplication()->getIdentity() ?? new User();
 			$params = $user->params;
 
 			if (!is_object($params) || !($params instanceof Registry))
@@ -643,7 +658,7 @@ CSS;
 	private function isThisTemplate(string $templateName): bool
 	{
 		// Is the template in use Isis (the only one supported)?
-		$templateInfo = $this->app->getTemplate(true);
+		$templateInfo = $this->getApplication()->getTemplate(true);
 
 		if ($templateInfo->template === $templateName)
 		{
@@ -786,7 +801,7 @@ CSS;
 	 */
 	private function applyCodeMirrorDark(string $theme, bool $forced = false)
 	{
-		$input     = $this->app->getInput();
+		$input     = $this->getApplication()->getInput();
 		$extension = PluginHelper::getPlugin('editors', 'codemirror');
 
 		if (
@@ -808,7 +823,7 @@ CSS;
 			return;
 		}
 
-		$this->app->getDocument()->getWebAssetManager()
+		$this->getApplication()->getDocument()->getWebAssetManager()
 			->addInlineStyle(
 				$darkCSS,
 				[],
