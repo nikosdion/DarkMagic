@@ -7,8 +7,8 @@
 
 <extension type="plugin" group="system" method="upgrade">
 	<name>PLG_SYSTEM_DARKMAGIC</name>
-	<version>2.2.0</version>
-	<creationDate>2023-01-09</creationDate>
+	<version>2.2.1</version>
+	<creationDate>2023-01-17</creationDate>
 	<author>Nicholas K. Dionysopoulos</author>
 	<authorEmail>no-reply@akeebabackup.com</authorEmail>
 	<authorUrl>https://www.dionysopoulos.me</authorUrl>
