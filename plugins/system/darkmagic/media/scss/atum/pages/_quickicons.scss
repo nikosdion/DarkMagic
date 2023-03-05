@@ -27,7 +27,7 @@
       }
 
       .quickicon-amount {
-        background: hsl(var(--hue),50%,93%);
+        background: hsl(var(--hue),50%,13%);
       }
 
       &:hover,
@@ -39,6 +39,7 @@
 
         .quickicon-amount {
           background: var(--icon-color);
+          color: hsl(var(--hue),50%,13%);
         }
       }
 

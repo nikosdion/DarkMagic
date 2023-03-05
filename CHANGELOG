@@ -3,6 +3,7 @@ DarkMagic 2.2.1
 # [MEDIUM] Possibly wrong colors displayed for frontend link hover and hovered primary buttons
 # [HIGH] The enable switch isn't respected, it's always acting as if it's set to Yes (gh-6)
 # [LOW] Wrong LEGEND background colour (Atum)
+# [LOW] Wrong system quickicon badge background colour (Atum)
 
 DarkMagic 2.2.0
 ================================================================================
