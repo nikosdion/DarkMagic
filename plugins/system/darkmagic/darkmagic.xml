@@ -36,6 +36,9 @@
 	<languages folder="language">
 		<language tag="en-GB">en-GB/plg_system_darkmagic.ini</language>
 		<language tag="en-GB">en-GB/plg_system_darkmagic.sys.ini</language>
+
+		<language tag="uk-UA">uk-UA/plg_system_darkmagic.ini</language>
+		<language tag="uk-UA">uk-UA/plg_system_darkmagic.sys.ini</language>
 	</languages>
 
 	<config>
