@@ -302,6 +302,10 @@
   // endregion
 
   // region Tree
+  .media-disk {
+    background: var(--template-bg-dark-90);
+  }
+
   .media-drive {
     background-color: $sidebar-drive-bg;
     border: 1px solid $border-color;

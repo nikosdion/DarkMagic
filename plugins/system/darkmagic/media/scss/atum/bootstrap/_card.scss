@@ -6,6 +6,7 @@
 
 // region Card (BS4)
 .card {
+  --card-bg: var(--template-bg-dark-75);
   background-color: $card-bg;
   border: $card-border-width solid $card-border-color;
 }

@@ -12,6 +12,7 @@ $dark-card-cap-color: null !default;
 $dark-card-cap-bg: rgba($white, .15);
 
 .card {
+  --card-bg: var(--template-bg-dark-75);
   background-color: $dark-card-bg;
   border-color: $dark-card-border-color;
 }
