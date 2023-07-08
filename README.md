@@ -2,7 +2,7 @@
 
 DarkMagic - Dark Mode for Joomla 4's default templates
 
-Copyright (C) 2020-2022  Nicholas K. Dionysopoulos
+Copyright (C) 2020-2023  Nicholas K. Dionysopoulos
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
