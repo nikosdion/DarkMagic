@@ -4,6 +4,11 @@
  *  @license   GNU General Public License version 3, or later
  */
 
+.list-group {
+  --list-group-bg: var(--bg-color);
+  --list-group-text: var(--body-color);
+}
+
 .list-group-item {
   background-color: $list-group-bg;
   color: var(--list-group-text, inherit);
