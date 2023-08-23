@@ -376,6 +376,6 @@
 
 	<!-- Update servers -->
 	<updateservers>
-		<server type="extension" priority="1" name="DarkMagic for Joomla 4 Updates">https://github.com/nikosdion/DarkMagic/raw/development/update/plg_darkmagic_updates_j4.xml</server>
+		<server type="extension" priority="1" name="DarkMagic for Joomla 4 Updates">https://raw.githubusercontent.com/nikosdion/DarkMagic/development/update/plg_darkmagic_updates_j4.xml</server>
 	</updateservers>
 </extension>
