@@ -45,14 +45,6 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 	protected $allowLegacyListeners = true;
 
 	/**
-	 * The Joomla! application object
-	 *
-	 * @since 1.0.0
-	 * @var   CMSApplication|SiteApplication|AdministratorApplication
-	 */
-	protected $app;
-
-	/**
 	 * Returns an array of events this subscriber will listen to.
 	 *
 	 * @return  array
