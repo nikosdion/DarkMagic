@@ -21,6 +21,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Automatically applies a dark theme in Joomla 4's administrator backend and public frontend.
 
+## DISCONTINUED — AUGUST 2023
+
+Joomla 5 makes it impossible to have a reliable Dark Mode anymore.
+
+Joomla 5 upgraded Bootstrap from 5.0 to 5.3. Bootstrap 5.3 adds a lot more color variants and has [built-in Dark Mode](https://getbootstrap.com/docs/5.3/customize/color-modes/) by adding `data-bs-theme="dark"` to the `<html>` element. THe only problem is that this does not work in Joomla 5. This feature has been removed from both Atum (backend) and Cassiopeia (frontend) templates bundled with Joomla. Therefore, we cannot make Dark Mode work correctly without redoing all the work from scratch, or recompiling the site templates with the missing Bootstrap 5.3 Dark Mode support. The former is too much work, the latter is a code hack.
+
+In Joomla 5, CodeMirror 5 was upgraded to CodeMirror 6. CodeMirror 6 themes are no longer simple CSS, they are JavaScript plugins. Using a dark mode CodeMirror plugin requires adding support in the editor plugin (plg_editor_codemirror) itself. It's not something a third party plugin can do.
+
+In Joomla 5, TinyMCE 5 was upgraded to 6. This would require a completely new theme for TinyMCE. While perfectly feasible, it would not make much sense when the other two items are very difficult or outright impossible without Dark Mode support in core Joomla! itself.
+
+I had tried to add Dark Mode support in Joomla! itself in 2022. I was told by Dimitris Grammatikogiannis I don't know what I am doing and that this would be a non-issue once Boostrap 5.3 is added to the core. As it turns out, I was right; core support is required for Dark Mode and adding Bootstrap 5.3 (with its built-in dark mode neutered) was not the magic solution he thought. If you want Dark Mode support tell Dimitris to put his code where his mouth is. I am _done_.
+
+PS: Do I know what I'm doing in the frontend? Let's see. I've got Panopticon to show you which uses Bootstrap 5.3, TinyMCE 6, and Ace Editor (instead of CodeMirror, which I found too slow in version 6) — **WITH DARK MODE** working out of the box. My answer is working, maintained code, not big words. That's it, and that's all.
+
 ## Download
 
 I primarily wrote this for my own, personal use. I do publish occasional pre-built Joomla installation packages and make them available through [my GitHub repository's Releases page](https://github.com/nikosdion/darkmagic/releases).

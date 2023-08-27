@@ -8,6 +8,7 @@
 defined('_JEXEC') || die;
 
 use Joomla\CMS\Installer\InstallerScript;
+use Joomla\CMS\Log\Log;
 
 class plg_system_darkmagicInstallerScript extends InstallerScript
 {
@@ -24,4 +25,16 @@ class plg_system_darkmagicInstallerScript extends InstallerScript
 	protected $deleteFolders = [
 		'media/plg_system_darkmagic/js',
 	];
+
+	public function preflight($type, $parent)
+	{
+		if (version_compare(JVERSION, '4.999999.999999', 'gt')) {
+			Log::add('DarkMagic is not compatible with Joomla! 5.0 or later. Joomla has made it impossible to have a reliable Dark Mode anymore.', Log::WARNING, 'jerror');
+
+			return false;
+		}
+
+
+		return parent::preflight($type, $parent);
+	}
 }

@@ -53,6 +53,11 @@ class DarkMagic extends CMSPlugin implements SubscriberInterface
 	 */
 	public static function getSubscribedEvents(): array
 	{
+		if (version_compare(JVERSION, '4.999999.999999', 'gt'))
+		{
+			return [];
+		}
+
 		return [
 			'onBeforeRender' => 'onBeforeRender',
 			'onAfterRender'  => 'onAfterRender',
